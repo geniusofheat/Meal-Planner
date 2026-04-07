@@ -3,29 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cookbook Menu :</title>
+<title>Cookbook :</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="blue_card_style.css">
 </head>
 
 <body>
-
-<!-- ── This is the part jetson added ── -->
-<!-- ── BEGIN DYNAMIC AUTH NAV BAR ── -->
-<nav id="auth-nav" style="display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:12px 24px;background:#1a2a4a;border-bottom:1px solid gold;border-radius:0 0 8px 8px;">
-  <div id="nav-user-email" style="color:gold;font-family:'Space Mono',monospace;font-size:12px;">Welcome, Guest</div>
-  <button id="sign-in-btn" style="padding:6px 12px;font-family:'Space Mono',monospace;font-size:11px;background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.4);border-radius:6px;color:#c8a96e;cursor:pointer;">
-    Sign In
-  </button>
-  <button id="create-account-btn" style="padding:6px 12px;font-family:'Space Mono',monospace;font-size:11px;background:transparent;border:1px solid rgba(200,169,110,0.2);border-radius:6px;color:rgba(200,169,110,0.5);cursor:pointer;">
-    Create Account
-  </button>
-  <button id="sign-out-btn" style="display:none;padding:6px 12px;font-family:'Space Mono',monospace;font-size:11px;background:rgba(200,169,110,0.2);border:1px solid rgba(200,169,110,0.4);border-radius:6px;color:#c8a96e;cursor:pointer;">
-    Sign Out
-  </button>
-</nav>
-<!-- ── END DYNAMIC AUTH NAV BAR ── -->
 
 <div id="app">
 
@@ -44,26 +28,58 @@
 
 <div class="section-wrapper">
 
-<!-- ── PAGE HEADER ── -->
-<div class="card">
-<div class="card-header">
+<!-- ── END NAV BAR ── -->
 
+<!-- ── HEADER CARD ── -->
 <div class="card">
-<div class="page-header">
-<h2 id="card-title">Cookbook Menu :</h2>
+
+<h2 id="card-title">📖 Cookbook :</h2>
+
+	<div class="divider"></div>
+
+	<p>All the recipes we provide are researched and verified by proven chef inspired ingredients and preparation instructions.</p>
+	<p>Once you find a recipe and open a recipe card, you can save each recipe to your favorites by pressing the save button.</p>
+	<p>If you would like to use a recipe with the meal planner press the plan button. You will be taken to the meal planner where you can select a day and date for the recipe.</p>
+
+</div>
+
+<!-- --- Cookbook Header Container--- -->
+<div class="card">
+	<h4>📖 Cookbook Menu :</h4>
+		
 <div class="divider"></div>
-<p class="card-desc">Browse the complete list of chef inspired recipes by clicking on a recipe category below. Click any category to see the recipes inside.</p>
+	
+	<p>Browse the menu sections below to see which recipes are available</p>
+	
+	<p>Use the search tool to search for specific recipes or ingredients.</p>
+	
+<!-- ── BEGIN SEARCH CARD ── --->
+
+<div class="search-bar-container">
+
+   <input type="text" id="search_input" class="search-input"
+      placeholder="Search here :"
+      onkeydown="search_on_enter(event)"
+      autocomplete="off">
+
+   <div class="btn-blue" style="flex: none; display: flex; height: 44px; width: 44px; margin: 0px; justify-content: center; padding: 0px; align-items: center;">
+   <button id="square-search-btn" class="square-search-btn"
+      onclick="search_cookbook()">🔍</button>
+   </div>
+
 </div>
-</div>
-</div>
-</div>
+
+<!-- Search error message — place immediately after search-bar-container -->
+<div id="search_results" style="display:none;margin-top:4px;"></div>
+
+
+<!-- --- END search bar card --- -->
 
 <!-- ── Beverages ── -->
 <div class="card">
 <div class="card-header">
 <div class="card-title">🍷 Beverages :</div>
-<p class="card-desc">Smoothies, Coffees..</p>
-<div class="gold-rule"></div>
+<p>Smoothies, Coffees, Teas, Juices, Cocktails, Mocktails, Margaritas, etc..</p>
 </div>
 <div class="card-body">
 <div class="tip-box">Click below to browse all the beverages recipes.</div>
@@ -76,7 +92,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🫘 Beans & Legumes :</div>
-<p class="card-desc">Red Beans, Green Beans, Black Beans, Lima Beans, Pinto Beans.</p>
+<p>Red Beans, Green Beans, Black Beans, Lima Beans, Pinto Beans.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -90,7 +106,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🍞 Breads & Grains :</div>
-<p class="card-desc">White Bread, Wheat Bread, Garlic Bread..</p>
+<p>White Bread, Wheat Bread, Garlic Bread..</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -104,7 +120,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🍬 Candy :</div>
-<p class="card-desc">Lemon Drops, Red Hots, Candy Apples.</p>
+<p>Lemon Drops, Red Hots, Candy Apples.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -118,7 +134,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🍰 Desserts</div>
-<p class="card-desc">Cakes, cookies, pies, ice cream, puddings, and sweet treats.</p>
+<p>Cakes, cookies, pies, ice cream, puddings, and sweet treats.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -132,7 +148,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🥗 Dips, Sauces, & Gravies :</div>
-<p class="card-desc">Cheese dip, brown gravy, white gravy, aioli sauce, and many other sauces.</p>
+<p>Cheese dip, brown gravy, white gravy, aioli sauce, and many other sauces.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -146,7 +162,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🥩 Meats</div>
-<p class="card-desc">Beef, Chicken, Pork, Lamb, Game, and hearty meat-forward main courses.</p>
+<p>Beef, Chicken, Pork, Lamb, Game, and hearty meat-forward main courses.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -160,7 +176,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🍝 Pastas & Rice :</div>
-<p class="card-desc">Classic rice and pasta dishes, baked pastas, and homemade sauces.</p>
+<p>Classic rice and pasta dishes, baked pastas, and homemade sauces.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -174,7 +190,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🥗 Salads</div>
-<p class="card-desc">Fresh greens, grain bowls, pasta salads, and light seasonal dishes.</p>
+<p>Fresh greens, grain bowls, pasta salads, and light seasonal dishes.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -188,7 +204,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🍲 Soups & Stews</div>
-<p class="card-desc">Hearty stews, creamy bisques, broths, chowders, and slow-cooked soups.</p>
+<p>Hearty stews, creamy bisques, broths, chowders, and slow-cooked soups.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -202,7 +218,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🥦 Vegetable Dishes</div>
-<p class="card-desc">Roasted vegetables, casseroles, stir-fries, and fresh vegetable sides.</p>
+<p>Roasted vegetables, casseroles, stir-fries, and fresh vegetable sides.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -216,7 +232,7 @@
 <div class="card">
 <div class="card-header">
 <div class="card-title">🥔 Side Dishes</div>
-<p class="card-desc">Roasted vegetables, potatoes, rice, casseroles, and perfect accompaniments.</p>
+<p>Roasted vegetables, potatoes, rice, casseroles, and perfect accompaniments.</p>
 <div class="gold-rule"></div>
 </div>
 <div class="card-body">
@@ -247,6 +263,9 @@
     <div id="recipe_modal_body"></div>
   </div>
 
+</div>
+</div>
+<!-- --- END Cookbook Header Container--- -->
 </div>
 
 <script src="beverages_data.js"></script>

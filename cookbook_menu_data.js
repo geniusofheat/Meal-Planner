@@ -464,3 +464,93 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 // END § 8
+
+// ================================================================
+//  § 9 — SEARCH
+// ================================================================
+
+// -- BEGIN: search_cookbook --
+function search_cookbook() {
+  const input      = document.getElementById('search_input');
+  const results_el = document.getElementById('search_results');
+  const q          = input ? input.value.trim().toLowerCase() : '';
+
+  if (results_el) { results_el.innerHTML = ''; results_el.style.display = 'none'; }
+  if (q.length < 2) return;
+
+  // ── Find first matching recipe ────────────────────────────
+  let found = null;
+
+  Object.keys(cookbook_data).some(function(cat_id) {
+    const cat = cookbook_data[cat_id];
+    if (!cat) return false;
+
+    return cat.some(function(subcat, sub_idx) {
+      return subcat.recipes.some(function(recipe) {
+        const name_match = recipe.name.toLowerCase().includes(q);
+        const ing_match  = recipe.ingredients && recipe.ingredients.some(function(ing) {
+          return ing.toLowerCase().includes(q);
+        });
+        if (name_match || ing_match) {
+          found = { recipe: recipe, subcat: subcat, cat_id: cat_id, sub_idx: sub_idx };
+          return true;
+        }
+        return false;
+      });
+    });
+  });
+
+  // ── Not found ─────────────────────────────────────────────
+  if (!found) {
+    if (results_el) {
+      results_el.innerHTML =
+        '<div style="padding:12px 16px;font-family:\'Space Mono\',monospace;font-size:11px;color:rgba(200,169,110,0.6);">No recipe found for "' + input.value.trim() + '".</div>';
+      results_el.style.display = 'block';
+    }
+    return;
+  }
+
+  // ── Open the correct category ─────────────────────────────
+  if (active_category && active_category !== found.cat_id) {
+    const prev_el = document.getElementById(active_category);
+    if (prev_el) { prev_el.innerHTML = ''; prev_el.style.display = 'none'; }
+    active_category = null;
+  }
+
+  if (active_category !== found.cat_id) {
+    toggleCategory(found.cat_id);
+  }
+
+  // ── Drill into the correct subcategory ────────────────────
+  show_recipes(found.cat_id, found.sub_idx);
+
+  // ── Snap page to the category section ────────────────────
+  setTimeout(function() {
+    window.location.hash = found.cat_id;
+  }, 150);
+
+  // ── Highlight the matching recipe li ─────────────────────
+  setTimeout(function() {
+    const list_el = document.getElementById(found.cat_id);
+    if (!list_el) return;
+
+    const lis = list_el.querySelectorAll('li.nested-li');
+    lis.forEach(function(li) {
+      const label = li.querySelector('.recipe-label');
+      if (label && label.textContent.trim().toLowerCase() === found.recipe.name.toLowerCase()) {
+        li.style.border       = '4px solid #c8a96e';
+        li.style.borderRadius = '8px';
+        
+      }
+    });
+  }, 200);
+}
+// -- END: search_cookbook --
+
+// -- BEGIN: search_on_enter --
+function search_on_enter(e) {
+  if (e.key === 'Enter') search_cookbook();
+}
+// -- END: search_on_enter --
+
+// END § 9
