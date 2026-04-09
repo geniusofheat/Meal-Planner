@@ -7,8 +7,9 @@ const cookbook_data = {
   breads_and_grains:    typeof breads_and_grains_data    !== 'undefined' ? breads_and_grains_data    : null,
   candy:     typeof candy_data     !== 'undefined' ? candy_data     : null,
   desserts:  typeof desserts_data  !== 'undefined' ? desserts_data  : null,
-  dips_and_sauces:      typeof dips_and_sauces_data      !== 
-      'undefined' ? dips_and_sauces_data      : null,
+  dips_sauces_and_gravies:      typeof dips_sauces_and_gravies_data      !== 
+      'undefined' ? dips_sauces_and_gravies_data      : null,
+  finger_foods:     typeof finger_foods_data     !== 'undefined' ? finger_foods_data     : null,
   meats:     typeof meats_data     !== 'undefined' ? meats_data     : null,
   pastas:    typeof pastas_data    !== 'undefined' ? pastas_data    : null,
   rice:      typeof rice_data      !== 'undefined' ? rice_data      : null,
@@ -30,20 +31,26 @@ function toggleCategory(cat_id) {
   const list_el = document.getElementById(cat_id);
   if (!list_el) return;
 
+  // Collapse any previously active category
   if (active_category && active_category !== cat_id) {
     const active_el = document.getElementById(active_category);
     if (active_el) { active_el.innerHTML = ''; active_el.style.display = 'none'; }
   }
 
+  // If clicking the same category, toggle it closed
   if (list_el.style.display === 'block') {
-    list_el.innerHTML = ''; list_el.style.display = 'none';
-    active_category = null; return;
+    list_el.innerHTML = ''; 
+    list_el.style.display = 'none';
+    active_category = null; 
+    return;
   }
 
+  // Get category data
   const cat_data = cookbook_data[cat_id];
   list_el.innerHTML = '';
 
-  if (!cat_data) {
+  // Add placeholder if no data
+  if (!cat_data || cat_data.length === 0) {
     const li = document.createElement('li');
     li.className = 'nested-li';
     li.textContent = 'Coming soon.';
@@ -60,11 +67,14 @@ function toggleCategory(cat_id) {
     });
   }
 
+  // Show the list and scroll the card into view
   list_el.style.display = 'block';
+  const card_el = list_el.closest('.card');
+  if (card_el) card_el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   active_category = cat_id;
 }
 // END § 2
-
 
 // ================================================================
 //  § 3 — SHOW RECIPE TITLES
@@ -75,34 +85,35 @@ function show_recipes(cat_id, sub_idx) {
   const subcat   = cat_data[sub_idx];
   list_el.innerHTML = '';
 
+  // ── Back button ──
   const back_li = document.createElement('li');
   back_li.className = 'nested-li';
   back_li.innerHTML = '<span class="recipe-label" style="opacity:0.6;">← Back</span>';
   back_li.style.cursor = 'pointer';
   back_li.addEventListener('click', function() {
     list_el.innerHTML = '';
-    cat_data.forEach(function(subcat, sub_idx) {
+    cat_data.forEach(function(subcat, idx) {
       const li = document.createElement('li');
       li.className = 'nested-li';
       li.innerHTML = '<span class="recipe-label">' + subcat.icon + ' ' + subcat.name + '</span><span class="recipe-arrow">›</span>';
       li.style.cursor = 'pointer';
-      li.addEventListener('click', function() { show_recipes(cat_id, sub_idx); });
+      li.addEventListener('click', function() { show_recipes(cat_id, idx); });
       list_el.appendChild(li);
     });
   });
   list_el.appendChild(back_li);
 
+  // ── Recipe items ──
   subcat.recipes.forEach(function(recipe) {
     const li = document.createElement('li');
     li.className = 'nested-li';
     li.innerHTML = '<span class="recipe-label">' + recipe.name + '</span><span class="recipe-arrow">›</span>';
     li.style.cursor = 'pointer';
-    li.addEventListener('click', function() { check_and_open_recipe(recipe, subcat.icon, subcat.name); });
+    li.addEventListener('click', function() { open_recipe_modal(recipe, subcat.icon, subcat.name); });
     list_el.appendChild(li);
   });
 }
 // END § 3
-
 
 // ================================================================
 //  § 4 — OPEN RECIPE MODAL
@@ -451,7 +462,7 @@ function render_plan_calendar() {
 //  § 8 — INIT
 // ================================================================
 document.addEventListener('DOMContentLoaded', function() {
-  ['beverages','beans_and_legumes','breads_and_grains','desserts','meats','pastas','salads','soups_and_stews','sides','candy','rice','dips_and_sauces','vegetables'].forEach(function(id) {
+  ['beverages','beans_and_legumes','breads_and_grains','desserts','finger_foods','meats','pastas','salads','soups_and_stews','sides','candy','rice','dips_sauces_and_gravies','vegetables'].forEach(function(id) {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
@@ -504,7 +515,7 @@ function search_cookbook() {
   if (!found) {
     if (results_el) {
       results_el.innerHTML =
-        '<div style="padding:12px 16px;font-family:\'Space Mono\',monospace;font-size:11px;color:rgba(200,169,110,0.6);">No recipe found for "' + input.value.trim() + '".</div>';
+        '<div style="padding:12px 16px;font-family:\'Space Mono\',monospace;font-size:11px;color:rgba(200,169,110,0.6);">No recipe found. Would you like to submit an idea for a new recipe ?"' + input.value.trim() + '".</div>';
       results_el.style.display = 'block';
     }
     return;
