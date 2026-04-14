@@ -12,46 +12,46 @@ const MENU = {
     "Seafood": ["Salmon","Shrimp","Tilapia","Tuna","Cod","Crawfish"]},
     
   "Vegetables": {
-  	"Lettuce":  ["1 Lb"],
-  	"Tomato": ["1 Lb"],
-  	"Cucumber":  ["1 Lb"],
-  	"Peas":  ["1 Lb"],
+    "Lettuce":  ["1 Lb"],
+    "Tomato": ["1 Lb"],
+    "Cucumber":  ["1 Lb"],
+    "Peas":  ["1 Lb"],
     "Carrots": ["1 Lb"],
-  	"Onions":  ["1 Lb"],
-  	"Mushrooms":  ["1 Lb"],
-  	"Cabbage":  ["1 Lb"],
-  	"Potatoes":  ["1 Lb"],
-  	"Broccoli":  ["1 Lb"],
-  	"Scallions":  ["1 Lb"],
-  	"Bell Peppers": ["1 Lb"],
+    "Onions":  ["1 Lb"],
+    "Mushrooms":  ["1 Lb"],
+    "Cabbage":  ["1 Lb"],
+    "Potatoes":  ["1 Lb"],
+    "Broccoli":  ["1 Lb"],
+    "Scallions":  ["1 Lb"],
+    "Bell Peppers": ["1 Lb"],
     "Asparagus": ["1 Lb"],
-  	"Collard Greens":  ["1 Lb"],
-  	"Cauliflaur":  ["1 Lb"],
-  	"Brussell Sprouts":  ["1 Lb"],
-  	"Watermelon":  ["1 Lb"],
-  	"Cantelope":  ["1 Lb"]},
-  	
+    "Collard Greens":  ["1 Lb"],
+    "Cauliflaur":  ["1 Lb"],
+    "Brussell Sprouts":  ["1 Lb"],
+    "Watermelon":  ["1 Lb"],
+    "Cantelope":  ["1 Lb"]},
+    
   "Beans": {
-  	"Red":  ["1 Lb"],
-  	"Kidney":  ["1 Lb"],
-  	"Limas": ["1 Lb"],
-  	"Blackeye Peas":  ["1 Lb"],
+    "Red":  ["1 Lb"],
+    "Kidney":  ["1 Lb"],
+    "Limas": ["1 Lb"],
+    "Blackeye Peas":  ["1 Lb"],
     "Green": ["1 Lb"],
-  	"Black":  ["1 Lb"],
-  	"Pinto":  ["1 Lb"]},
+    "Black":  ["1 Lb"],
+    "Pinto":  ["1 Lb"]},
     
   "Fruits": {
-  	"Apples":  ["1 Lb"],
-  	"Oranges":  ["1 Lb"],
-  	"Bananas": ["1 Lb"],
-  	"Grapes":  ["1 Lb"],
+    "Apples":  ["1 Lb"],
+    "Oranges":  ["1 Lb"],
+    "Bananas": ["1 Lb"],
+    "Grapes":  ["1 Lb"],
     "Peaches": ["1 Lb"],
-  	"Cherries":  ["1 Lb"],
-  	"Strawberries":  ["1 Lb"],
-  	"Lemons":  ["1 Lb"],
-  	"Limes":  ["1 Lb"],
-  	"Watermelon":  ["1 Lb"],
-  	"Cantelope":  ["1 Lb"]},
+    "Cherries":  ["1 Lb"],
+    "Strawberries":  ["1 Lb"],
+    "Lemons":  ["1 Lb"],
+    "Limes":  ["1 Lb"],
+    "Watermelon":  ["1 Lb"],
+    "Cantelope":  ["1 Lb"]},
     
   "Dairy Products": {
     "Milk": ["Whole Milk","Chocolate Milk","Buttermilk","Heavy Whipping Cream","Coffee Cream","Yogurt","Sour Cream"],
@@ -76,7 +76,7 @@ const MENU = {
     "Baking Soda": ["12 oz"]},
   
   "Pasta & Noodles": {
-  	"Rice": ["1 Lb","2 Lb"],
+    "Rice": ["1 Lb","2 Lb"],
     "Pasta": ["Penne","Roman Noodles","Spaghetti"]},
     
   "Sauces": {
@@ -84,11 +84,11 @@ const MENU = {
     "Ketchup": ["12 oz bottle"],
     "Mustard":  ["12 oz bottle"],
     "Mayonnaise": ["12 oz bottle"],
-  	"Cocktail": ["12 oz bottle"],
-  	"Soy": ["12 oz bottle"],
-  	"Oyster":  ["12 oz bottle"],
-  	"Hot":  ["12 oz bottle"],
-  	"Worchestershire":  ["12 oz bottle"]},
+    "Cocktail": ["12 oz bottle"],
+    "Soy": ["12 oz bottle"],
+    "Oyster":  ["12 oz bottle"],
+    "Hot":  ["12 oz bottle"],
+    "Worchestershire":  ["12 oz bottle"]},
   
   "Beverages": {
     "Fruit Juice": ["Apple","Orange","Cranberry","Peach","Grape"],
@@ -101,7 +101,7 @@ const MENU = {
     "Crackers": ["Cheese","Peanut Butter"],
     "Popcorn":  ["White","Caramel"],
     "Ice Cream": ["Vanilla","Chocolate","Strawberry","Butter Pecan","Cookies & Cream"],
-  	"Candy Bars": ["Snickers","Twix","Milky Way","3 Musketeers"]}
+    "Candy Bars": ["Snickers","Twix","Milky Way","3 Musketeers"]}
 };
 
 /* ══════════════════════════════════════
@@ -148,17 +148,23 @@ document.addEventListener("DOMContentLoaded", function () {
 function renderList() {
   const el = document.getElementById('grocery-list');
   if (!items.length) {
-    el.innerHTML = '<div class="empty-state">No items yet — browse the menu to add items.</div>';
+    el.innerHTML = '<div class="empty-state">No items yet — use the buttons above to add items.</div>';
     return;
   }
-  el.innerHTML = items.map(item => `
-    <div class="toc-item" id="row-${item.id}">
-      <input type="checkbox" ${item.checked ? 'checked' : ''}
-             onchange="toggleCheck(${item.id})" ${locked ? 'disabled' : ''}>
-      <label class="toc-text">${item.name}</label>
-      ${!locked ? `<button class="remove-btn" onclick="removeItem(${item.id})">− Remove</button>` : ''}
-    </div>
-  `).join('');
+  el.innerHTML = `<div class="notepad-list">` +
+    items.map((item, index) => `
+      <div class="notepad-item" id="row-${item.id}">
+
+        <input type="checkbox" id="chk-${item.id}"
+               ${item.checked ? 'checked' : ''}
+               onchange="toggleCheck(${item.id})"
+               ${locked ? 'disabled' : ''}>
+        <label class="notepad-text ${item.checked ? 'crossed' : ''}"
+               for="chk-${item.id}">${item.name}</label>
+        ${!locked ? `<button class="notepad-remove" onclick="removeItem(${item.id})" title="Remove">✕</button>` : ''}
+      </div>
+    `).join('') +
+  `</div>`;
 }
 
 function toggleCheck(id) {
@@ -296,8 +302,6 @@ function goBack() {
 /* ══════════════════════════════════════
    SEARCH
    ══════════════════════════════════════ */
-
-
 function menuLiveSearch() {
   const q         = document.getElementById('menuSearch').value.trim().toLowerCase();
   const resultsEl = document.getElementById('searchResults');
@@ -344,6 +348,9 @@ function menuLiveSearch() {
   }).join('');
 }
 
+/* ══════════════════════════════════════
+   VOICE
+   ══════════════════════════════════════ */
 function startVoice() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) {

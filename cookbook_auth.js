@@ -72,12 +72,22 @@ async function check_paid_status(uid) {
   }
 }
 
+// ── Unlock grocery menu card for paid subscribers ─────────────
+// ── BEGIN grocery menu paywall unlock ─────────────────────────
+function unlockGroceryMenu() {
+  if (!cookbook_unlocked) return;
+  const overlay = document.getElementById('groceryMenuPaywall');
+  if (overlay) overlay.classList.add('hidden');
+}
+// ── END grocery menu paywall unlock ───────────────────────────
+
 // ── Auth state listener ────────────────────────────────────────
 onAuthStateChanged(auth, async (user) => {
   currentUser = user;
   await updateNavBar(user);
   if (user) {
     await check_paid_status(user.uid);
+    unlockGroceryMenu();
     await showPostLoginOptions(user);
     prefillContactForm(user);
   }
@@ -196,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       alert('Your message has been submitted!');
       contactForm.reset();
-      prefillContactForm(currentUser); // refill if user logged in
+      prefillContactForm(currentUser);
     } catch (e) {
       console.error('Error submitting contact form:', e);
       alert('Failed to submit your message.');

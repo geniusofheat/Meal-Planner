@@ -11,145 +11,220 @@
 </head>
 
 <body>
-<!-- ── DYNAMIC AUTH NAV BAR ── -->
-<nav id="auth-nav" style="display:flex;justify-content:flex-end;align-items:center;gap:12px;padding:12px 24px;background:#1a2a4a;border-bottom:1px solid gold;border-radius:0 0 8px 8px;">
-  <div id="nav-user-email" style="color:gold;font-family:'Space Mono',monospace;font-size:12px;">Welcome, Guest</div>
-  <button id="sign-in-btn" style="padding:6px 12px;font-family:'Space Mono',monospace;font-size:11px;background:rgba(200,169,110,0.15);border:1px solid rgba(200,169,110,0.4);border-radius:6px;color:#c8a96e;cursor:pointer;"
-          onclick="window.location.href='login.html'">
-    Sign In
-  </button>
-  
-  <button id="sign-out-btn" style="display:none;padding:6px 12px;font-family:'Space Mono',monospace;font-size:11px;background:rgba(200,169,110,0.2);border:1px solid rgba(200,169,110,0.4);border-radius:6px;color:#c8a96e;cursor:pointer;">
-    Sign Out
-  </button>
-</nav>
 
 <div id="app">
 
   <!-- ── PAGE HEADER ── -->
-  <div class="page-header">
-    <h1 id="pageTitle">Welcome to Meal Planner!</h1>
+<div class="page-header">
+    <h1 id="pageTitle">Welcome to Meal Planner !</h1>
     <hr>
-    <div class="gold-rule"></div>
-    <p class="desc">The meal planner tools that are provided within this app are designed by A.I. to help you plan and manage your time more wisely.</p>
-    <p>You can add meals to the weekly and monthly schedule by browsing our A.I. designed cookbook.</p>
-    <p>Each recipe in the cookbook is crafted with an elegant recipe card for easy viewing. Use the search tool to find recipes and save them to your favorites list.</p>
-    <p>The meal planner tools are listed below.</p>
-  </div>
+    
+<div class="gold-rule"></div>
+    	
+    <p class="playfair">The meal planner tools provided within this app are designed by A.I. to help you plan and manage your meals more easily.</p>
+    	
+    <p>The only free tool is the grocery checklist and its available with a free account subscription. The other tools are available with a $5 yearly subscription which unlocks everything including updates...</p>
+    
+</div>
 
-  <!-- ── SECTION WRAPPER ── -->
-  <div class="section-wrapper">
+<div class="page-header">
+	<h3>Meal Planner Tools :</h3>
+</div>
+
+<div class="section-wrapper">
+	
+<!-- GROCERY LIST -->
+<div class="nav-pill-wrap">
+<div class="nav-pill-outer">
+<div class="card">
+<div class="card-header">
+<div class="card-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- clipboard -->
+  <rect x="9" y="3" width="6" height="4" rx="1"></rect>
+  <path d="M9 5H8a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1"></path>
+
+  <!-- pencil -->
+  <path d="M14 13l6 6"></path>
+  <path d="M16.5 11.5l2 2"></path>
+  <path d="M13 14l1-3 4-4 3 3-4 4-3 1z"></path>
+</svg> Grocery List : Free !
+</div>
+            
+    <hr>
+    
+<div>
+</div>
+    <p>The grocery checklist helps you keep track of the items you shop for. With the free version, you can add items by typing a product name and pressing the plus button. Meal Planner Subscribers get access to the preloaded grocery list plus A.I. cookbook suggestions.
+    </p>
+    
+    <p>When you load the grocery checklist with items that look like a recipe from our cookbook, A.I. will offer to show you a suggested recipe card that has the preparation instructions. Then you can prepare meals you didnt know how to.
+    </p>
+            
+<div class="gold-rule">
+</div>
+</div>
+
+<div class="card-body">
+<div class="tip-box">Click below to open the grocery list tool.
+</div>
+    <button class="blue-btn" style="width:100%;" onclick="window.location.href='grocery_list.html'">Open Tool :
+    </button>
+</div>
+</div>
+</div>
+</div>
+
 
     <!-- MEAL PLANNER -->
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">📅 Meal Planner</div>
-            <hr>
-            <div class="gold-rule"></div>
-            <p class="desc">Plan a different meal every day of the week by choosing recipes from our chef-inspired cookbook, or use your own recipes by creating a recipe card and saving it to your favorites list.</p>
-          </div>
-          <div class="card-body">
-            <div class="tip-box">Click below to open the meal planner.</div>
-            <button class="btn-blue" style="width:100%;" onclick="window.location.href='meal_planner.html'">Open Tool</button>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="nav-pill-wrap">
+<div class="nav-pill-outer">
+<div class="card">
+ 
+<div class="card-header">
+<div class="card-title">📅 Monthly Planner -
 
-    <!-- GROCERY LIST -->
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">🛒 Grocery List</div>
-            <hr>
-            <p class="desc">Use the grocery menu to neatly find and add items to your checklist. The A.I. agent can offer recipe suggestions from the cookbook based on your selections.</p>
-            <div class="gold-rule"></div>
-          </div>
-          <div class="card-body">
-            <div class="tip-box">Click below to open the grocery list tool.</div>
-            <button class="btn-blue" style="width:100%;" onclick="window.location.href='grocery_list.html'">Open Tool</button>
-          </div>
-        </div>
-      </div>
-    </div>
+<div id="member-type">Subscribe :
+</div>
+</div>
+            
+    <hr>
+    
+<div class="gold-rule">
+</div>
+    <p>Plan a different meal every day of the week by choosing recipes from our chef-inspired cookbook, or use your own recipes by creating a recipe card and saving it to your favorites list.</p>
 
-    <!-- COOKBOOK -->
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">📖 Cookbook</div>
-            <hr>
-            <p class="desc">Browse hundreds of chef-inspired recipes organized by category.</p>
-            <div class="gold-rule"></div>
-          </div>
-          <div class="card-body">
-            <div class="tip-box">Click below to browse the cookbook categories.</div>
-            <button class="btn-blue" style="width:100%;" onclick="window.location.href='cookbook_menu.html'">View Menu</button>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
+          
+<div class="card-body">
+<div class="tip-box">Click below to open the meal planner.
+</div>
+    <button class="blue-btn" style="width:100%;" onclick="window.location.href='meal_planner.html'">Open Tool :
+    </button>
+</div>
+</div>
+</div>
+</div>
 
-    <!-- RECIPE FINDER -->
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">🔎 Recipe Finder</div>
-            <hr>
-            <p class="desc">Search the entire cookbook by recipe name or ingredients.</p>
-            <div class="gold-rule"></div>
-          </div>
-          <div class="card-body">
-            <div class="tip-box">Click below to open the recipe search tool.</div>
-            <button class="btn-blue" style="width:100%;" onclick="window.location.href='recipe_finder.html'">Open Tool</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- FAVORITES -->
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">♡ Favorites List</div>
-            <hr>
-            <p class="desc">Your personal collection of saved recipes all in one place.</p>
-            <div class="gold-rule"></div>
-          </div>
-          <div class="card-body">
-            <div class="tip-box">Click below to view your saved recipes.</div>
-            <button class="btn-blue" style="width:100%;" onclick="window.location.href='favorites_list.html'">Open Tool</button>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- COOKBOOK -->
+<div class="nav-pill-wrap">
+<div class="nav-pill-outer">
+<div class="card">
+<div class="card-header">
+<div class="card-title">📖 Cookbook -
+<div id="member-type">Subscribe :
+</div>
+</div>
+            
+    <hr>
+    
+    <p>With the free version of cookbook, you will have access to the menu categories, recipe titles, and 1 free recipe preview. This gives the user a glimpse of the value of the items included in the full version..</p>
+    
+    <p>Each recipe category and title is sorted and alphabetized for easy viewing. Recipes can be saved to your favorites list or added to the meal planner.</p>
+    
+<div class="gold-rule"></div>
 
-    <!-- SHARE -->
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">📤 Share</div>
-            <hr>
-            <p class="desc">Spread the love — share this app with friends and family.</p>
-            <div class="gold-rule"></div>
-          </div>
-          <div class="card-body">
-            <div class="tip-box">Click below to share this app.</div>
-            <button class="btn-blue" style="width:100%;" onclick="shareApp()">Share App</button>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
 
-    <div class="page-ornament">◆ ◆ ◆</div>
-  </div>
+<div class="card-body">
+<div class="tip-box">A free account gives you access to 1 free recipe preview. After your free preview you will only have access to the menu categories and titles.
+</div>
+
+<p>Create a free account now.</p>
+    <button class="blue-btn" onclick="window.location.href='login.html'">Free Account :
+    </button>
+    
+    <p>The full version of cookbook allows you to view hundreds of chef-inspired recipes and gain access to the full suite of meal planner tools and all future updates.</p>
+    
+    <p>The app will be updated with new recipes weekly. The app provides full support requests and suggestions for improvement. Click below to purchase the full version of cookbook.</p>
+    
+    <button class="blue-btn" onclick="window.location.href='purchase_page.html'">"📖 Full Version - $5
+    </button>
+    
+</div>
+</div>
+</div>
+</div>
+
+<!-- RECIPE FINDER -->
+<div class="nav-pill-wrap">
+<div class="nav-pill-outer">
+<div class="card">
+<div class="card-header">
+<div class="card-title">🔎 Recipe Finder :</div>
+            
+    <hr>
+    
+    <p>Search the entire cookbook by recipe name or ingredients.</p>
+
+<div class="gold-rule"></div>
+
+</div>
+          
+<div class="card-body">
+<div class="tip-box">Click below to open the recipe search tool.</div>
+    <button class="blue-btn" onclick="window.location.href='recipe_finder.html'">Open Tool :
+    </button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- FAVORITES -->
+<div class="nav-pill-wrap">
+<div class="nav-pill-outer">
+<div class="card">
+<div class="card-header">
+<div class="card-title">♡ Favorites List -
+<div id="member-type">Subscribe :
+</div>
+</div>
+            
+    <hr>
+            
+    <p>Your personal collection of saved recipes all in one place.</p>
+            
+<div class="gold-rule"></div>
+          
+</div>
+          
+<div class="card-body">
+<div class="tip-box">Click below to view your saved recipes.</div>
+    
+    <button class="btn-blue" style="width:100%;" onclick="window.location.href='purchase_page.html'">Open Tool :
+    </button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- SHARE -->
+<div class="nav-pill-wrap">
+<div class="nav-pill-outer">
+<div class="card">
+<div class="card-header">
+<div class="card-title">📤 Share - Free :</div>
+            
+    <hr>
+            
+    <p>Spread the love — share this app with friends and family.</p>
+
+<div class="gold-rule"></div>
+
+</div>
+
+<div class="card-body">
+<div class="tip-box">Click below to share this app.
+</div>
+    <button class="blue-btn" onclick="shareApp()">Share App
+    </button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="page-ornament">◆ ◆ ◆</div>
+</div>
 </div>
 
 <script src="index.js"></script>

@@ -11,9 +11,24 @@ html, body { height:100%; overflow-x:hidden; background:#0a0904; }
 
 p {
   color: #fefeff;
-  text-indent: 10px;
+  text-indent: 5px;
   margin: 10 px, 10px, 10px, 20px;
-  padding: 20px;
+  padding: 10px;
+  font-size: 12px;
+  
+}
+
+ul.formatted {
+  padding-left: 18px;
+}
+ul.formatted li {
+  padding-left: 6px;
+  text-indent: 10px;
+}
+
+h4 {
+	margin-top: 10px;
+	text-indent: 10px;
 }
 
 hr {
@@ -39,6 +54,8 @@ hr {
 
 .playfair {
 	font-family:'Playfair Display',serif;
+	font-size: 10px;
+	font-style: italic;
 	color:#c8a96e;
 	text-align:center;
 	margin-bottom: 10px;
@@ -56,7 +73,7 @@ hr {
   --blue-btn-bg: radial-gradient(circle at center, rgba(173,216,230,0.62) 0%, rgba(0,100,190,0.80) 48%, rgba(5,12,28,0.90) 100%);
   --blue-pill-bg: radial-gradient(circle at center, rgba(0,128,255,1) 0%, rgba(0,128,255,0.5) 50%, rgba(0,0,0,0.3) 100%);
   --blue-border: rgba(80,160,220,0.5);
-  --blue-glow: rgba(0,100,200,0.25);
+  --blue-glow: rgba(0,202,255,0.5);
 }
 
 /* ================================================================
@@ -542,7 +559,7 @@ body {
   box-shadow: 0 0 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(200,169,110,0.12);
   position: relative;
   max-width: 100vw;
-  margin: 10px;
+  margin: 5px;
   padding: 10px;
 }
 .card .card{
@@ -602,13 +619,52 @@ body {
   text-align: center;
 }
 
+/* --- BLOCK BUTTONS --- */
+
+.gold-block-44 {
+  flex: none; 
+  display: flex; 
+  height: 44px; 
+  width: 44px; 
+  border: 2px solid gold;
+  margin: 0px; 
+  justify-content: center; 
+  padding: 0px; 
+  align-items: center;
+}
+
+.block-btn-42 {
+  border: 1px solid var(--blue-border);
+
+  background: var(--blue-btn-bg);
+  width: 95%;
+  height: 95%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  display: block;
+  
+}
+
+.search-btn {
+	width: 35px;
+	height: 35px;
+	border-radius: 4px;
+	cursor: pointer;
+
+    
+	color: #e0f4ff;
+	box-shadow: 0 0 12px var(--blue-glow);
+}
+
 /* ================================================================
-   BLUE BUTTON
+   BLUE BUTTONS
    ================================================================ */
-.card .btn-blue {
-	flex: 1;
+.blue-btn {
+	display: flex;
 	justify-content: center;
-    height: 30px;
+	align-items: center;
+    height: 40px;
     width: 100%;
     border-radius: 4px;
     cursor: pointer;
@@ -621,44 +677,11 @@ body {
     text-shadow: 0 0 8px rgba(120,200,255,0.4);
     box-shadow: 0 0 18px var(--blue-glow), inset 0 1px 0 rgba(180,230,255,0.12);
     padding: 5px;
-    margin: 5px;
+    margin: 5px auto;
 }
-.btn-blue {
-	flex: 1;
-	justify-content: center;
-    height: 30px;
-    width: 30px;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 3px solid var(--gold);
-    background: var(--blue-btn-bg);
-    color: #e0f4ff;
-    font-family: 'Space Mono', monospace;
-    font-size: 14px;
-    transition: filter 0.2s;
-    text-shadow: 0 0 8px rgba(120,200,255,0.4);
-    box-shadow: 0 0 18px var(--blue-glow), inset 0 1px 0 rgba(180,230,255,0.12);
-    padding: 5px;
-    margin: 5px;
-}
-.btn-blue:active { background-color: orange; color: #0a0904; }
-.btn-blue:disabled { opacity: 0.3; pointer-events: none; }
 
-/* ================================================================
-   GOLD OUTLINE BUTTONs
-   ================================================================ */
-   
-.gold-block-44 {
-  flex: none; 
-  display: flex; 
-  height: 44px; 
-  width: 44px; 
-  border: 2px solid gold;
-  margin: 0px; 
-  justify-content: center; 
-  padding: 0px; 
-  align-items: center;
-}
+.blue-btn:active { background-color: orange; color: #0a0904; }
+.blue-btn:disabled { opacity: 0.3; pointer-events: none; }
 
 .gold-block-44:active { background: var(--gold-dim); }
 
@@ -679,25 +702,27 @@ body {
     gap: 8px;
     align-items: center;
     margin-bottom: 0px;
-    border: 1px solid #c8a96e;
+    border: 2px solid gold;
     padding: 5px 5px;
+    background: var(--gold-glow);
 }
 /* --- SEARCH INPUT --- */
 .search-input {
 	flex: 1;
 	height: 44px;
-	min-width: 0;
+	max-width: 100%;
 	border-radius: 4px;
+	background: var(--blue-btn-bg);
 	color: gold;
 	font-family: 'Space Mono', monospace;
 	font-size: 11px;
 	letter-spacing: 0.08em;
 	outline: none;
 	box-shadow: inset 0 1px 0 rgba(180,230,255,0.08);
-	border: 1px solid gold;
-	background: rgba(255,255,255,0.2);
-	margin: 2px;
-	padding: 20px;
+	border: 2px solid gold;
+	
+	margin: 0px;
+	padding: 5px;
 }
 .search-input::placeholder {
 	color: rgba(255,255,255,0.9);
@@ -705,17 +730,7 @@ body {
 .search-input:focus {
 	border: 2px solid gold;
 }
-/* --- SEARCH BUTTON --- */
-.search-btn {
-	width: 35px;
-	height: 35px;
-	border-radius: 4px;
-	cursor: pointer;
-	border: 1px solid var(--blue-border);
-    background: rgba(255,255,255,0.5);
-	color: #e0f4ff;
-	box-shadow: 0 0 12px var(--blue-glow);
-}
+
 
 /* ================================================================
    GROCERY ITEM ROW
@@ -1588,17 +1603,7 @@ body {
 }
 
 
-  
 
-button {
-  width: 95%;
-  height: 95%;
-  padding: 0;
-  margin: 0;
-  border: none;
-  background: #fefeff;
-  display: block;
-}
 
 .round-search-btn:hover {
   transform: scale(1.05);
@@ -1655,3 +1660,63 @@ button {
 	height: 20px;
 	width: 90%vw;
 }
+
+.paywall-card { position: relative; overflow: hidden; }
+
+.paywall-overlay {
+  position: absolute; inset: 0; z-index: 10;
+  background: rgba(10, 15, 35, 0.88);
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.paywall-overlay-inner { text-align: center; padding: 24px; }
+
+.paywall-lock-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+.paywall-overlay.hidden { display: none; }
+
+.notepad {
+    background: var(--blue-btn-bg);
+	color: #fefeff;
+	padding-left: 10px;
+}
+
+/* ══════════════════════════════════════
+   NOTEPAD LIST — grocery_list.html
+   Add these rules to blue_card_style.css
+   ══════════════════════════════════════ */
+
+.notepad-list { display: flex; flex-direction: column; }
+
+.notepad-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 4px;
+  border-top: 1px solid rgba(200,169,110,0.18);
+}
+.notepad-item:last-child { border-bottom: 1px solid rgba(200,169,110,0.18); }
+
+.notepad-num {
+  font-family: serif;
+  font-size: 14px;
+  color: #fefeff;
+  min-width: 18px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.notepad-text { flex: 1; font-size: 1rem; }
+.notepad-text.crossed { text-decoration: line-through; opacity: 0.35; }
+
+.notepad-remove {
+  background: transparent;
+  border: none;
+  color: rgba(200,169,110,0.35);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 4px;
+  flex-shrink: 0;
+}
+.notepad-remove:hover { color: #c8a96e; }

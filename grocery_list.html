@@ -11,136 +11,164 @@
 <div id="app">
   <div class="section-wrapper">
 
-  
     <!-- ── NAV BAR ── -->
-  <nav id="nav-Bar">
-    <div class="nav-pill-wrap">
-      <div class="nav-pill-outer">
-        <a class="nav-pill-inner" href="index.html">🏠 Back</a>
+    <nav id="nav-Bar">
+      <div class="nav-pill-wrap">
+        <div class="nav-pill-outer">
+          <a class="nav-pill-inner" href="index.html">🏠 Back</a>
+        </div>
       </div>
-    </div>
+      <div class="nav-divider"></div>
+      <a class="nav-section" href="favorites_list.html">♡ Fav's</a>
+    </nav>
+
+
+    <!-- ══════════════════════════════════════ -->
+    <!-- CARD 1 : GROCERY ITEM CHECKLIST        -->
+    <!-- Always visible — no paywall            -->
+    <!-- ══════════════════════════════════════ -->
+<div class="card">
+
+<div class="card-header">
+      	
+    <h3>Grocery Item Checklist :</h>
+
+    <p>Type or use the microphone to define your item then click the plus button to add it to the checklist .</p>
+        
+<div class="search-bar-container">
+          
+    <button class="blue-btn" onclick="startVoice()">🎤</button>
+          
+    <input class="search-input" type="text" id="voiceInput" placeholder="Add items here...">
+          
+    <button class="blue-btn" onclick="addFromInput()">＋</button>
+</div>
+         
+    <p>After you check items in the list, use the padlock button to lock the list.
+    </p>
+        
+<div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+          
+<div class="card-title">🛒</div>
+
+<div class="lock-badge" id="lockBadge">🔓 Unlocked</div>
+
+    <button class="blue-btn" onclick="toggleLock()" id="lockBtn">🔓 Lock
+    </button>
     
-    <div class="nav-divider"></div>
-    
-    <div class="nav-divider"></div>
-    <a class="nav-section" href="favorites_list.html">♡ Fav's</a>
-  </nav>
-    <!-- ── GROCERY LIST CARD ── -->
+</div>
 
-
-     
-    <div class="card">
-    	        <div class="sub-heading">Grocery List : </div>
-      <div class="card-header">
-
-        
-		<div>
-          <p>Search the grocery list to find items you want to add to the grocery checklist. </p>
-          
-         <div class="tool-row">
-         	
-            
-         <button class="btn-blue" style="width:100%;" onclick="openMenuModal()">◆ Grocery List :</button>
-        </div>
-        
-      <div class="gold-rule"></div>
-
-      </div>
-      
-          <p>Items you add to the checklist will appear with a checkbox beside it.</p>
-          
-        <div class="search-wrap">
-               
-			<button class="btn-icon" onclick="startVoice()">🎤</button>
-
-			<input class="search-input" type="text" id="voiceInput" placeholder="Tap mic or type…">
-
-			<button class="btn-icon" onclick="addFromInput()">＋</button>
-          
-        </div>
-
-        
-        <div class="sub-heading">Grocery Item Checklist : </div>
-        
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-        	
-          <div class="card-title">🛒</div>
-          
-          <div class="lock-badge" id="lockBadge">🔓 Unlocked</div>
-          
-          <button class="btn-gold" onclick="toggleLock()" id="lockBtn">🔓 Lock</button>
-        </div>
-        
+<div class="notepad">
+	
         <div id="grocery-list">
+	
+</div>
 
-        </div>
-        
+</div>
 
-                                
-          <p>As you shop, put a check in the box beside the items you put in your cart.</p>
-          
-          <p>To keep your items selected, press the padlock button to lock the list.</p>
-        </div>
+</div>
+</div><!-- /card 1 -->
 
-        <hr class="section-divider">
 
-        </div>
+    <!-- ══════════════════════════════════════ -->
+    <!-- CARD 2 : GROCERY MENU  (paywall)       -->
+    <!-- Hidden behind overlay until subscribed -->
+    <!-- ══════════════════════════════════════ -->
+<div class="card paywall-card" id="grocery-menu-card">
 
-      </div>
-    </div>
+      <!-- Paywall overlay — auth JS removes class "paywall-active" for paid users -->
+<div class="paywall-overlay" id="groceryMenuPaywall">
+<div class="paywall-overlay-inner">
 
-    <div class="page-ornament">◆ ◆ ◆</div>
+<h4>" 🔒 Members Only ! "</h4>
 
-  </div><!-- /section-wrapper -->
+    <p>Members get access to the fully loaded Grocery Menu and the ability to browse and add multiple items by category.</p>
+         
+    <button class="blue-btn" onclick="window.location.href='subscribe.html'">" ◆ Subscribe Now ! "</button>
+</div>
+</div>
+
+      <!-- Card 2 content (blurred when paywall is active) -->
+<div class="card-header paywall-content" id="groceryMenuContent">
+
+<div class="sub-heading">Grocery Menu :</div>
+
+        <p>Search the grocery menu to find items you want to add to your checklist.</p>
+
+<div class="tool-row">
+          <button class="blue-btn" onclick="openMenuModal()">◆ Grocery Menu</button>
+</div>
+
+<div class="divider"></div>
+
+</div>
+</div><!-- /card 2 -->
+
+
+<div class="page-ornament">◆ ◆ ◆</div>
+
+</div><!-- /section-wrapper -->
 </div><!-- /app -->
 
+
   <!-- ── ADD MODAL ── -->
-  <div class="modal-overlay" id="addModal">
-    <div class="modal">
+<div class="modal-overlay" id="addModal">
+<div class="modal">
       <h2>Add Item</h2>
       <input type="text" id="addInput" placeholder="e.g. Orange Juice" />
-      <div class="modal-buttons">
-        <button class="btn-gold" onclick="closeModal('addModal')">Cancel</button>
-        <button class="btn-blue" onclick="confirmAdd()">◆ Add</button>
-      </div>
-    </div>
-  </div>
+      
+<div class="modal-buttons">
+        <button class="gold-btn" onclick="closeModal('addModal')">Cancel</button>
+        <button class="blue-btn" onclick="confirmAdd()">◆ Add</button>
+</div>
+</div>
+</div>
 
   <!-- ── REMOVE MODAL ── -->
-  <div class="modal-overlay" id="removeModal">
-    <div class="modal">
+<div class="modal-overlay" id="removeModal">
+<div class="modal">
       <h2>Remove Item</h2>
       <input type="text" id="removeInput" placeholder="Type item name to remove" />
-      <div class="modal-buttons">
-        <button class="btn-gold" onclick="closeModal('removeModal')">Cancel</button>
-        <button class="btn-blue" onclick="confirmRemove()">◆ Remove</button>
-      </div>
-    </div>
-  </div>
+      
+<div class="modal-buttons">
+        <button class="gold-btn" onclick="closeModal('removeModal')">Cancel</button>
+        <button class="blue-btn" onclick="confirmRemove()">◆ Remove</button>
+</div>
+</div>
+</div>
 
   <!-- ── MENU MODAL ── -->
-  <div class="menu-modal-overlay" id="menuModal">
-    <div class="menu-modal-box">
-      <div class="menu-modal-header">
+<div class="menu-modal-overlay" id="menuModal">
+<div class="menu-modal-box">
+<div class="menu-modal-header">
         <h2>Grocery Menu</h2>
         <button class="menu-modal-close" onclick="closeMenuModal()">✕</button>
-      </div>
-      <div class="menu-modal-body">
-        <div class="search-wrap" style="margin-bottom:16px;">
+</div>
+
+<div class="menu-modal-body">
+	
+<div class="search-wrap" style="margin-bottom:16px;">
           <input class="search-input" type="text" id="menuSearch" placeholder="Search items…" oninput="menuLiveSearch()">
-        </div>
-        <div id="searchResults"></div>
-        <div class="browser-header">
+</div>
+
+<div id="searchResults">
+</div>
+
+<div class="browser-header">
           <span class="browser-title">Browse by Category :</span>
           <button id="backBtn" onclick="goBack()">← Back</button>
-        </div>
-        <div id="breadcrumb"></div>
-        <div id="browser-list"></div>
-      </div>
-    </div>
-  </div>
-<script src="grocery_list_data.js"></script>
+</div>
 
+<div id="breadcrumb">
+</div>
+
+<div id="browser-list">
+</div>
+</div>
+</div>
+</div>
+
+  <script src="grocery_list_data.js"></script>
 
 </body>
 </html>
