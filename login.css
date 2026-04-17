@@ -1,0 +1,135 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* ================= ROOT COLORS ================= */
+:root {
+  --gold: #c8a96e;
+  --gold-border: rgba(200,169,110,0.55);
+  --gold-glow: rgba(200,169,110,0.07);
+  --text: #fefeff;
+
+  --blue-btn-bg: radial-gradient(circle at center,
+    rgba(173,216,230,0.62) 0%,
+    rgba(0,100,190,0.80) 48%,
+    rgba(5,12,28,0.90) 100%);
+
+  --blue-border: rgba(80,160,220,0.5);
+  --blue-glow: rgba(0,202,255,0.5);
+}
+
+/* ================= PAGE BACKGROUND ================= */
+body {
+  background: linear-gradient(160deg,
+    rgba(0,0,148,0.9) 0%,
+    rgba(22,46,95,0.80) 10%,
+    rgba(0,0,0,0.90) 100%);
+  font-family: 'Lato', sans-serif;
+  color: var(--text);
+}
+
+/* ================= APP WRAPPER ================= */
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ================= NAV ================= */
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gold;
+  border-radius: 5px;
+  background: linear-gradient(160deg,
+    rgba(0,50,120,0.35) 0%,
+    rgba(65,156,185,0.05) 80%,
+    rgba(50,50,50,0.30) 100%);
+  margin: 10px;
+  padding: 10px;
+}
+
+.nav-welcome-message {
+  color: gold;
+  font-size: 10px;
+}
+
+/* ================= CARD ================= */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gold;
+  border-radius: 16px;
+  background: linear-gradient(160deg,
+    rgba(0,50,120,0.35) 0%,
+    rgba(65,156,185,0.05) 80%,
+    rgba(50,50,50,0.30) 100%);
+  margin: 5px;
+  padding: 10px;
+}
+
+/* ================= CARD CONTENT ================= */
+.card-header {
+  padding: 5px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.desc {
+  font-size: 12px;
+  color: var(--text);
+  margin: 5px 0;
+}
+
+/* ================= INPUTS ================= */
+.input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--gold);
+  background: #0f1a33;
+  color: var(--text);
+  margin: 5px 0;
+  width: 100%;
+}
+
+/* ================= BUTTON ================= */
+.blue-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 3px solid var(--gold);
+  background: var(--blue-btn-bg);
+  color: #e0f4ff;
+  font-size: 14px;
+  margin: 5px 0;
+  text-shadow: 0 0 8px rgba(120,200,255,0.4);
+  box-shadow: 0 0 18px var(--blue-glow);
+}
+
+.blue-btn:active {
+  background: orange;
+  color: #0a0904;
+}
+
+/* ================= HORIZONTAL RULE ================= */
+hr {
+  border: none;
+  border-top: 1px solid var(--gold-border);
+  margin: 10px 0;
+}
