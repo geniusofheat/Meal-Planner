@@ -11,7 +11,7 @@ import {
   emailSignIn,
   createAccount,
   sendRecoveryEmail
-} from './cookbook_auth.js';
+} from './cookbook_login_auth.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
