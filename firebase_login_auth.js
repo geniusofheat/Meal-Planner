@@ -8,7 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-login-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { doc, getDoc, setDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // ── State ──────────────────────────────────────────────────────
