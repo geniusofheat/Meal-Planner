@@ -7,7 +7,7 @@
 <title>Meal Planner — Sign In/Out :</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="blue_card_style.css">
+<link rel="stylesheet" href="login.css">
 </head>
 
 <body>
@@ -19,67 +19,89 @@
 <!-- ── NAV CONTAINER── -->
 <div id="app">
 
+
+
+<!-- ── CREATE ACCOUNT CARD  ── -->
+<div id="create-account" class="card">
+	
+	<h2>Create Account :
+    </h2>
+    
+	<p class="desc">Choose an account type :</p>
+
+<button id="free-account" class="blue-btn" onclick="freeAccount()">Free Account :</button>
+
+<button id="full-version"class="blue-btn" onclick="fullVersion()">Full Version $5 :</button>
+      
+      <hr>
+
+<div class="card-body">
+      <p>Enter a username, password, and e-mail to create an account.
+      </p>
+      <input type="text" id="create_username" placeholder="Create a username :" class="input">
+      <input type="text" class="input" id="create_password" placeholder="Create a password :">
+      <input type="text" class="input" id="create_email" placeholder="Enter e-mail :">
+      <button id="email-create-btn" class="blue-btn">Create Account :</button>
+      <p id="auth_error"></p>
+</div>
+</div>
+  <!-- ── CREATE ACCOUNT CARD END ── -->
+
+
   <!-- ── SIGN-IN CARD ── -->
-<div class="card">
+<div id="sign-in-out" class="card">
   	
 <div class="card-header">
     	
-    <h2 class="playfair">Sign In/Out :</h2>
+    <h2>Sign In/Out :</h2>
       
-<div class="divider"></div>
+<hr>
      
 </div>
-<div class="card-body">
-    <p>Already have an account? Enter your email and password to sign in:</p>
-    <input type="email" id="auth_email" placeholder="Email" class="input">
-    <input class="input" type="password" id="auth_password" placeholder="Password">
-    <button id="email-sign-in-btn" class="btn-blue">Sign In</button>
-</div>
+<form id="sign-in-out" class="card-body">
+  
+  <p>Already have an account? Enter your Username and Password to sign in:</p>
+
+  <input type="text" id="auth_username" placeholder="Username" class="input">
+
+  <input type="password" id="auth_password" placeholder="Password :" class="input">
+  <label style="font-size:12px; color:#fefeff; margin:5px;">
+    <input type="checkbox" id="show-password-toggle">
+    Show Password
+  </label>
+
+  <button type="submit" id="sign-in-btn" class="blue-btn">
+    Sign In :
+  </button>
+
+</form>
 </div><!-- ── SIGN-IN CARD END ── -->
 
-<!-- ── CREATE ACCOUNT CARD  ── -->
-<div class="card">
-
-<div class="card-header">
-          <h2 class="playfair">Create Account :</h2>
-      <hr>
-      
-    </div>
-    <div class="card-body">
-      <p>
-        New here? Enter your username, email, and password below to create an account.
-      </p>
-      <input type="text" id="create_username" placeholder="Username" class="input">
-      <input type="email" class="input" id="create_email" placeholder="Email">
-      <input type="password" class="input" id="create_password" placeholder="Password">
-      <button id="email-create-btn" class="btn-blue">Create Account</button>
-      <p id="auth_error"></p>
-    </div>
-  </div>
-  <!-- ── CREATE ACCOUNT CARD END ── -->
 
   <!-- ── PASSWORD RECOVERY CARD START ── -->
-  <div class="card">
-    <div class="card-header">
-          <h2 class="playfair">Recover Password :</h2>
+<div id="account-recovery" class="card">
+<div class="card-header">
+	
+      <h2>Account Recovery :</h2>
       <hr>
-    </div>
-    <div class="card-body">
-      <p>
-        Forgot your password? Enter your email below to recover it:
+</div>
+
+<div class="card-body">
+      <p>Type your e-mail address to verify your account info :
       </p>
-      <input type="email" id="recover_email" placeholder="Email" class="input">
-      <button id="password-recover-btn" class="btn-blue">Send Recovery Email</button>
-    </div>
-  </div>
+      <input type="email" id="recover_email" placeholder="Type Email Here :" class="input">
+      <button id="account-recovery-btn" class="blue-btn">Send e-mail :</button>
+</div>
+</div>
   <!-- ── PASSWORD RECOVERY CARD END ── -->
 
 <!-- ── BEGIN CONTACT FORM CARD ── -->
 <div class="card">
 <div class="card-header">
-    <h2 class="playfair">Contact Us</h2>
+    <h2 class="playfair">Contact Us :</h2>
     
     <hr>
+    <p>If you have any comments or suggestions, please fill out the form below.</p>
     
 </div>
   
@@ -87,9 +109,9 @@
     <input type="text" id="contact_title" placeholder="Title" class="input">
     <input type="text" id="contact_username" placeholder="Username" class="input">
     <input type="email" id="contact_email" placeholder="Email" class="input">
-    <textarea id="contact_message" placeholder="Message" style="padding:10px;border-radius:6px;border:1px solid #c8a96e;background:#0f1a33;color:#fff;resize:none;height:100px;"></textarea>
+    <textarea id="contact_message" placeholder="Please type your message here." style="padding:10px;border-radius:6px;border:1px solid #c8a96e;background:#0f1a33;color:#fff;resize:none;height:100px;"></textarea>
     
-    <button id="contact_submit_btn" class="btn-blue">Send Message</button>
+    <button id="contact_submit_btn" class="blue-btn">Send Message :</button>
   </div>
 </div>
 <!-- ── END CONTACT FORM CARD ── -->
@@ -98,7 +120,7 @@
 </div>
 <!-- ── APP CONTAINER END ── -->
 
-<script type="module" src="cookbook_auth.js"></script>
+<script src="login_data.js"></script>
 
 </body>
 </html>
