@@ -21,8 +21,8 @@ window.freeAccount = function () {
   const freeBtn = document.getElementById('free-account');
   const fullBtn = document.getElementById('full-version');
 
-  if (freeBtn) freeBtn.style.backgroundColor = 'gold';
-  if (fullBtn) fullBtn.style.backgroundColor = '';
+    if (freeBtn) freeBtn.classList.add('selected');
+	if (fullBtn) fullBtn.classList.remove('selected');
 
   setTimeout(() => {
     const el = document.getElementById('create_username');
@@ -39,8 +39,8 @@ window.fullVersion = function () {
   const freeBtn = document.getElementById('free-account');
   const fullBtn = document.getElementById('full-version');
 
-  if (fullBtn) fullBtn.style.backgroundColor = 'gold';
-  if (freeBtn) freeBtn.style.backgroundColor = '';
+  if (fullBtn) fullBtn.classList.add('selected');
+  if (freeBtn) freeBtn.classList.remove('selected');
 
   setTimeout(() => {
     const el = document.getElementById('create_username');
