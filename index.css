@@ -27,7 +27,7 @@ hr {
 
 :root {
   --gold: #c8a96e;
-  --gold-dim: rgba(200,169,110,0.18);
+  --gold-dim: rgba(200,169,110,0.58);
   --gold-border: rgba(200,169,110,0.55);
   --gold-glow: rgba(200,169,110,0.07);
   --bg: #0e0c06;
@@ -52,24 +52,14 @@ body {
   font-family: 'Lato', sans-serif;
   color: var(--text);
 }
+ol {
+	margin-left: 20px;
+}
 
 /* ================================================================
-   PAGE HEADER
+   CARD HEADER
    ================================================================ */
-.page-header {
-  padding: 28px 20px 16px;
-  text-align: center;
-  position: relative; z-index: 1;
-}
 
-.page-header h1,
-#pageTitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 28px; font-weight: 900;
-  color: var(--gold);
-  letter-spacing: 0.04em;
-  margin-bottom: 8px;
-}
 
 /* ================================================================
    APP WRAPPER
@@ -91,8 +81,15 @@ body {
 }
 
 /* ================================================================
-   SECTION WRAPPER
+  BLOCK ELEMENTS
    ================================================================ */
+.page-header {
+  display: block;
+  font-family: serif;
+  margin: 3px;
+  padding: 5px;
+  text-align: center;
+}
 .section-wrapper {
   position: relative;
   z-index: 1;
@@ -181,10 +178,15 @@ body {
 }
 
 .card-header {
-  padding: 5px 5px 5px;
-  border-bottom: 1px solid rgba(200,169,110,0.1);
+  display: flex;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; 
+  font-weight: 700;
+  color: var(--gold-glow);
+  margin: 10px;
 }
 .card-title {
+  display: flex;
   font-family: 'Playfair Display', serif;
   font-size: 18px; font-weight: 700;
   color: var(--text); line-height: 1.15;
@@ -215,8 +217,14 @@ body {
   text-indent: 10px;
 }
 
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 /* ================================================================
-   BLUE BUTTON
+   BLUE BUTTONS
    ================================================================ */
 .blue-btn {
   display: flex;
@@ -240,6 +248,99 @@ body {
 .blue-btn:active { background-color: orange; color: #0a0904; }
 .blue-btn:disabled { opacity: 0.3; pointer-events: none; }
 
+/* ================================================================
+   GOLD BUTTONS
+   ================================================================ */
+.gold-btn {
+  font-family: 'Playfair Display', serif;
+  height: 44px; 
+  width: 44px; 
+  border: 2px solid gold;
+  margin: 0px; 
+  justify-content: center; 
+  padding: 0px; 
+  align-items: center;
+}
+
+/* ================================================================
+   BLOCKS
+   ================================================================ */
+   .gold-block {
+   	  display: inline-block;
+	  border: 2px double gold;
+	  color: gold;
+	  margin: 0px; 
+	  background-color: var(--blue-btn-bg);
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+}
+
+   .white-block {
+   	  flex: none; 
+   	  display: inline-block
+  	  display: flex;
+	  border: 2px double white;
+	  color: black;
+	  margin: 0px; 
+	  background-color: white;
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+}
+
+   .blue-block {
+   	  display: flex;
+	  border: 2px double gold;
+	  color: var(--gold);
+	  margin: 10px; 
+	  background: var(--blue-btn-bg);
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+	  height: 36px;
+	  border-radius: 10px;
+	  border: 2px solid gold;
+	  color: var(gold-glow);
+	  font-family: 'Roman', serif;
+	  font-size: 16px; letter-spacing: 0.10em;
+	  align-items: center; 
+	  padding: 5px;
+	  
+}
+
+
+/* ================================================================
+   BARS
+   ================================================================ */
+   .blue-bar {
+	  height: 36px;
+	  border-radius: 10px;
+	  border: 2px solid gold;
+	  background: var(--blue-bg);
+	  color: var(gold-glow);
+	  font-family: 'Playfair Display', serif;
+	  font-size: 14px; letter-spacing: 0.14em;
+	  display: block; 
+	  align-items: center; 
+	  justify-content: center;
+	  margin: 10px;
+	  padding: 5px;
+	  
+}
+
+/* ================================================================
+   FONT STYLES
+   ================================================================ */
+   .gold-font {
+   	  display: inline-block;
+	  color: gold;
+	  margin: 0px; 
+	  font: bold serif 12px;
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+}
 /* ================================================================
    PAGE ORNAMENT
    ================================================================ */

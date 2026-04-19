@@ -126,7 +126,10 @@ body {
   background: orange;
   color: #0a0904;
 }
-
+.blue-btn.selected {
+  background: orange !important;
+  color: #0a0904 !important;
+}
 
 /* ================= HORIZONTAL RULE ================= */
 hr {

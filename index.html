@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meal Planner — Main Menu</title>
+<title>Meal Planner</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="blue_card_style.css">
+<link rel="stylesheet" href="index.css">
 <link rel="manifest" href="manifest.json">
 </head>
 
@@ -14,218 +14,107 @@
 
 <div id="app">
 
+
   <!-- ── PAGE HEADER ── -->
-<div class="page-header">
-    <h1 id="pageTitle">Welcome to Meal Planner !</h1>
-    <hr>
-    
-<div class="gold-rule"></div>
-    	
-    <p class="playfair">The meal planner tools provided within this app are designed by A.I. to help you plan and manage your meals more easily.</p>
-    	
-    <p>The only free tool is the grocery checklist and its available with a free account subscription. The other tools are available with a $5 yearly subscription which unlocks everything including updates...</p>
+<div class="card">
+	<div class="blue-block">	
+	<h3>Meal Planner :</h3>
+</div>
+
+<p class="desc">This app was created with the help of free A.I. services. I downloaded multiple apps that I was dissatisfied with so I made this app so everyone could enjoy using intelligent and easy to use webtools for cooking and shopping.</p>
+
+<p>I hope you like it enough to buy the full version.</p>
+        
+<p class="tip-box">You will need to create a free account before you can use the tools on this page.
+</p>
+	<p>The tools are grouped into two sections. The free and full versions.</p>
+        
+	<p>Each tool gives a brief description of its contents and abilities.</p>
     
 </div>
 
-<div class="page-header">
-	<h3>Meal Planner Tools :</h3>
-</div>
-
-<div class="section-wrapper">
+<!-- FREE VERSION SECTION -->
+<div class="card">
+		<div class="blue-block">◆ " Free Version " ◆</div>
 	
-<!-- GROCERY LIST -->
-<div class="nav-pill-wrap">
-<div class="nav-pill-outer">
+	<p>Click the tool title in the list to open a popup preview window. Once you create an account, you can use these tools.</p>
+	<ol class="menu">
+		<li>Grocery Checklist !</li>
+		<p>Allows you to add grocery items to a list with a checkbox beside it.</p>
+		<li>Cookbook Menu !</li>
+		</p>The free version allows you to view the recipe categories and titles but not the actual recipes.</p>
+	</ol>
+	
+
+	<a class="blue-block" href="login.html">◆ " Create Account " ◆</a>
+	
+</div>
+
+    
+<!-- FULL VERSION SECTION -->
+    
 <div class="card">
-<div class="card-header">
-<div class="card-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <!-- clipboard -->
-  <rect x="9" y="3" width="6" height="4" rx="1"></rect>
-  <path d="M9 5H8a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1"></path>
+	<div class="blue-block">◆ ◆ "Full Version  $ 5" ◆ ◆</div>
 
-  <!-- pencil -->
-  <path d="M14 13l6 6"></path>
-  <path d="M16.5 11.5l2 2"></path>
-  <path d="M13 14l1-3 4-4 3 3-4 4-3 1z"></path>
-</svg> Grocery List : Free !
-</div>
-            
-    <hr>
+    <p>The full version of the meal planner app gives the user access to all the meal planner tools listed below. </p>
     
-<div>
-</div>
-    <p>The grocery checklist helps you keep track of the items you shop for. With the free version, you can add items by typing a product name and pressing the plus button. Meal Planner Subscribers get access to the preloaded grocery list plus A.I. cookbook suggestions.
-    </p>
-    
-    <p>When you load the grocery checklist with items that look like a recipe from our cookbook, A.I. will offer to show you a suggested recipe card that has the preparation instructions. Then you can prepare meals you didnt know how to.
-    </p>
-            
-<div class="gold-rule">
-</div>
-</div>
-
-<div class="card-body">
-<div class="tip-box">Click below to open the grocery list tool.
-</div>
-    <button class="blue-btn" style="width:100%;" onclick="window.location.href='grocery_list.html'">Open Tool :
-    </button>
-</div>
-</div>
-</div>
-</div>
-
-
-    <!-- MEAL PLANNER -->
-<div class="nav-pill-wrap">
-<div class="nav-pill-outer">
-<div class="card">
- 
-<div class="card-header">
-<div class="card-title">📅 Monthly Planner -
-
-<div id="member-type">Subscribe :
-</div>
-</div>
-            
-    <hr>
-    
-<div class="gold-rule">
-</div>
-    <p>Plan a different meal every day of the week by choosing recipes from our chef-inspired cookbook, or use your own recipes by creating a recipe card and saving it to your favorites list.</p>
-
-</div>
+<ol class="menu">
+    <li id="tool1">Cookbook !</li>
+    	  
+    	<p class="hidden">100's of chef-inspired recipes.
+    	  <a href="cookbook_menu.html"></a>
+    	</p>
+    	  
+    <li id="tool2">Favorites List !</li>
+    	
+    	<p class="hidden">Each recipe in the cookbook can be added to your favorites list.
+    	</p>
+    	  
+    <li id="tool3">Recipe Creator !</li>
+    	
+          <p class="hidden">Create a recipe card and add it to your personalized list of recipes.</p>
           
-<div class="card-body">
-<div class="tip-box">Click below to open the meal planner.
-</div>
-    <button class="blue-btn" style="width:100%;" onclick="window.location.href='meal_planner.html'">Open Tool :
-    </button>
-</div>
-</div>
-</div>
-</div>
-
-
-<!-- COOKBOOK -->
-<div class="nav-pill-wrap">
-<div class="nav-pill-outer">
-<div class="card">
-<div class="card-header">
-<div class="card-title">📖 Cookbook -
-<div id="member-type">Subscribe :
-</div>
-</div>
-            
-    <hr>
-    
-    <p>With the free version of cookbook, you will have access to the menu categories, recipe titles, and 1 free recipe preview. This gives the user a glimpse of the value of the items included in the full version..</p>
-    
-    <p>Each recipe category and title is sorted and alphabetized for easy viewing. Recipes can be saved to your favorites list or added to the meal planner.</p>
-    
-<div class="gold-rule"></div>
-
-</div>
-
-<div class="card-body">
-<div class="tip-box">A free account gives you access to 1 free recipe preview. After your free preview you will only have access to the menu categories and titles.
-</div>
-
-<p>Create a free account now.</p>
-    <button class="blue-btn" onclick="window.location.href='login.html'">Free Account :
-    </button>
-    
-    <p>The full version of cookbook allows you to view hundreds of chef-inspired recipes and gain access to the full suite of meal planner tools and all future updates.</p>
-    
-    <p>The app will be updated with new recipes weekly. The app provides full support requests and suggestions for improvement. Click below to purchase the full version of cookbook.</p>
-    
-    <button class="blue-btn" onclick="window.location.href='purchase_page.html'">"📖 Full Version - $5
-    </button>
-    
-</div>
-</div>
-</div>
-</div>
-
-<!-- RECIPE FINDER -->
-<div class="nav-pill-wrap">
-<div class="nav-pill-outer">
-<div class="card">
-<div class="card-header">
-<div class="card-title">🔎 Recipe Finder :</div>
-            
-    <hr>
-    
-    <p>Search the entire cookbook by recipe name or ingredients.</p>
-
-<div class="gold-rule"></div>
-
-</div>
+    <li id="tool4">A.I. Suggestions !</li>
+          <p class="hidden">A.I. offers to show you recommended recipes from the cookbook when you add items to the grocery checklist. </p>
           
-<div class="card-body">
-<div class="tip-box">Click below to open the recipe search tool.</div>
-    <button class="blue-btn" onclick="window.location.href='recipe_finder.html'">Open Tool :
-    </button>
+    <li id="tool5">Recipe Finder !</li>
+    	  <p class="hidden">Search the entire cookbook from the search bar using recipe names or ingredients.</p>
+    	  
+    <li id="tool6">Monthly Meal Planner Calendar !</li>
+          <p class="hidden">A monthly calender that lets you plan your meals ahead. Choose recipes from the cookbook or create your own.</p>
+          
+    <li id="tool7">All Future Updates and More !</li>
+          <p class="hidden"></p>
+</ol>
+    
+    <p>Click the tool title to try out the free version of each tool. </p>
+     <div class="blue-block" style="font-color: green;" onclick="window.location.href='purchase_page.html'">" <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="green">$</text>
+</svg> Purchase Full Version <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="green">$</text>
+</svg>"
+    </div>
+    
+    </div>
+    
+
+    
 </div>
 </div>
 </div>
 </div>
 
-<!-- FAVORITES -->
-<div class="nav-pill-wrap">
-<div class="nav-pill-outer">
-<div class="card">
-<div class="card-header">
-<div class="card-title">♡ Favorites List -
-<div id="member-type">Subscribe :
-</div>
-</div>
-            
-    <hr>
-            
-    <p>Your personal collection of saved recipes all in one place.</p>
-            
-<div class="gold-rule"></div>
-          
-</div>
-          
-<div class="card-body">
-<div class="tip-box">Click below to view your saved recipes.</div>
-    
-    <button class="btn-blue" style="width:100%;" onclick="window.location.href='purchase_page.html'">Open Tool :
-    </button>
-</div>
-</div>
-</div>
-</div>
+
 
 <!-- SHARE -->
-<div class="nav-pill-wrap">
-<div class="nav-pill-outer">
 <div class="card">
-<div class="card-header">
-<div class="card-title">📤 Share - Free :</div>
-            
-    <hr>
-            
-    <p>Spread the love — share this app with friends and family.</p>
+<div class="blue-block">◆ ◆ ◆ Share : ◆ ◆ ◆</div>
 
-<div class="gold-rule"></div>
+<div class="tip-box">    <p>If you would like to share this app with friends and family, choose one of these options.</p>
 
 </div>
 
-<div class="card-body">
-<div class="tip-box">Click below to share this app.
-</div>
-    <button class="blue-btn" onclick="shareApp()">Share App
-    </button>
-</div>
-</div>
-</div>
-</div>
-
-<div class="page-ornament">◆ ◆ ◆</div>
-</div>
-</div>
+<div class="page-ornament"></div>
 
 <script src="index.js"></script>
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('service_worker.js');}</script>
