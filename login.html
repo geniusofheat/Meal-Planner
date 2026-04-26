@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Meal Planner — Sign In/Out :</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="login.css">
 </head>
@@ -14,112 +12,89 @@
 
 <nav id="auth-nav" class="nav-card">
   <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
+  <button id="sign-out-btn" class="blue-btn" style="display:none;">Sign Out :</button>
 </nav>
 
-<!-- ── NAV CONTAINER── -->
 <div id="app">
 
+  <!-- ── CREATE ACCOUNT CARD ── -->
+  <div id="create-account" class="card">
+    <h2>Create Account :</h2>
+    <p class="desc">Choose an account type :</p>
 
+    <button id="free-account" class="blue-btn" onclick="freeAccount()">Free Account :</button>
+    <button id="full-version" class="blue-btn" onclick="fullVersion()">Full Version $5 :</button>
 
-<!-- ── CREATE ACCOUNT CARD  ── -->
-<div id="create-account" class="card">
-	
-	<h2>Create Account :
-    </h2>
-    
-	<p class="desc">Choose an account type :</p>
+    <hr>
 
-<button id="free-account" class="blue-btn" onclick="freeAccount()">Free Account :</button>
-
-<button id="full-version"class="blue-btn" onclick="fullVersion()">Full Version $5 :</button>
-      
-      <hr>
-
-<div class="card-body">
-      <p>Enter a username, password, and e-mail to create an account.
-      </p>
+    <div class="card-body">
+      <p>Enter a username, password, and e-mail to create an account.</p>
       <input type="text" id="create_username" placeholder="Create a username :" class="input">
-      <input type="text" class="input" id="create_password" placeholder="Create a password :">
-      <input type="text" class="input" id="create_email" placeholder="Enter e-mail :">
+      <input type="password" id="create_password" placeholder="Create a password :" class="input">
+      <input type="email" id="create_email" placeholder="Enter e-mail :" class="input">
       <button id="email-create-btn" class="blue-btn">Create Account :</button>
-      <p id="auth_error"></p>
-</div>
-</div>
+      <p id="auth_error" style="display:none; color:red;"></p>
+    </div>
+  </div>
   <!-- ── CREATE ACCOUNT CARD END ── -->
 
 
   <!-- ── SIGN-IN CARD ── -->
-<div id="sign-in-out" class="card">
-  	
-<div class="card-header">
-    	
-    <h2>Sign In/Out :</h2>
-      
-<hr>
-     
-</div>
-<form id="sign-in-out" class="card-body">
-  
-  <p>Already have an account? Enter your Username and Password to sign in:</p>
-
-  <input type="text" id="auth_username" placeholder="Username" class="input">
-
-  <input type="password" id="auth_password" placeholder="Password :" class="input">
-  <label style="font-size:12px; color:#fefeff; margin:5px;">
-    <input type="checkbox" id="show-password-toggle">
-    Show Password
-  </label>
-
-  <button type="submit" id="sign-in-btn" class="blue-btn">
-    Sign In :
-  </button>
-
-</form>
-</div><!-- ── SIGN-IN CARD END ── -->
+  <div id="sign-in-out" class="card">
+    <div class="card-header">
+      <h2>Sign In/Out :</h2>
+      <hr>
+    </div>
+    <form id="sign-in-form" class="card-body">
+      <p>Already have an account? Enter your Username and Password to sign in:</p>
+      <input type="text" id="auth_username" placeholder="Username :" class="input">
+      <input type="password" id="auth_password" placeholder="Password :" class="input">
+      <label style="font-size:12px; color:#fefeff; margin:5px;">
+        <input type="checkbox" id="show-password-toggle">
+        Show Password
+      </label>
+      <button type="button" id="email-sign-in-btn" class="blue-btn">Sign In :</button>
+    </form>
+  </div>
+  <!-- ── SIGN-IN CARD END ── -->
 
 
-  <!-- ── PASSWORD RECOVERY CARD START ── -->
-<div id="account-recovery" class="card">
-<div class="card-header">
-	
+  <!-- ── PASSWORD RECOVERY CARD ── -->
+  <div id="account-recovery" class="card">
+    <div class="card-header">
       <h2>Account Recovery :</h2>
       <hr>
-</div>
-
-<div class="card-body">
-      <p>Type your e-mail address to verify your account info :
-      </p>
+    </div>
+    <div class="card-body">
+      <p>Type your e-mail address to verify your account info :</p>
       <input type="email" id="recover_email" placeholder="Type Email Here :" class="input">
-      <button id="account-recovery-btn" class="blue-btn">Send e-mail :</button>
-</div>
-</div>
+      <button id="password-recover-btn" class="blue-btn">Send e-mail :</button>
+    </div>
+  </div>
   <!-- ── PASSWORD RECOVERY CARD END ── -->
 
-<!-- ── BEGIN CONTACT FORM CARD ── -->
-<div class="card">
-<div class="card-header">
-    <h2 class="playfair">Contact Us :</h2>
-    
-    <hr>
-    <p>If you have any comments or suggestions, please fill out the form below.</p>
-    
-</div>
-  
-<div class="card-body">
-    <input type="text" id="contact_title" placeholder="Title" class="input">
-    <input type="text" id="contact_username" placeholder="Username" class="input">
-    <input type="email" id="contact_email" placeholder="Email" class="input">
-    <textarea id="contact_message" placeholder="Please type your message here." style="padding:10px;border-radius:6px;border:1px solid #c8a96e;background:#0f1a33;color:#fff;resize:none;height:100px;"></textarea>
-    
-    <button id="contact_submit_btn" class="blue-btn">Send Message :</button>
-  </div>
-</div>
-<!-- ── END CONTACT FORM CARD ── -->
 
+  <!-- ── CONTACT FORM CARD ── -->
+  <div class="card">
+    <div class="card-header">
+      <h2 class="playfair">Contact Us :</h2>
+      <hr>
+      <p>If you have any comments or suggestions, please fill out the form below.</p>
+    </div>
+    <form id="contact_form" class="card-body">
+      <input type="text" id="contact_title" placeholder="Title" class="input">
+      <input type="text" id="contact_username" placeholder="Username" class="input">
+      <input type="email" id="contact_email" placeholder="Email" class="input">
+      <textarea id="contact_message" placeholder="Please type your message here." style="padding:10px;border-radius:6px;border:1px solid #c8a96e;background:#0f1a33;color:#fff;resize:none;height:100px;width:100%;margin:5px 0;"></textarea>
+      <button type="submit" id="contact_submit_btn" class="blue-btn">Send Message :</button>
+    </form>
+  </div>
+  <!-- ── CONTACT FORM CARD END ── -->
 
 </div>
 <!-- ── APP CONTAINER END ── -->
 
+<script type="module" src="firebase_login_auth.js"></script>
 <script type="module" src="login_data.js"></script>
 
 </body>
