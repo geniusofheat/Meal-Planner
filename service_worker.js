@@ -33,8 +33,8 @@ const FILES_TO_CACHE = [
   '/meal-planner-app/salads_data.js',
   '/meal-planner-app/seafood_data.js',
   '/meal-planner-app/vegetables_data.js',
-  '/meal-planner-app/icon_192.png',
-  '/meal-planner-app/icon_512.png'
+  '/meal-planner-app/app_icon_192.png',
+  '/meal-planner-app/app_icon_512.png'
 ];
 
 // Install — cache all files
