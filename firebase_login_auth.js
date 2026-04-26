@@ -142,35 +142,46 @@ export async function sendRecoveryEmail(email, showError) {
 }
 // ── Wire up all buttons on page load ──────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  function showError(msg) {
+
+  function showSignInError(msg) {
+    const el = document.getElementById('sign_in_error');
+    if (el) { el.textContent = msg; el.style.display = 'block'; }
+  }
+
+  function showCreateError(msg) {
     const el = document.getElementById('auth_error');
     if (el) { el.textContent = msg; el.style.display = 'block'; }
   }
 
-  const emailSignInBtn = document.getElementById('email-sign-in-btn');
-  if (emailSignInBtn) emailSignInBtn.addEventListener('click', () => {
-    const email    = document.getElementById('auth_username').value.trim();
+  // ── SIGN IN ────────────────────────────────────────────────
+  const signInBtn = document.getElementById('sign-in-btn');
+  if (signInBtn) signInBtn.addEventListener('click', () => {
+    const username = document.getElementById('auth_username').value.trim();
     const password = document.getElementById('auth_password').value;
-    emailSignIn(email, password, showError);
+    signIn(username, password, showSignInError);
   });
 
-  const emailCreateBtn = document.getElementById('email-create-btn');
-  if (emailCreateBtn) emailCreateBtn.addEventListener('click', () => {
-    const name     = document.getElementById('create_username').value.trim();
+  // ── CREATE ACCOUNT ─────────────────────────────────────────
+  const createBtn = document.getElementById('create-email-btn');
+  if (createBtn) createBtn.addEventListener('click', () => {
+    const username = document.getElementById('create_username').value.trim();
     const email    = document.getElementById('create_email').value.trim();
     const password = document.getElementById('create_password').value;
-    createAccount(name, email, password, showError);
+    createAccount(username, email, password, showCreateError);
   });
 
+  // ── PASSWORD RECOVERY ──────────────────────────────────────
   const recoverBtn = document.getElementById('password-recover-btn');
   if (recoverBtn) recoverBtn.addEventListener('click', () => {
     const email = document.getElementById('recover_email').value.trim();
-    sendRecoveryEmail(email, showError);
+    sendRecoveryEmail(email, showSignInError);
   });
 
+  // ── SIGN OUT ───────────────────────────────────────────────
   const signOutBtn = document.getElementById('sign-out-btn');
   if (signOutBtn) signOutBtn.addEventListener('click', () => signOutUser());
 
+});
   // ── BEGIN Contact Form Handler ──────────────────────────────
   const contactForm = document.getElementById('contact_form');
   if (contactForm) contactForm.addEventListener('submit', async (e) => {
