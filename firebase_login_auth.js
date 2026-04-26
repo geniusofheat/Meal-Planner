@@ -109,7 +109,37 @@ export async function emailSignIn(username, password, showError) {
     if (showError) showError('Incorrect username or password.');
   }
 }
+export async function signOutUser() {
+  try {
+    await signOut(auth);
+    window.location.href = 'login.html';
+  } catch (e) {
+    console.error(e);
+  }
+}
+window.signOutUser = signOutUser;
 
+export async function createAccount(name, email, password, showError) {
+  if (!name) { if (showError) showError('Enter a valid name.'); return; }
+  if (password.length < 6) { if (showError) showError('Password must be at least 6 characters.'); return; }
+  try {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await setDoc(doc(db, 'users', cred.user.uid), {
+      name, email, paid: false, created: new Date().toISOString()
+    });
+    window.location.href = 'index.html';
+  } catch (e) {
+    if (showError) showError(e.message || 'Could not create account.');
+  }
+}
+
+export async function sendRecoveryEmail(email, showError) {
+  if (!email) { if (showError) showError('Enter a valid email.'); return; }
+  try {
+    await sendPasswordResetEmail(auth, email);
+    alert('Password recovery email sent. Check your inbox.');
+  } catch (e) { if (showError) showError(e.message); }
+}
 // ── Wire up all buttons on page load ──────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   function showError(msg) {
