@@ -96,7 +96,7 @@ onAuthStateChanged(auth, async (user) => {
 // ── Auth functions ─────────────────────────────────────────────
 export async function emailSignIn(username, password, showError) {
   try {
-    const q = query(collection(db, 'users'), where('name', '==', username));
+    const q = query(collection(db, 'users'), where('Username', '==', username));
     const snap = await getDocs(q);
     if (snap.empty) {
       if (showError) showError('Username not found.');
