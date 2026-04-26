@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const emailSignInBtn = document.getElementById('email-sign-in-btn');
   if (emailSignInBtn) emailSignInBtn.addEventListener('click', () => {
-    const email    = document.getElementById('auth_email').value.trim();
+    const email    = document.getElementById('auth_username').value.trim();
     const password = document.getElementById('auth_password').value;
     emailSignIn(email, password, showError);
   });
