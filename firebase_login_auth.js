@@ -1,5 +1,5 @@
 // ================================================================
-//  //  firebase_login_auth.js — Auth & Paywall System
+//  firebase_login_auth.js — Auth & Paywall System
 // ================================================================
 
 import { auth, db, onAuthStateChanged } from './firebase_config.js';
@@ -24,18 +24,16 @@ export async function updateNavBar(user) {
 
   let displayName = 'Guest';
 
-  // ── BEGIN fetch Firestore name ─────────────────────────────
   if (user) {
     try {
       const snap = await getDoc(doc(db, 'users', user.uid));
-      if (snap.exists() && snap.data().name) displayName = snap.data().name;
+      if (snap.exists() && snap.data().username) displayName = snap.data().username;
       else displayName = user.email;
     } catch (e) {
       console.error('Error fetching user name:', e);
       displayName = user.email;
     }
   }
-  // ── END fetch Firestore name ───────────────────────────────
 
   navEmail.textContent     = `Welcome, ${displayName}`;
   signOutBtn.style.display = user ? 'inline-block' : 'none';
@@ -51,7 +49,7 @@ export async function showPostLoginOptions(user) {
   if (user) {
     try {
       const snap = await getDoc(doc(db, 'users', user.uid));
-      if (snap.exists() && snap.data().name) displayName = snap.data().name;
+      if (snap.exists() && snap.data().username) displayName = snap.data().username;
       else displayName = user.email;
     } catch (e) {
       displayName = user.email;
@@ -72,14 +70,12 @@ async function check_paid_status(uid) {
   }
 }
 
-// ── Unlock grocery menu card for paid subscribers ─────────────
-// ── BEGIN grocery menu paywall unlock ─────────────────────────
+// ── Unlock grocery menu for paid subscribers ──────────────────
 function unlockGroceryMenu() {
   if (!cookbook_unlocked) return;
   const overlay = document.getElementById('groceryMenuPaywall');
   if (overlay) overlay.classList.add('hidden');
 }
-// ── END grocery menu paywall unlock ───────────────────────────
 
 // ── Auth state listener ────────────────────────────────────────
 onAuthStateChanged(auth, async (user) => {
@@ -93,10 +89,10 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// ── Auth functions ─────────────────────────────────────────────
-export async function emailSignIn(username, password, showError) {
+// ── Sign In ────────────────────────────────────────────────────
+export async function signIn(username, password, showError) {
   try {
-    const q = query(collection(db, 'users'), where('Username', '==', username));
+    const q = query(collection(db, 'users'), where('username', '==', username));
     const snap = await getDocs(q);
     if (snap.empty) {
       if (showError) showError('Username not found.');
@@ -109,6 +105,8 @@ export async function emailSignIn(username, password, showError) {
     if (showError) showError('Incorrect username or password.');
   }
 }
+
+// ── Sign Out ───────────────────────────────────────────────────
 export async function signOutUser() {
   try {
     await signOut(auth);
@@ -119,13 +117,17 @@ export async function signOutUser() {
 }
 window.signOutUser = signOutUser;
 
-export async function createAccount(name, email, password, showError) {
-  if (!name) { if (showError) showError('Enter a valid name.'); return; }
+// ── Create Account ─────────────────────────────────────────────
+export async function createAccount(username, email, password, showError) {
+  if (!username) { if (showError) showError('Enter a valid username.'); return; }
   if (password.length < 6) { if (showError) showError('Password must be at least 6 characters.'); return; }
   try {
     const cred = await createUserWithEmailAndPassword(auth, email, password);
     await setDoc(doc(db, 'users', cred.user.uid), {
-      name, email, paid: false, created: new Date().toISOString()
+      username: username,
+      email:    email,
+      paid:     false,
+      created:  new Date().toISOString()
     });
     window.location.href = 'index.html';
   } catch (e) {
@@ -133,13 +135,17 @@ export async function createAccount(name, email, password, showError) {
   }
 }
 
+// ── Password Recovery ──────────────────────────────────────────
 export async function sendRecoveryEmail(email, showError) {
   if (!email) { if (showError) showError('Enter a valid email.'); return; }
   try {
     await sendPasswordResetEmail(auth, email);
     alert('Password recovery email sent. Check your inbox.');
-  } catch (e) { if (showError) showError(e.message); }
+  } catch (e) {
+    if (showError) showError(e.message);
+  }
 }
+
 // ── Wire up all buttons on page load ──────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -153,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) { el.textContent = msg; el.style.display = 'block'; }
   }
 
-  // ── SIGN IN ────────────────────────────────────────────────
+  // ── SIGN IN ──────────────────────────────────────────────
   const signInBtn = document.getElementById('sign-in-btn');
   if (signInBtn) signInBtn.addEventListener('click', () => {
     const username = document.getElementById('auth_username').value.trim();
@@ -161,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
     signIn(username, password, showSignInError);
   });
 
-  // ── CREATE ACCOUNT ─────────────────────────────────────────
-  const createBtn = document.getElementById('create-email-btn');
+  // ── CREATE ACCOUNT ────────────────────────────────────────
+  const createBtn = document.getElementById('email-create-btn');
   if (createBtn) createBtn.addEventListener('click', () => {
     const username = document.getElementById('create_username').value.trim();
     const email    = document.getElementById('create_email').value.trim();
@@ -170,19 +176,18 @@ document.addEventListener('DOMContentLoaded', () => {
     createAccount(username, email, password, showCreateError);
   });
 
-  // ── PASSWORD RECOVERY ──────────────────────────────────────
+  // ── PASSWORD RECOVERY ────────────────────────────────────
   const recoverBtn = document.getElementById('password-recover-btn');
   if (recoverBtn) recoverBtn.addEventListener('click', () => {
     const email = document.getElementById('recover_email').value.trim();
     sendRecoveryEmail(email, showSignInError);
   });
 
-  // ── SIGN OUT ───────────────────────────────────────────────
+  // ── SIGN OUT ──────────────────────────────────────────────
   const signOutBtn = document.getElementById('sign-out-btn');
   if (signOutBtn) signOutBtn.addEventListener('click', () => signOutUser());
 
-});
-  // ── BEGIN Contact Form Handler ──────────────────────────────
+  // ── CONTACT FORM ──────────────────────────────────────────
   const contactForm = document.getElementById('contact_form');
   if (contactForm) contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -201,10 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       await addDoc(collection(db, 'contact_forms'), {
         uid: currentUser.uid,
-        title,
-        username,
-        email,
-        message,
+        title, username, email, message,
         submitted: new Date().toISOString()
       });
       alert('Your message has been submitted!');
@@ -215,11 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Failed to submit your message.');
     }
   });
-  // ── END Contact Form Handler ────────────────────────────────
 
 });
 
-// ── Prefill contact form if user logged in ────────────────────
+// ── Prefill contact form ───────────────────────────────────────
 async function prefillContactForm(user) {
   if (!user) return;
   try {
@@ -228,8 +229,8 @@ async function prefillContactForm(user) {
     const data = snap.data();
     const usernameInput = document.getElementById('contact_username');
     const emailInput    = document.getElementById('contact_email');
-    if (usernameInput) usernameInput.value = data.name || '';
-    if (emailInput)    emailInput.value    = data.email || '';
+    if (usernameInput) usernameInput.value = data.username || '';
+    if (emailInput)    emailInput.value    = data.email    || '';
   } catch (e) {
     console.error('Error pre-filling contact form:', e);
   }
@@ -250,7 +251,6 @@ window.check_and_open_recipe = function(recipe, icon, cat_name) {
   show_paywall_modal();
 };
 
-// ── Preview banner and paywall modal (unchanged) ──────────────
 function show_preview_banner() { /*... keep as before ...*/ }
-window.show_paywall_modal = function() { /*... keep as before ...*/ }
-window.close_paywall_modal = function() { /*... keep as before ...*/ }
+window.show_paywall_modal = function() { /*... keep as before ...*/ };
+window.close_paywall_modal = function() { /*... keep as before ...*/ };
