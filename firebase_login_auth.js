@@ -95,6 +95,7 @@ export async function signIn(email, password, showError) {
     const cred = await signInWithEmailAndPassword(auth, email, password);
     const snap = await getDoc(doc(db, 'users', cred.user.uid));
     const paid = snap.exists() && snap.data().paid === true;
+    console.log('paid status:', snap.data());
     window.location.href = paid ? 'full_version_tools.html' : 'free_version_tools.html';
   } catch (e) {
     if (showError) showError('Incorrect email or password.');
