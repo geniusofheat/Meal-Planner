@@ -92,8 +92,10 @@ onAuthStateChanged(auth, async (user) => {
 // ── Sign In ────────────────────────────────────────────────────
 export async function signIn(email, password, showError) {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
-    window.location.href = 'index.html';
+    const cred = await signInWithEmailAndPassword(auth, email, password);
+    const snap = await getDoc(doc(db, 'users', cred.user.uid));
+    const paid = snap.exists() && snap.data().paid === true;
+    window.location.href = paid ? 'full_version_tools.html' : 'free_version_tools.html';
   } catch (e) {
     if (showError) showError('Incorrect email or password.');
   }
