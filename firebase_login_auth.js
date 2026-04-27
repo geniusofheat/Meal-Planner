@@ -9,7 +9,7 @@ import {
   signOut,
   sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { doc, getDoc, setDoc, collection, addDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { doc, getDoc, setDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // ── State ──────────────────────────────────────────────────────
 let currentUser       = null;
@@ -90,19 +90,12 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 // ── Sign In ────────────────────────────────────────────────────
-export async function signIn(username, password, showError) {
+export async function signIn(email, password, showError) {
   try {
-    const q = query(collection(db, 'users'), where('username', '==', username));
-    const snap = await getDocs(q);
-    if (snap.empty) {
-      if (showError) showError('Username not found.');
-      return;
-    }
-    const email = snap.docs[0].data().email;
     await signInWithEmailAndPassword(auth, email, password);
     window.location.href = 'index.html';
   } catch (e) {
-    if (showError) showError('Incorrect username or password.');
+    if (showError) showError('Incorrect email or password.');
   }
 }
 
@@ -162,9 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── SIGN IN ──────────────────────────────────────────────
   const signInBtn = document.getElementById('sign-in-btn');
   if (signInBtn) signInBtn.addEventListener('click', () => {
-    const username = document.getElementById('auth_username').value.trim();
+    const email    = document.getElementById('auth_email').value.trim();
     const password = document.getElementById('auth_password').value;
-    signIn(username, password, showSignInError);
+    signIn(email, password, showSignInError);
   });
 
   // ── CREATE ACCOUNT ────────────────────────────────────────
