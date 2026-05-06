@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meal Planner — Free Tools :</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<!-- ── LOGIN NAV BAR ── -->
+<div id="auth-nav" class="gold-block nav-row">
+  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
+  <button id="sign-out-btn" class="gold-btn" style="display:none;">Sign Out</button>
+</div>
+<!-- ── END LOGIN NAV BAR ── -->
+
+<!-- ── WELCOME CARD ── -->
+<div class="card">
+  <h3>🍽️ Meal Planner :</h3>
+  <p class="tip-box">Your free meal planner tools are listed below. Tap a tool button to open it.</p>
+
+  <hr>
+
+  <h4>◆ Your Free Tools ◆</h4>
+
+  <!-- GROCERY CHECKLIST -->
+  <h4>🛒 Grocery Checklist :</h4>
+  <div class="gold-block">
+    <p>Build your grocery list before you shop. Add items one by one and check them off as you go. Your list stays saved between visits.</p>
+    <a href="grocery_checklist.html" class="blue-btn" style="width:90px; flex-shrink:0; font-size:11px;">Open Tool</a>
+  </div>
+
+  <hr style="border-color: rgba(200,169,110,0.3); margin: 10px 0;">
+
+  <!-- COOKBOOK FREE -->
+  <h4>📖 Cookbook :</h4>
+  <div class="gold-block">
+    <p>The free version lets you see the cookbook menu and 1 free recipe. Upgrade to the full version to gain access to the complete cookbook and unlimited capabilities.</p>
+    <a href="cookbook_menu.html" class="blue-btn" style="width:90px; flex-shrink:0; font-size:11px;">Open Tool</a>
+  </div>
+
+  <hr style="border-color: rgba(200,169,110,0.3); margin: 10px 0;">
+
+  <!-- UPGRADE PROMPT -->
+  <h4>◆ Want More Tools ? ◆</h4>
+  <div class="gold-block">
+    <p>Upgrade to the full version for just $5 and unlock the complete Cookbook, Favorites List, Recipe Creator, Meal Planner Calendar, and A.I. Suggestions.</p>
+    <p>Click here to review the full list of meal planner tools. <a href="full_version_index.html">More Info</a></p>
+    <a href="purchase_page.html" class="blue-btn" style="width:90px; flex-shrink:0; font-size:11px; color:gold;">Upgrade $5</a>
+  </div>
+
+</div>
+
+<!-- ── SHARE CARD ── -->
+<div class="card">
+  <div class="blue-block">◆ Share This App ◆</div>
+  <div class="tip-box">
+    <p>Enjoying the app? Share it with friends and family so they can try it too.</p>
+  </div>
+  <div class="page-ornament"></div>
+</div>
+
+<script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('service_worker.js'); }</script>
+<script type="module" src="firebase_login_auth.js"></script>
+
+</body>
+</html>

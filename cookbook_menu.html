@@ -13,341 +13,190 @@
 
 <div id="app">
 
+<!-- ── LOGIN NAV BAR ── -->
+<div id="auth-nav" class="gold-block nav-row">
+  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
+  <button id="sign-out-btn" class="gold-btn" style="display:none;">Sign Out :</button>
+</div>
+<!-- ── END LOGIN NAV BAR ── -->
+
 <!-- ── NAV BAR ── -->
-<nav id="nav-row" class="nav-row">
-
-
-	<a class="blue-btn-150" href="index.html">🏠 Back</a>
-
-
-
-	<a class="blue-btn-150" href="favorites_list.html">♡ Fav's</a>
-
-</nav>
-
+<div class="gold-block nav-row">
+  <a id="homepage-redirect-link" class="nav-btn" href="index.html">🏠 Back</a>
+  <div class="nav-divider"></div>
+  <a class="nav-btn" href="favorites_list.html">♡ Fav's</a>
+</div>
 <!-- ── END NAV BAR ── -->
 
-
-<!-- ── BEGIN HEADER── --->
-
+<!-- ── HEADER ── -->
 <div class="card">
-	
-		<h3>📖 Cookbook : 📖 </h3>
-		
-	<p>All the recipes we provide are researched and verified by proven chef inspired ingredients and preparation instructions.</p>
-	
-	<p>The free version of cookbook allows you to view the items in the menu but only allows access to one recipe card until you subscribe to the full version.</p>
-	
-	<p>Subscribers get access to the full list of recipe cards. Each recipe can be saved to your favorites list. You can also use the recipes with the meal planner calender.</p>
-	
-	 <p>The full version also includes access to the complete list of meal planner tools that are available.</p>
-	 <p>Tools includemthe monthly meal planner, recipe finder, recipe creator, A.I. suggestions, favorites list and more.</p>
-		
-	 <p class="desc">Browse the menu sections below or use the search bar to search for specific recipes or ingredients.</p>
 
-<div class="search-bar-container">
+  <h3>📖 Cookbook : 📖</h3>
 
-   <input type="text" id="search_input" class="search-input"
+  <p>All the recipes we provide are researched and verified by proven chef inspired ingredients and preparation instructions.</p>
+
+  <p>The free version of cookbook allows you to view the items in the menu but only allows access to one recipe card until you subscribe to the full version.</p>
+
+  <p>Subscribers get access to the full list of recipe cards. Each recipe can be saved to your favorites list. You can also use the recipes with the meal planner calendar.</p>
+
+  <p>The full version also includes access to the complete list of meal planner tools that are available.</p>
+
+  <p>Tools include the monthly meal planner, recipe finder, recipe creator, A.I. suggestions, favorites list and more.</p>
+
+  <p class="desc">Browse the menu sections below or use the search bar to search for specific recipes or ingredients.</p>
+
+  <div class="search-bar-container">
+    <input type="text" id="search_input" class="search-input"
       placeholder="Search here :"
       onkeydown="search_on_enter(event)"
       autocomplete="off">
+    <div class="gold-block-44">
+      <button class="block-btn-42" onclick="search_cookbook()">🔍</button>
+    </div>
+  </div>
 
-<div class="gold-block-44">
-   <button class="block-btn-42"
-      onclick="search_cookbook()">🔍</button>
-   </div>
+  <!-- Search bar error message -->
+  <div id="search_results" class="search-error-message"></div>
 
 </div>
 
-<!-- Search bar error message --->
-<div id="search_results" class="search-error-message"></div>
-</div>
 
 <!-- ! BEVERAGES CARD -->
 <div class="card" id="Beverages">
-	
-	<h4>🍷 Beverages :</h4>
-
-    <p>Smoothies, Coffees, Teas, Juices, Cocktails, Mocktails, Margaritas, etc..</p>
-    <p class="tip-box">Click below to browse all the beverages recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('beverages')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="beverages_header" class="menu-header">
+  <h4>🍷 Beverages :</h4>
+  <p>Smoothies, Coffees, Teas, Juices, Cocktails, Mocktails, Margaritas, etc..</p>
+  <p class="tip-box">Click below to browse all the beverages recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('beverages')">View Recipes</button>
+  <div id="beverages_header" class="menu-header"></div>
+  <ul class="menu" id="beverages"></ul>
 </div>
-<!-- HEADER PLACEHOLDER -->
 
-    <ul class="menu" id="beverages">
-    </ul>
-
-</div>
-<!-- ! END BEVERAGES -->
 
 <!-- ! BEANS AND LEGUMES -->
 <div class="card" id="Beans_and_Legumes">
-	
-	<h4>🫘 Beans & Legumes :</h4>
-
-    <p>Red Beans, Green Beans, Black Beans, Lima Beans, Pinto Beans.</p>
-    <p class="tip-box">Click below to browse all beans and legumes recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('beans_and_legumes')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="beans_and_legumes_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="beans_and_legumes"></ul>
-
+  <h4>🫘 Beans & Legumes :</h4>
+  <p>Red Beans, Green Beans, Black Beans, Lima Beans, Pinto Beans.</p>
+  <p class="tip-box">Click below to browse all beans and legumes recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('beans_and_legumes')">View Recipes</button>
+  <div id="beans_and_legumes_header" class="menu-header"></div>
+  <ul class="menu" id="beans_and_legumes"></ul>
 </div>
 
 
 <!-- ! BREADS AND GRAINS -->
 <div class="card" id="Breads_and_Grains">
-	
-	<h4>🍞 Breads & Grains :</h4>
-
-    <p>White Bread, Wheat Bread, Garlic Bread..</p>
-    <p class="tip-box">Click below to browse all bread recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('breads_and_grains')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="breads_and_grains_header" class="menu-header">
+  <h4>🍞 Breads & Grains :</h4>
+  <p>White Bread, Wheat Bread, Garlic Bread..</p>
+  <p class="tip-box">Click below to browse all bread recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('breads_and_grains')">View Recipes</button>
+  <div id="breads_and_grains_header" class="menu-header"></div>
+  <ul class="menu" id="breads_and_grains"></ul>
 </div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="breads_and_grains"></ul>
-
-</div>
-
-
-<!-- ! CANDY -->
-<div class="card" id="Candy">
-	
-	<h4>🍬 Candy :</h4>
-
-    <p>Lemon Drops, Red Hots, Candy Apples.</p>
-    <p class="tip-box">Click below to browse all candy recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('candy')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="candy_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="candy"></ul>
-
-</div>
-
 
 <!-- ! DESSERTS -->
 <div class="card" id="Desserts">
-	
-	<h4>🍰 Desserts :</h4>
-
-    <p>Cakes, cookies, pies, ice cream, puddings, and sweet treats.</p>
-    <p class="tip-box">Click below to browse all dessert recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('desserts')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="desserts_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="desserts"></ul>
-
+  <h4>🍰 Desserts :</h4>
+  <p>Cakes, cookies, pies, ice cream, puddings, and sweet treats.</p>
+  <p class="tip-box">Click below to browse all dessert recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('desserts')">View Recipes</button>
+  <div id="desserts_header" class="menu-header"></div>
+  <ul class="menu" id="desserts"></ul>
 </div>
 
 
 <!-- ! DIPS, SAUCES, AND GRAVIES -->
 <div class="card" id="Dips_Sauces_And_Gravies">
-	
-	<h4>🥗 Dips, Sauces, & Gravies :</h4>
-
-    <p>Cheese dip, brown gravy, white gravy, aioli sauce, hollandaise sauce, and many others.</p>
-    <p class="tip-box">Click below to browse all dips, sauces, & gravy recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('dips_sauces_and_gravies')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="dips_sauces_and_gravies_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="dips_sauces_and_gravies"></ul>
-
-</div>
-
-
-<!-- ! FINGER FOODS -->
-<div class="card" id="Finger_Foods">
-	
-	<h4>🍗 Finger Foods :</h4>
-
-    <p>Fries, Chicken Wings, Chicken Tenders, Burgers, Hotdogs, Wraps, Burritos, Fajitas, Sandwiches, etc..</p>
-    <p class="tip-box">Click below to browse all finger foods recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('finger_foods')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="finger_foods_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="finger_foods"></ul>
-
+  <h4>🥗 Dips, Sauces, & Gravies :</h4>
+  <p>Cheese dip, brown gravy, white gravy, aioli sauce, hollandaise sauce, and many others.</p>
+  <p class="tip-box">Click below to browse all dips, sauces, & gravy recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('dips_sauces_and_gravies')">View Recipes</button>
+  <div id="dips_sauces_and_gravies_header" class="menu-header"></div>
+  <ul class="menu" id="dips_sauces_and_gravies"></ul>
 </div>
 
 
 <!-- ! MEATS -->
 <div class="card" id="Meats">
-	
-	<h4>🥩 Meats :</h4>
-
-    <p>Beef, Chicken, Pork, Lamb, Game, and hearty meat-forward main courses.</p>
-    <p class="tip-box">Click below to browse all meat recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('meats')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="meats_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="meats"></ul>
-
+  <h4>🥩 Meats :</h4>
+  <p>Beef, Chicken, Pork, Lamb, Game, and hearty meat-forward main courses.</p>
+  <p class="tip-box">Click below to browse all meat recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('meats')">View Recipes</button>
+  <div id="meats_header" class="menu-header"></div>
+  <ul class="menu" id="meats"></ul>
 </div>
 
 
 <!-- ! PASTAS AND RICE -->
 <div class="card" id="Pastas_And_Rice">
-	
-	<h4>🍝 Pastas & Rice :</h4>
-
-    <p>Classic rice and pasta dishes, baked pastas, and homemade sauces.</p>
-    <p class="tip-box">Click below to browse all pasta and rice recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('pastas')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="pastas_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="pastas"></ul>
-
+  <h4>🍝 Pastas & Rice :</h4>
+  <p>Classic rice and pasta dishes, baked pastas, and homemade sauces.</p>
+  <p class="tip-box">Click below to browse all pasta and rice recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('pastas')">View Recipes</button>
+  <div id="pastas_header" class="menu-header"></div>
+  <ul class="menu" id="pastas"></ul>
 </div>
 
 
 <!-- ! SALADS -->
 <div class="card" id="Salads">
-	
-	<h4>🥗 Salads :</h4>
-
-    <p>Fresh greens, grain bowls, pasta salads, and light seasonal dishes.</p>
-    <p class="tip-box">Click below to browse all salad recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('salads')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="salads_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="salads"></ul>
-
+  <h4>🥗 Salads :</h4>
+  <p>Fresh greens, grain bowls, pasta salads, and light seasonal dishes.</p>
+  <p class="tip-box">Click below to browse all salad recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('salads')">View Recipes</button>
+  <div id="salads_header" class="menu-header"></div>
+  <ul class="menu" id="salads"></ul>
 </div>
 
 
 <!-- ! SOUPS AND STEWS -->
 <div class="card" id="Soups_And_Stews">
-	
-	<h4>🍲 Soups & Stews :</h4>
-
-    <p>Hearty stews, creamy bisques, broths, chowders, and slow-cooked soups.</p>
-    <p class="tip-box">Click below to browse all soup and stew recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('soups_and_stews')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="soups_and_stews_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="soups_and_stews"></ul>
-
+  <h4>🍲 Soups & Stews :</h4>
+  <p>Hearty stews, creamy bisques, broths, chowders, and slow-cooked soups.</p>
+  <p class="tip-box">Click below to browse all soup and stew recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('soups_and_stews')">View Recipes</button>
+  <div id="soups_and_stews_header" class="menu-header"></div>
+  <ul class="menu" id="soups_and_stews"></ul>
 </div>
 
 
 <!-- ! VEGETABLE DISHES -->
 <div class="card" id="Vegetable_Dishes">
-	
-	<h4>🥦 Vegetable Dishes :</h4>
-
-    <p>Roasted vegetables, casseroles, stir-fries, and fresh vegetable sides.</p>
-    <p class="tip-box">Click below to browse all vegetable dish recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('vegetables')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="vegetables_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="vegetables"></ul>
-
+  <h4>🥦 Vegetable Dishes :</h4>
+  <p>Roasted vegetables, casseroles, stir-fries, and fresh vegetable sides.</p>
+  <p class="tip-box">Click below to browse all vegetable dish recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('vegetables')">View Recipes</button>
+  <div id="vegetables_header" class="menu-header"></div>
+  <ul class="menu" id="vegetables"></ul>
 </div>
 
 
 <!-- ! SIDE DISHES -->
 <div class="card" id="Side_Dishes">
-	
-	<h4>🥔 Side Dishes :</h4>
-
-    <p>Roasted vegetables, potatoes, rice, casseroles, and perfect accompaniments.</p>
-    <p class="tip-box">Click below to browse all side dish recipes.</p>
-    
-    <button class="blue-btn" onclick="toggleCategory('side_dishes')">View Recipes</button>
-    
-<!-- HEADER PLACEHOLDER -->
-<div id="side_dishes_header" class="menu-header">
-</div>
-<!-- HEADER PLACEHOLDER -->
-
-    <ul class="menu" id="side_dishes"></ul>
-
+  <h4>🥔 Side Dishes :</h4>
+  <p>Roasted vegetables, potatoes, rice, casseroles, and perfect accompaniments.</p>
+  <p class="tip-box">Click below to browse all side dish recipes.</p>
+  <button class="blue-btn" onclick="toggleCategory('side_dishes')">View Recipes</button>
+  <div id="side_dishes_header" class="menu-header"></div>
+  <ul class="menu" id="side_dishes"></ul>
 </div>
 
 <div class="page-ornament">◆ ◆ ◆</div>
 
 </div>
-<!-- ── END SECTION WRAPPER ── -->
+<!-- ── END APP WRAPPER ── -->
 
 <!-- ── RECIPE MODAL ── -->
 <div id="recipe_modal">
-
   <div id="recipe_modal_content">
-
     <button id="recipe_modal_close_btn" onclick="close_recipe_modal()">✕</button>
-
     <div id="recipe_modal_title"></div>
     <div id="recipe_modal_body"></div>
   </div>
-
-</div>
-</div>
-<!-- --- END Cookbook Header Container--- -->
 </div>
 
 <script src="beverages_data.js"></script>
 <script src="beans_and_legumes_data.js"></script>
 <script src="breads_and_grains_data.js"></script>
-<script src="candy_data.js"></script>
 <script src="desserts_data.js"></script>
 <script src="dips_sauces_and_gravies_data.js"></script>
 <script src="meats_data.js"></script>
@@ -357,6 +206,8 @@
 <script src="vegetables_data.js"></script>
 <script src="side_dishes_data.js"></script>
 <script src="cookbook_menu_data.js"></script>
+
+<script type="module" src="firebase_login_auth.js"></script>
 
 </body>
 </html>

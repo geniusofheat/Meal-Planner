@@ -77,15 +77,41 @@ function unlockGroceryMenu() {
   if (overlay) overlay.classList.add('hidden');
 }
 
+// ── Page destinations ──────────────────────────────────────────
+const LOGIN_PAGE = 'login.html';
+const FREE_PAGE  = 'free_version_index.html';
+const FULL_PAGE  = 'full_version_index.html';
+
+const on_login_page = window.location.pathname.includes('login');
+
 // ── Auth state listener ────────────────────────────────────────
 onAuthStateChanged(auth, async (user) => {
   currentUser = user;
   await updateNavBar(user);
+
   if (user) {
     await check_paid_status(user.uid);
     unlockGroceryMenu();
     await showPostLoginOptions(user);
     prefillContactForm(user);
+
+    // ── Update home button destination ────────────────────────
+    const homeLink = document.getElementById('homepage-redirect-link');
+    if (homeLink) {
+      homeLink.href = cookbook_unlocked ? FULL_PAGE : FREE_PAGE;
+    }
+
+    // ── Auto-redirect if already signed in and on login page ──
+    if (on_login_page) {
+      window.location.href = cookbook_unlocked ? FULL_PAGE : FREE_PAGE;
+      return;
+    }
+
+  } else {
+    // ── Not signed in — send to login if on a protected page ──
+    if (!on_login_page) {
+      window.location.href = LOGIN_PAGE;
+    }
   }
 });
 
@@ -96,22 +122,25 @@ export async function signIn(email, password, showError) {
     const snap = await getDoc(doc(db, 'users', cred.user.uid));
 
     if (snap.exists() && snap.data().paid === true) {
-      window.location.href = 'full_version_tools.html';
+      window.location.href = FULL_PAGE;
     } else {
-      window.location.href = 'free_version_tools.html';
+      window.location.href = FREE_PAGE;
     }
 
   } catch (e) {
-    if (showError) showError('Incorrect email or password.');
+    if (e.code === 'auth/user-not-found') {
+      if (showError) showError('No account found. Please use the Create Account card to register.');
+    } else {
+      if (showError) showError('Incorrect email or password.');
+    }
   }
 }
-
 
 // ── Sign Out ───────────────────────────────────────────────────
 export async function signOutUser() {
   try {
     await signOut(auth);
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
   } catch (e) {
     console.error(e);
   }
@@ -130,7 +159,7 @@ export async function createAccount(username, email, password, showError) {
       paid:     false,
       created:  new Date().toISOString()
     });
-    window.location.href = 'index.html';
+    window.location.href = FREE_PAGE;
   } catch (e) {
     if (showError) showError(e.message || 'Could not create account.');
   }
@@ -253,5 +282,5 @@ window.check_and_open_recipe = function(recipe, icon, cat_name) {
 };
 
 function show_preview_banner() { /*... keep as before ...*/ }
-window.show_paywall_modal = function() { /*... keep as before ...*/ };
+window.show_paywall_modal  = function() { /*... keep as before ...*/ };
 window.close_paywall_modal = function() { /*... keep as before ...*/ };
