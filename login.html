@@ -15,13 +15,9 @@
   <button id="sign-out-btn" class="blue-btn" style="display:none;">Sign Out :</button>
 </nav>
 
-<div id="app">
-
-
-
 
   <!-- ── SIGN-IN CARD ── -->
-  <div id="sign-in-out" class="card">
+  <div id="sign-in-out" class="card hidden">
     <div class="card-header">
       <h2>Sign In/Out :</h2>
       <hr>
@@ -34,15 +30,61 @@
         <input type="checkbox" id="show-password-toggle">
         Show Password
       </label>
-      <button type="button" id="sign-in-btn" class="blue-btn">Sign In :</button>
+      <button type="button" id="sign-in-btn" class="orange-btn">Sign In :</button>
     </form>
-    <p id="sign_in_error" style="color:red; font-size:13px; display:none; padding:5px;"></p>
+    <p id="sign_in_error"></p>
   </div>
   <!-- ── SIGN-IN CARD END ── -->
+  
+<!-- CREATE ACCOUNT CARD - FREE VERSION -->
+<div id="free_version_card" class="card hidden">
 
+  <h2>Create Account : Free Version</h2>
+  <p class="desc">Create a free account to access core features.</p>
+
+  <hr>
+
+  <div class="gold-block">
+    <p>Enter a username, password, and e-mail to create a free account.</p>
+
+    <input type="text" id="create_username" placeholder="Create a username :" class="input">
+    <input type="password" id="create_password" placeholder="Create a password :" class="input">
+    <input type="email" id="create_email" placeholder="Enter e-mail :" class="input">
+
+    <button id="create-email-btn" class="orange-btn">Create Free Account :</button>
+
+    <p id="auth_error"></p>
+  </div>
+ <!-- END CREATE ACCOUNT CARD - FREE VERSION -->
+
+</div>
+
+
+<!-- CREATE ACCOUNT CARD - FULL VERSION -->
+<div id="full_version_card" class="card hidden">
+
+  <h2>Create Account : Full Version</h2>
+  <p class="desc">Create a full account to unlock all features and premium access.</p>
+
+  <hr>
+
+  <div class="gold-block">
+    <p>Enter a username, password, and e-mail to create a full account.</p>
+
+    <input type="text" id="create_username" placeholder="Create a username :" class="input">
+    <input type="password" id="create_password" placeholder="Create a password :" class="input">
+    <input type="email" id="create_email" placeholder="Enter e-mail :" class="input">
+
+    <button id="create-email-btn" class="orange-btn">Create Full Account :</button>
+
+    <p id="auth_error"></p>
+  </div>
+
+</div>
+<!-- CREATE ACCOUNT CARD - FULL VERSION -->
 
   <!-- ── PASSWORD RECOVERY CARD ── -->
-  <div id="account-recovery" class="card">
+  <div id="account-recovery" class="card hidden">
     <div class="card-header">
       <h2>Account Recovery :</h2>
       <hr>
@@ -55,29 +97,8 @@
   </div>
   <!-- ── PASSWORD RECOVERY CARD END ── -->
 
-  <!-- ── CREATE ACCOUNT CARD ── -->
-  <div id="create-account" class="card">
-    <h2>Create Account :</h2>
-    <p class="desc">Choose an account type :</p>
-
-    <button id="free-account" class="blue-btn" onclick="freeAccount()">Free Account :</button>
-    <button id="full-version" class="blue-btn" onclick="fullVersion()">Full Version $5 :</button>
-
-    <hr>
-
-    <div class="card-body">
-      <p>Enter a username, password, and e-mail to create an account.</p>
-      <input type="text" id="create_username" placeholder="Create a username :" class="input">
-      <input type="password" id="create_password" placeholder="Create a password :" class="input">
-      <input type="email" id="create_email" placeholder="Enter e-mail :" class="input">
-      <button id="create-email-btn" class="blue-btn">Create Account :</button>
-      <p id="auth_error" style="display:none; color:red;"></p>
-    </div>
-  </div>
-  <!-- ── CREATE ACCOUNT CARD END ── -->
-
   <!-- ── CONTACT FORM CARD ── -->
-  <div class="card">
+  <div id="contfor-form" class="card hidden">
     <div class="card-header">
       <h2 class="playfair">Contact Us :</h2>
       <hr>
@@ -88,19 +109,15 @@
       <input type="text" id="contact_username" placeholder="Username" class="input">
       <input type="email" id="contact_email" placeholder="Email" class="input">
       <textarea id="contact_message" placeholder="Please type your message here." style="padding:10px;border-radius:6px;border:1px solid #c8a96e;background:#0f1a33;color:#fff;resize:none;height:100px;width:100%;margin:5px 0;"></textarea>
-      <button type="submit" id="contact_submit_btn" class="blue-btn">Send Message :</button>
+      <button type="submit" id="contact_submit_btn" class="orange-btn">Send Message :</button>
     </form>
   </div>
   <!-- ── CONTACT FORM CARD END ── -->
 
-</div>
-<!-- ── APP CONTAINER END ── -->
-
 <script type="module" src="firebase_login_auth.js"></script>
 <script type="module" src="login_data.js"></script>
 
-<script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
+
 
 </body>
 </html>
