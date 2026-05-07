@@ -191,12 +191,10 @@ function addItem(name) {
    ══════════════════════════════════════ */
 function toggleLock() {
   locked = !locked;
-  const btn   = document.getElementById('lockBtn');
-  const badge = document.getElementById('lockBadge');
-  btn.textContent   = locked ? '🔒 Unlock' : '🔓 Lock';
-  badge.textContent = locked ? '🔒 Locked' : '🔓 Unlocked';
-  badge.className   = 'lock-badge' + (locked ? ' locked' : '');
+  const btn = document.getElementById('lockBtn');
+  btn.textContent = locked ? '🔒 Unlock' : '🔓 Lock';
   renderList();
+  document.getElementById('toggle-lock-message').textContent = locked ? 'Use the padlock to unlock your selections.' : 'Use the padlock to lock your selections.';
 }
 
 /* ══════════════════════════════════════
