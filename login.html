@@ -9,12 +9,18 @@
 </head>
 
 <body>
-
-<nav id="auth-nav" class="nav-card">
-  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
-  <button id="sign-out-btn" class="blue-btn" style="display:none;">Sign Out :</button>
-</nav>
-
+	
+<!-- ── AUTH NAV BAR ── -->
+<div id="auth-nav" class="card flex">
+	
+  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :
+  </div>
+  
+  <div id="sign-out-btn" class="orange-btn">Sign Out :
+  </div>
+  
+</div>
+<!-- ──  END AUTH NAV BAR ── -->
 
   <!-- ── SIGN-IN CARD ── -->
   <div id="sign-in-out" class="card hidden">
@@ -51,7 +57,7 @@
     <input type="password" id="create_password" placeholder="Create a password :" class="input">
     <input type="email" id="create_email" placeholder="Enter e-mail :" class="input">
 
-    <button id="create-email-btn" class="orange-btn">Create Free Account :</button>
+    <button id="create-email-btn" class="orange-btn">Sign Up ! :</button>
 
     <p id="auth_error"></p>
   </div>
@@ -75,7 +81,7 @@
     <input type="password" id="create_password" placeholder="Create a password :" class="input">
     <input type="email" id="create_email" placeholder="Enter e-mail :" class="input">
 
-    <button id="create-email-btn" class="orange-btn">Create Full Account :</button>
+    <button id="create-email-btn" class="orange-btn">Sign Up ! :</button>
 
     <p id="auth_error"></p>
   </div>

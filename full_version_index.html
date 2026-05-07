@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meal Planner — Main Menu</title>
-
+<title>Meal Planner — Full Account :</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="index.css">
 <link rel="manifest" href="manifest.json">
@@ -13,70 +12,77 @@
 <body>
 
 <!-- ── LOGIN NAV BAR ── -->
-<div id="auth-nav" class="gold-block nav-row">
+<div id="auth-nav" class="card flex-row">
   <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
   <button id="sign-out-btn" class="gold-btn" style="display:none;">Sign Out</button>
 </div>
 <!-- ── END LOGIN NAV BAR ── -->
 
-<!-- COOKBOOK -->
+<!-- ── WELCOME CARD ── -->
 <div class="card">
-  <div class="card-header">
-    <h4>Cookbook :</h4>
-    <p>I created 100-s of chef-inspired recipes with the help of A.I. Each recipe includes ingredients and preparation instructions that will guide you to cook better meals for every day of the month.</p>
-    <p>The recipe finder allows you to search the cookbook menu for ingredients or recipe names.</p>
-    <p>The recipe menu is sorted and alphabetized into categories. Each recipe card will open in its own popup window so you can keep your place in the menu. Recipe cards have a button to add it to favorites and use for the meal planner calendar.</p>
-  </div>
-  <div class="card-body">
-    <div class="tip-box">Click below to open the cookbook.</div>
-    <button class="blue-btn" style="width:100%;" onclick="window.location.href='cookbook_menu.html'">Open Cookbook</button>
-  </div>
-</div>
 
-<!-- RECIPE FINDER -->
-<div class="card">
-  <div class="card-header">
-    🔎 Recipe Finder :
-    <div id="full-version-member"></div>
-  </div>
+  <h3>Full Version Tools :</h3>
+
+  <p class="tool-tip">Tool features are explained in detail. Click the open button to open the tool.</p>
+
   <hr>
-  <p>Search the entire cookbook by recipe name or ingredients.</p>
-  <div class="gold-rule"></div>
-  <div class="card-body">
-    <div class="tip-box">Click below to open the recipe search tool.</div>
-    <button class="blue-btn" onclick="window.location.href='recipe_finder.html'">Open Tool</button>
+  
+  <!-- GROCERY LIST -->
+  
+  <h4>🛒 Grocery List :</h4>
+  <div class="gold-block">
+    <p>Build your grocery list before you go shopping. Add items by typing the item name into the input box and pressing the add button. Check items off as you shop and lock your selections with the lock button.</p>
+    <a href="grocery_list.html" class="orange-btn">Open Tool</a>
   </div>
-</div>
 
-<!-- FAVORITES -->
-<div class="card">
-  <div class="card-header">
-    <div class="card-title">♡ Favorites List</div>
+  <!-- COOKBOOK -->
+  <h4>📖 Cookbook :</h4>
+  <div class="gold-block">
+    <p>Hundreds of chef-inspired recipes sorted and alphabetized into categories. Each recipe card opens in its own popup window so you can keep your place in the menu. Add recipes to your favorites list or send them straight to the meal planner calendar.</p>
+    <a href="cookbook_menu.html" class="orange-btn">Open Tool</a>
   </div>
+
   <hr>
-  <p>Your personal collection of saved recipes all in one place.</p>
-  <div class="gold-rule"></div>
-  <div class="card-body">
-    <div class="tip-box">Click below to view your saved recipes.</div>
-    <button class="blue-btn" style="width:100%;" onclick="window.location.href='favorites_list.html'">Open Tool</button>
-  </div>
-</div>
 
-<!-- MEAL PLANNER -->
-<div class="card">
-  <div class="card-header">
-    📅 Monthly Planner :
-    <div id="full-version-member"></div>
+  <!-- RECIPE FINDER -->
+  <h4>🔎 Recipe Finder :</h4>
+  <div class="gold-block">
+    <p>Search the entire cookbook by recipe name or ingredients. The recipe finder scans every category and highlights every match so you can find exactly what you're looking for.</p>
+    <a href="recipe_finder.html" class="orange-btn">Open Tool</a>
   </div>
+
   <hr>
-  <div class="gold-rule"></div>
-  <p>Plan a different meal every day of the week by choosing recipes from our chef-inspired cookbook, or use your own recipes by creating a recipe card and saving it to your favorites list.</p>
-  <div class="card-body">
-    <div class="tip-box">Click below to open the meal planner.</div>
-    <button class="blue-btn" style="width:100%;" onclick="window.location.href='meal_planner_calender.html'">Open Calendar</button>
+
+  <!-- FAVORITES -->
+  <h4>♡ Favorites List :</h4>
+  <div class="gold-block">
+    <p>Your personal collection of saved recipes all in one place. Save any recipe from the cookbook to your favorites list and access them any time.</p>
+    <a href="favorites_list.html" class="orange-btn">Open Tool</a>
   </div>
+
+  <hr>
+
+  <!-- MEAL PLANNER -->
+  <h4>📅 Monthly Planner :</h4>
+  <div class="gold-block">
+    <p>Plan a different meal every day of the month by choosing recipes from the cookbook or your favorites list. You can also create your own recipe cards and save them to favorites for use in the planner.</p>
+    <a href="meal_planner_calender.html" class="orange-btn">Open Tool</a>
+  </div>
+
+  <hr>
+  
 </div>
 
+<!-- ── SHARE CARD ── -->
+<div class="card">
+  <div class="blue-block">◆ Share This App ◆</div>
+  <div class="tip-box">
+    <p>Enjoying the app? Share it with friends and family so they can try it too.</p>
+  </div>
+  <div class="page-ornament"></div>
+</div>
+
+<script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('service_worker.js'); }</script>
 <script type="module" src="firebase_login_auth.js"></script>
 
 </body>

@@ -107,9 +107,10 @@ onAuthStateChanged(auth, async (user) => {
       return;
     }
 
-  } else {
+} else {
     // ── Not signed in — send to login if on a protected page ──
-    if (!on_login_page) {
+    const on_public_page = on_login_page || window.location.pathname.includes('index');
+    if (!on_public_page) {
       window.location.href = LOGIN_PAGE;
     }
   }
