@@ -148,14 +148,14 @@ document.addEventListener("DOMContentLoaded", function () {
 function renderList() {
   const el = document.getElementById('grocery-list');
   if (!items.length) {
-    el.innerHTML = '<div class="empty-state">No items yet — use the buttons above to add items.</div>';
+    el.innerHTML = '<div class="empty-state">No items yet — use the buttons below to add items.</div>';
     return;
   }
   el.innerHTML = `<div class="notepad-list">` +
     items.map((item, index) => `
       <div class="notepad-item" id="row-${item.id}">
 
-        <input type="checkbox" id="chk-${item.id}"
+        <input class="notepad-checkbox" type="checkbox" id="chk-${item.id}"
                ${item.checked ? 'checked' : ''}
                onchange="toggleCheck(${item.id})"
                ${locked ? 'disabled' : ''}>
@@ -165,6 +165,7 @@ function renderList() {
       </div>
     `).join('') +
   `</div>`;
+  el.scrollTop = el.scrollHeight;
 }
 
 function toggleCheck(id) {
