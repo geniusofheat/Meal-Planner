@@ -312,6 +312,11 @@ ol {
   padding: 10px;
 }
 
+.overflow-y {
+	overflow-y: auto;
+	scroll-behavior: smooth;
+}
+
 
 .flex-row {
 	
@@ -481,4 +486,22 @@ ol {
 	color: white;
 	text-align: center;
 	font-size: 14px;
+}
+.notepad-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start ;
+  gap: 8px;
+  
+}
+
+.notepad-remove {
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 5px;
+  background: var(--gold);
+}
+
+.notepad-checkbox {
+  margin: 10px 20px;
 }
