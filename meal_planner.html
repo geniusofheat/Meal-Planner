@@ -3,396 +3,213 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Meal Planner</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="blue_card_style.css">
+<title>Meal Planner :</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="index.css">
 <link rel="stylesheet" href="meal_planner.css">
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 
 
 <!-- ============================================================ -->
-<!--  § 1 — BACKGROUND OVERLAY                                    -->
+<!--  § 1 — AUTH NAV BAR                                          -->
 <!-- ============================================================ -->
-<div id="bg-overlay"></div>
-<!-- END § 1 — BACKGROUND OVERLAY -->
-
-
-<!-- ============================================================ -->
-<!--  § 2 — BOTTOM NAV (hidden via CSS, kept for JS)              -->
-<!-- ============================================================ -->
-<div id="bottomNav">
-  <button class="bottom-nav-btn" onclick="openGrocery()">
-    <div class="nav-circle">
-      🛒
-      <span id="groceryBadge" style="display:none" class="float-badge"></span>
-    </div>
-    <span class="nav-label">Grocery List</span>
-  </button>
+<div id="auth-nav" class="card flex-row">
+  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
+  <button id="sign-out-btn" class="gold-btn" style="display:none;">Sign Out</button>
 </div>
-<!-- END § 2 — BOTTOM NAV -->
+<!-- END § 1 -->
 
 
 <!-- ============================================================ -->
-<!--  § 3 — TOAST NOTIFICATION                                    -->
+<!--  § 2 — GOLD NAV BAR                                          -->
 <!-- ============================================================ -->
-<div id="toast"></div>
-<!-- END § 3 — TOAST NOTIFICATION -->
-
-
-<!-- ============================================================ -->
-<!--  § 4 — RECIPE MODAL                                          -->
-<!-- ============================================================ -->
-<div class="modal-overlay" id="recipeModal">
-  <div class="modal-inner" id="recipeModalInner"></div>
+<div class="gold-block flex-row">
+  <a class="gold-btn" href="index.html">🏠 Back :</a>
+  <div class="nav-divider"></div>
+  <a class="gold-btn" href="cookbook_menu.html">📖 Cookbook :</a>
 </div>
-<!-- END § 4 — RECIPE MODAL -->
+<!-- END § 2 -->
 
 
 <!-- ============================================================ -->
-<!--  § 5 — PLANNER PAGE WRAPPER                                  -->
+<!--  § 3 — STEP HEADER (message updates per step)               -->
 <!-- ============================================================ -->
-<div id="planner" class="page active">
+<div id="mp-step-header" class="card">
+  <div id="mp-step-tag" class="mp-step-tag">Step 1 of 3</div>
+  <h3 id="mp-step-title">Plan a Meal</h3>
+  <p id="mp-step-desc">Choose a day from the calendar below to get started. Tap any date and the planner will guide you through the rest.</p>
+</div>
+<!-- END § 3 -->
 
 
-  <!-- ---------------------------------------------------------- -->
-  <!--  § 5a — STICKY HEADER  [NEW]                               -->
-  <!-- ---------------------------------------------------------- -->
-  <div id="mp-sticky-header">
-    <h2 class="planner-title">Meal Planner</h2>
-    <button id="mp-grocery-btn" onclick="openGrocery()">
-      <span class="mp-btn-emoji">🛒</span>
-      Grocery
-      <span id="groceryBadge" style="display:none" class="float-badge"></span>
-    </button>
-  </div>
-  <!-- END § 5a — STICKY HEADER -->
+<!-- ============================================================ -->
+<!--  § 4 — STEP CARDS (one visible at a time)                   -->
+<!-- ============================================================ -->
+<div id="mp-cards-wrapper">
 
 
-  <!-- ---------------------------------------------------------- -->
-  <!--  § 5b — STEP TRACKER  [NEW]                                -->
-  <!-- ---------------------------------------------------------- -->
-  <div id="mp-step-tracker">
-    <div class="mp-step-node active" id="mp-tracker-1">
-      <div class="mp-step-number">Step 1</div>
-      <div class="mp-step-bubble">1</div>
-      <div class="mp-step-label">Pick a Day</div>
-    </div>
-    <div class="mp-step-connector" id="mp-connector-1"></div>
-    <div class="mp-step-node" id="mp-tracker-2">
-      <div class="mp-step-number">Step 2</div>
-      <div class="mp-step-bubble">2</div>
-      <div class="mp-step-label">Pick a Date</div>
-    </div>
-    <div class="mp-step-connector" id="mp-connector-2"></div>
-    <div class="mp-step-node" id="mp-tracker-3">
-      <div class="mp-step-number">Step 3</div>
-      <div class="mp-step-bubble">3</div>
-      <div class="mp-step-label">Pick a Recipe</div>
-    </div>
-  </div>
-  <!-- END § 5b — STEP TRACKER -->
+  <!-- ── STEP 1 : CALENDAR CARD ─────────────────────────────── -->
+  <div class="mp-card" id="mp-card-1">
 
+    <div id="mp-calendar">
 
-  <!-- ---------------------------------------------------------- -->
-  <!--  § 5c — DIVIDER 1: USER DISPLAY  [NEW]                     -->
-  <!-- ---------------------------------------------------------- -->
-  <div id="divider-1">
-    <span class="d1-step-label">Step 1 — Pick a Day</span>
-    Pick a day of the week from the options below.
-  </div>
-  <!-- END § 5c — DIVIDER 1 -->
-
-
-  <!-- ---------------------------------------------------------- -->
-  <!--  § 5d — DIVIDER 2: CONTENT  [NEW]                          -->
-  <!-- ---------------------------------------------------------- -->
-  <div id="divider-2">
-
-    <!-- Step 1: 7 day strip -->
-    <div id="mp-week-strip">
-      <div class="mp-strip-cell" id="mp-strip-cell-0" onclick="selectStripDay(0,'Sunday')">
-        <div class="mp-strip-day">Sun</div>
-        <div class="mp-strip-date" id="mp-strip-date-0"></div>
-        <div class="mp-strip-dot" id="mp-dot-0"></div>
-        <div class="mp-strip-name" id="mp-meal-name-0"></div>
-      </div>
-      <div class="mp-strip-cell" id="mp-strip-cell-1" onclick="selectStripDay(1,'Monday')">
-        <div class="mp-strip-day">Mon</div>
-        <div class="mp-strip-date" id="mp-strip-date-1"></div>
-        <div class="mp-strip-dot" id="mp-dot-1"></div>
-        <div class="mp-strip-name" id="mp-meal-name-1"></div>
-      </div>
-      <div class="mp-strip-cell" id="mp-strip-cell-2" onclick="selectStripDay(2,'Tuesday')">
-        <div class="mp-strip-day">Tue</div>
-        <div class="mp-strip-date" id="mp-strip-date-2"></div>
-        <div class="mp-strip-dot" id="mp-dot-2"></div>
-        <div class="mp-strip-name" id="mp-meal-name-2"></div>
-      </div>
-      <div class="mp-strip-cell" id="mp-strip-cell-3" onclick="selectStripDay(3,'Wednesday')">
-        <div class="mp-strip-day">Wed</div>
-        <div class="mp-strip-date" id="mp-strip-date-3"></div>
-        <div class="mp-strip-dot" id="mp-dot-3"></div>
-        <div class="mp-strip-name" id="mp-meal-name-3"></div>
-      </div>
-      <div class="mp-strip-cell" id="mp-strip-cell-4" onclick="selectStripDay(4,'Thursday')">
-        <div class="mp-strip-day">Thu</div>
-        <div class="mp-strip-date" id="mp-strip-date-4"></div>
-        <div class="mp-strip-dot" id="mp-dot-4"></div>
-        <div class="mp-strip-name" id="mp-meal-name-4"></div>
-      </div>
-      <div class="mp-strip-cell" id="mp-strip-cell-5" onclick="selectStripDay(5,'Friday')">
-        <div class="mp-strip-day">Fri</div>
-        <div class="mp-strip-date" id="mp-strip-date-5"></div>
-        <div class="mp-strip-dot" id="mp-dot-5"></div>
-        <div class="mp-strip-name" id="mp-meal-name-5"></div>
-      </div>
-      <div class="mp-strip-cell" id="mp-strip-cell-6" onclick="selectStripDay(6,'Saturday')">
-        <div class="mp-strip-day">Sat</div>
-        <div class="mp-strip-date" id="mp-strip-date-6"></div>
-        <div class="mp-strip-dot" id="mp-dot-6"></div>
-        <div class="mp-strip-name" id="mp-meal-name-6"></div>
-      </div>
-    </div>
-    <!-- END Step 1 -->
-
-    <!-- ---------------------------------------------------------- -->
-    <!--  § 5f — PLANNED MEALS (always visible, 7 static rows)      -->
-    <!-- ---------------------------------------------------------- -->
-    <div id="plannedSection" style="margin: 0 14px 20px;">
-      <div style="background:rgba(10,25,60,0.5);border:1px solid rgba(74,223,176,0.18);border-radius:10px;padding:20px;">
-        <div style="font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:4px;color:#4adfb0;text-transform:uppercase;margin-bottom:16px;">Planned Meals</div>
-
-        <!-- Row 0 — Sunday -->
-        <div class="pm-row" id="pm-row-0">
-          <span class="pm-day-label">Sunday, <span id="pm-date-0"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-0"></span>
+      <!-- Month nav -->
+      <div class="cal-nav">
+        <button class="mp-nav-arrow" onclick="prevMonth()">&#8249;</button>
+        <div class="cal-nav-center">
+          <div class="month-name" id="monthName"></div>
+          <div class="month-year" id="yearLabel"></div>
         </div>
-        <hr class="pm-rule"/>
-
-        <!-- Row 1 — Monday -->
-        <div class="pm-row" id="pm-row-1">
-          <span class="pm-day-label">Monday, <span id="pm-date-1"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-1"></span>
-        </div>
-        <hr class="pm-rule"/>
-
-        <!-- Row 2 — Tuesday -->
-        <div class="pm-row" id="pm-row-2">
-          <span class="pm-day-label">Tuesday, <span id="pm-date-2"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-2"></span>
-        </div>
-        <hr class="pm-rule"/>
-
-        <!-- Row 3 — Wednesday -->
-        <div class="pm-row" id="pm-row-3">
-          <span class="pm-day-label">Wednesday, <span id="pm-date-3"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-3"></span>
-        </div>
-        <hr class="pm-rule"/>
-
-        <!-- Row 4 — Thursday -->
-        <div class="pm-row" id="pm-row-4">
-          <span class="pm-day-label">Thursday, <span id="pm-date-4"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-4"></span>
-        </div>
-        <hr class="pm-rule"/>
-
-        <!-- Row 5 — Friday -->
-        <div class="pm-row" id="pm-row-5">
-          <span class="pm-day-label">Friday, <span id="pm-date-5"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-5"></span>
-        </div>
-        <hr class="pm-rule"/>
-
-        <!-- Row 6 — Saturday -->
-        <div class="pm-row" id="pm-row-6">
-          <span class="pm-day-label">Saturday, <span id="pm-date-6"></span></span>
-          <span class="pm-colon">:</span>
-          <span class="pm-recipe" id="pm-recipe-6"></span>
-        </div>
-
+        <button class="mp-nav-arrow" onclick="nextMonth()">&#8250;</button>
       </div>
-    </div>
-    <!-- END § 5f — PLANNED MEALS -->
 
-
-    <!-- Step 2: pick date message -->
-    <div id="d2-pick-date" style="display:none">
-      Please pick a date from the calendar below.
-    </div>
-    <!-- END Step 2 -->
-
-    <!-- Step 3: pick recipe message + buttons -->
-    <div id="d2-pick-recipe" style="display:none">
-      <div class="d2-msg">Please add a meal from the Cookbook or Favorites, or build your own with the Recipe Builder.</div>
-      <div class="mp-source-grid">
-        <button class="mp-source-btn" onclick="window.location.href='cookbook_menu.html'">
-          <span class="mp-src-emoji">📖</span>
-          Cookbook
-        </button>
-        <button class="mp-source-btn" onclick="showFavorites()">
-          <span class="mp-src-emoji">⭐</span>
-          Favorites
-        </button>
-        <button class="mp-source-btn mp-source-gold" onclick="showBuildForm()">
-          <span class="mp-src-emoji" style="font-size:18px">✏️</span>
-          Build My Own Recipe
-        </button>
-      </div>
-    </div>
-    <!-- END Step 3 -->
-
-    <!-- Favorites Panel -->
-    <div id="favoritesPanel" style="display:none">
-      <div class="panel" style="background:rgba(5,15,50,0.85);border:1px solid rgba(255,200,80,0.2)">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
-          <div>
-            <div class="panel-label" style="color:rgba(255,200,80,0.6)">Your Favorites</div>
-            <div style="font-size:24px;font-weight:400;color:#e8f0fe">⭐ Saved Recipes</div>
-          </div>
-          <button class="bb" onclick="hideFavorites()">✕ Close</button>
-        </div>
-        <div id="favoritesGrid"></div>
-      </div>
-    </div>
-    <!-- END Favorites Panel -->
-
-    <!-- Build Your Own Panel -->
-    <div id="buildPanel" style="display:none">
-      <div class="panel" style="background:rgba(10,20,55,0.85);border:1px solid rgba(255,200,80,0.25)">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
-          <div>
-            <div class="panel-label" style="color:rgba(255,200,80,0.6)">Build Your Own</div>
-            <div style="font-size:24px;color:#e8f0fe">✏️ New Recipe</div>
-          </div>
-          <button class="bb" onclick="hideBuildForm()">✕ Close</button>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div>
-            <label class="field-label">Recipe Name</label>
-            <input id="buildName" class="field-input" type="text" placeholder="e.g. Mom's Chicken Soup"/>
-          </div>
-          <div>
-            <label class="field-label">Description</label>
-            <textarea id="buildDesc" class="field-input" rows="2" placeholder="A short description of the dish…" style="resize:vertical"></textarea>
-          </div>
-          <div>
-            <label class="field-label">Ingredients</label>
-            <div id="buildIngRows"></div>
-            <button class="add-row-btn" onclick="addIngRow()">+ Add Ingredient</button>
-          </div>
-          <div>
-            <label class="field-label">Steps</label>
-            <div id="buildStepRows"></div>
-            <button class="add-row-btn" onclick="addStepRow()">+ Add Step</button>
-          </div>
-          <button class="goldbtn" style="margin-top:6px;width:100%;padding:13px" onclick="saveCustomRecipe()">💾 Save Recipe</button>
-        </div>
-      </div>
-    </div>
-    <!-- END Build Panel -->
-
-    <!-- My Recipes List -->
-    <div id="myRecipesSection" style="display:none;margin-top:20px">
-      <div style="background:rgba(10,20,55,0.6);border:1px solid rgba(255,200,80,0.2);border-radius:8px;padding:22px">
-        <div style="font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:4px;color:rgba(255,200,80,0.7);text-transform:uppercase;margin-bottom:6px">My Recipes</div>
-        <div style="font-size:14px;color:rgba(200,220,255,0.4);margin-bottom:16px">Click a recipe name to display its ingredients:</div>
-        <div id="myRecipesList"></div>
-      </div>
-    </div>
-    <!-- END My Recipes -->
-
-  </div>
-  <!-- END § 5d — DIVIDER 2 -->
-
-
-  <!-- ---------------------------------------------------------- -->
-  <!--  § 5e — CALENDAR (always visible)  [NEW]                   -->
-  <!-- ---------------------------------------------------------- -->
-  <div id="mp-calendar">
-    <div class="cal-nav">
-      <button class="ma" onclick="prevMonth()">&#8249;</button>
-      <div style="text-align:center">
-        <div class="month-name" id="monthName"></div>
-        <div class="month-year" id="yearLabel"></div>
-      </div>
-      <button class="ma" onclick="nextMonth()">&#8250;</button>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
-      <div class="cal-headers">
-        <div class="cal-header-cell">Sun</div><div class="cal-header-cell">Mon</div>
-        <div class="cal-header-cell">Tue</div><div class="cal-header-cell">Wed</div>
-        <div class="cal-header-cell">Thu</div><div class="cal-header-cell">Fri</div>
+      <!-- Day headers -->
+      <div class="cal-header-row">
+        <div class="cal-header-cell">Sun</div>
+        <div class="cal-header-cell">Mon</div>
+        <div class="cal-header-cell">Tue</div>
+        <div class="cal-header-cell">Wed</div>
+        <div class="cal-header-cell">Thu</div>
+        <div class="cal-header-cell">Fri</div>
         <div class="cal-header-cell">Sat</div>
       </div>
-      <div class="cal-grid" id="calGrid" style="display:contents"></div>
+
+      <!-- Date cells (JS fills this) -->
+      <div class="cal-grid" id="calGrid"></div>
+
+      <!-- Legend -->
+      <div class="cal-legend">
+        <div class="legend-item"><div class="legend-swatch legend-swatch-selected"></div>Selected</div>
+        <div class="legend-item"><div class="legend-swatch legend-swatch-today"></div>Today</div>
+        <div class="legend-item"><div class="legend-dot"></div>Meal Planned</div>
+      </div>
+
+    </div><!-- end #mp-calendar -->
+
+    <!-- Selection confirmation (appears after tap, before auto-advance) -->
+    <div id="mp-day-confirm" class="mp-day-confirm" style="display:none;">
+      <span id="mp-day-confirm-text"></span>
     </div>
-    <div class="cal-legend">
-      <div class="legend-item"><div class="legend-box" style="background:linear-gradient(135deg,#1a5fd4,#2b7fff)"></div>Selected</div>
-      <div class="legend-item"><div class="legend-box" style="border:1.5px solid rgba(100,200,255,0.6)"></div>Today</div>
-      <div class="legend-item"><div style="width:7px;height:7px;border-radius:50%;background:#4adfb0"></div>Meal Planned</div>
+
+  </div>
+  <!-- END STEP 1 -->
+
+
+  <!-- ── STEP 2 : CHOOSE MEAL CARD ──────────────────────────── -->
+  <div class="mp-card" id="mp-card-2" style="display:none;">
+
+    <div class="mp-choice-grid">
+
+      <!-- Option A — Cookbook -->
+      <button class="mp-choice-btn" onclick="chooseCookbook()">
+        <span class="mp-choice-emoji">📖</span>
+        <span class="mp-choice-label">Choose from Cookbook</span>
+        <span class="mp-choice-hint">Browse hundreds of recipes</span>
+      </button>
+
+      <!-- Option B — Create a Meal -->
+      <button class="mp-choice-btn mp-choice-btn-gold" onclick="showCreateForm()">
+        <span class="mp-choice-emoji">✏️</span>
+        <span class="mp-choice-label">Create a Meal</span>
+        <span class="mp-choice-hint">Type in your own recipe</span>
+      </button>
+
     </div>
+
+    <!-- Create-a-Meal form (hidden until button above is tapped) -->
+    <div id="mp-create-form" style="display:none;">
+      <div class="mp-form-group">
+        <label class="mp-field-label">Meal Name</label>
+        <input id="mp-meal-name-input" class="mp-field-input" type="text" placeholder="e.g. Chicken Stir Fry"/>
+      </div>
+      <div class="mp-form-group">
+        <label class="mp-field-label">Ingredients</label>
+        <textarea id="mp-meal-ingredients" class="mp-field-input mp-textarea" rows="3" placeholder="One ingredient per line…"></textarea>
+      </div>
+      <div class="mp-form-group">
+        <label class="mp-field-label">Preparation Instructions</label>
+        <textarea id="mp-meal-steps" class="mp-field-input mp-textarea" rows="4" placeholder="Describe the steps…"></textarea>
+      </div>
+      <button class="blue-btn" onclick="submitCreatedMeal()">＋ Add This Meal</button>
+      <button class="mp-text-btn" onclick="hideCreateForm()">← Back to options</button>
+    </div>
+
   </div>
-  <!-- END § 5e — CALENDAR -->
+  <!-- END STEP 2 -->
 
 
-  <!-- Hidden week-box — JS writes here, syncWeekStrip() reads it -->
-  <div class="week-box" style="display:none" aria-hidden="true">
-    <div class="day-row" id="day-0"><span class="week-day">Sunday -<span id="day-date-0"></span> :</span><span class="week-empty" id="day-meal-0"></span></div>
-    <div class="day-row" id="day-1"><span class="week-day">Monday -<span id="day-date-1"></span> :</span><span class="week-empty" id="day-meal-1"></span></div>
-    <div class="day-row" id="day-2"><span class="week-day">Tuesday -<span id="day-date-2"></span> :</span><span class="week-empty" id="day-meal-2"></span></div>
-    <div class="day-row" id="day-3"><span class="week-day">Wednesday -<span id="day-date-3"></span> :</span><span class="week-empty" id="day-meal-3"></span></div>
-    <div class="day-row" id="day-4"><span class="week-day">Thursday -<span id="day-date-4"></span> :</span><span class="week-empty" id="day-meal-4"></span></div>
-    <div class="day-row" id="day-5"><span class="week-day">Friday -<span id="day-date-5"></span> :</span><span class="week-empty" id="day-meal-5"></span></div>
-    <div class="day-row" id="day-6"><span class="week-day">Saturday -<span id="day-date-6"></span> :</span><span class="week-empty" id="day-meal-6"></span></div>
+  <!-- ── STEP 3 : CONFIRMATION CARD ─────────────────────────── -->
+  <div class="mp-card" id="mp-card-3" style="display:none;">
+
+    <div class="mp-confirm-box">
+      <div class="mp-confirm-row">
+        <span class="mp-confirm-key">Day :</span>
+        <span class="mp-confirm-val" id="mp-confirm-day"></span>
+      </div>
+      <div class="mp-confirm-row">
+        <span class="mp-confirm-key">Meal :</span>
+        <span class="mp-confirm-val" id="mp-confirm-meal"></span>
+      </div>
+    </div>
+
+    <p class="mp-confirm-question">Would you like to add a meal for another day?</p>
+
+    <div class="mp-confirm-btns">
+      <button class="blue-btn" onclick="addAnother()">＋ Add Another Meal</button>
+      <button class="mp-text-btn" onclick="finishPlanning()">✓ I'm Done — Show My Plan</button>
+    </div>
+
   </div>
-  <div id="weeklyMealCount" style="display:none"></div>
+  <!-- END STEP 3 -->
 
-  <div style="height:40px"></div>
+
+  <!-- ── STEP 4 : PLANNED MEALS LIST ────────────────────────── -->
+  <div class="mp-card" id="mp-card-4" style="display:none;">
+
+    <div class="mp-planned-label">Your Meal Plan</div>
+
+    <div id="mp-meals-list">
+      <!-- JS fills rows here -->
+    </div>
+
+    <button class="blue-btn" style="margin-top:18px;" onclick="startOver()">＋ Plan More Meals</button>
+
+  </div>
+  <!-- END STEP 4 -->
+
 
 </div>
-<!-- END § 5 — PLANNER PAGE WRAPPER -->
+<!-- END § 4 -->
 
 
 <!-- ============================================================ -->
-<!--  § 6 — GROCERY PANEL                                         -->
+<!--  § 5 — RECIPE DETAIL MODAL                                   -->
 <!-- ============================================================ -->
-<div class="grocery-panel" id="groceryPanel">
-  <div style="padding:24px 22px 14px;border-bottom:1px solid rgba(74,159,255,0.12);display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
-    <div>
-      <div style="font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:4px;color:#4a9fff;text-transform:uppercase;margin-bottom:4px">Shopping List</div>
-      <h3 style="font-size:26px;font-weight:400;margin:0;color:#e8f0fe">🛒 Grocery List</h3>
-      <div style="font-family:'Josefin Sans',sans-serif;font-size:10px;color:rgba(130,170,255,0.4);letter-spacing:1px;margin-top:4px" id="groceryCount">0 items remaining</div>
-    </div>
-    <button class="bb" onclick="closeGrocery()">✕ Close</button>
-  </div>
-  <div class="grocery-scroll" id="groceryItems">
-    <div class="grocery-empty">
-      <div class="big">🧺</div>
-      <div style="font-size:17px">Your list is empty.</div>
-      <div style="font-family:'Josefin Sans',sans-serif;font-size:9px;letter-spacing:2px;margin-top:6px;text-transform:uppercase">Open a recipe to add ingredients.</div>
-    </div>
-  </div>
-  <div class="grocery-footer">
-    <button class="nb" style="flex:1;padding:9px 8px;font-size:9px" onclick="removeChecked()">Remove Checked</button>
-    <button class="nb" style="flex:1;padding:9px 8px;font-size:9px" onclick="clearGrocery()">Clear All</button>
+<div class="mp-modal-overlay" id="mp-recipe-modal" style="display:none;">
+  <div class="mp-modal-box">
+    <button class="mp-modal-close" onclick="closeRecipeModal()">✕</button>
+    <div id="mp-modal-content"></div>
   </div>
 </div>
-<!-- END § 6 — GROCERY PANEL -->
+<!-- END § 5 -->
 
 
 <!-- ============================================================ -->
-<!--  § 7 — SCRIPTS                                               -->
+<!--  § 6 — TOAST                                                  -->
 <!-- ============================================================ -->
-<script src="meal_planner.js"></script>
-<!-- END § 7 — SCRIPTS -->
+<div id="toast"></div>
+<!-- END § 6 -->
+
+
+<!-- ============================================================ -->
+<!--  § 7 — SCRIPTS                                                -->
+<!-- ============================================================ -->
+<script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('service_worker.js'); }</script>
+<script type="module" src="firebase_login_auth.js"></script>
+<script src="meal_planner_data.js"></script>
+<!-- END § 7 -->
 
 
 </body>

@@ -12,9 +12,10 @@
 <body>
 
 <!-- ── LOGIN NAV BAR ── -->
-<div id="auth-nav" class="gold-block nav-row">
-  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
-  <button id="sign-out-btn" class="gold-btn" style="display:none;">Sign Out</button>
+<div class="card">
+
+  <a id="homepage-redirect-link" class="gold-btn" href="index.html">🏠 Back</a>
+
 </div>
 <!-- ── END LOGIN NAV BAR ── -->
 
@@ -29,25 +30,32 @@
 
   <h4>◆ Your Free Tools ◆</h4>
 
-  <!-- GROCERY CHECKLIST -->
-  <h4>🛒 Grocery List :</h4>
-  
-  <div class="gold-block">
-    <p>Build your grocery list before you go shopping. Add items to the list by typing the item name into the input box and pressing the add button.</p>
+  <!-- GROCERY LIST -->
+  <h4>📋 Grocery List :</h4>
+
+  <div class="card flex-row">
+  	
+  	<div class"flex-column">
+    <p>Build your grocery list by typing an item name into the text box or speaking into the microphone(🎤) and pressing the add(+) button.</p>
     
     <p>When you take an item from the shelf, put a check in the box beside the item name. Press the lock button to lock your selection.</p>
+    </div>
     
     <a href="grocery_list.html" class="orange-btn" >Open Tool</a>
   </div>
 
   <hr>
 
-  <!-- COOKBOOK FREE -->
+  <!-- COOKBOOK -->
   <h4>📖 Cookbook :</h4>
-  <div class="gold-block">
+  <div class="card flex-row">
+  	
+  	<div class"flex-column">
     <p>The free version lets you see the cookbook menu and 1 free recipe preview.</p>
     
     <p>Upgrade to gain access to the complete list of cookbook recipes and capabilities.</p>
+    </div>
+    
     
     <a href="cookbook_menu.html" class="orange-btn" >Open Tool</a>
   </div>
@@ -56,21 +64,28 @@
 
   <!-- UPGRADE PROMPT -->
   <h4>◆ Want More Tools ? ◆</h4>
-  <div class="gold-block">
-    <p>Upgrade to the full version for just $5 and unlock the complete Cookbook, Favorites List, Recipe Creator, Meal Planner Calendar, and A.I. Suggestions.</p>
-    <p>Click here to review the full list of meal planner tools. <a href="full_version_index.html">More Info</a></p>
-    <a href="purchase_page.html" class="blue-btn" style="width:90px; flex-shrink:0; font-size:11px; color:gold;">Upgrade $5</a>
+  <div class="card">
+    <p>Upgrade to the full version of meal planner for $5 and unlock the full list of tools and smart tool abilities.</p>
+    <p>Tools include Favorite Recipes List, Recipe Creator, Meal Planner Calendar, Smart Search, A.I. Suggestions and many more.</p>
+    
+    <p>Plus all future upgrades to meal planner are included.</p>
+    
+    <a href="purchase_page.html" class="blue-btn" style="width:90px; flex-shrink:0; font-size:11px; color:gold;">Upgrade for $5</a>
   </div>
 
 </div>
 
 <!-- ── SHARE CARD ── -->
 <div class="card">
+	
   <div class="blue-block">◆ Share This App ◆</div>
+  
   <div class="tip-box">
     <p>Enjoying the app? Share it with friends and family so they can try it too.</p>
   </div>
+  
   <div class="page-ornament"></div>
+  
 </div>
 
 <script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('service_worker.js'); }</script>

@@ -1,6 +1,25 @@
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html, body { height:100%; overflow-x:hidden; background:#0a0904; }
 
+body {
+  background: linear-gradient(160deg,
+    rgba(0,0,148,0.9) 0%,
+    rgba(22,46,95,0.80) 10%,
+    rgba(0,0,0,0.90) 100%
+  );
+  font-family: 'Lato', sans-serif;
+  color: var(--text);
+}
+
+ol {
+	margin-left: 20px;
+}
+
+div ol{
+	padding-left: 10px;
+
+}
+
 h3 {
   
   font-family: 'Google Sans', sans-serif;
@@ -24,8 +43,7 @@ h5 {
 	font-style: normal;
 	color: #9c9e88;
     text-align:left;
-    margin-bottom: 10px;
-	margin-top: 10px;
+    margin: 10px;
 	text-indent: 10px;
 }
 
@@ -46,7 +64,6 @@ hr {
 }
 
 .align-center {
-  display: block;
   
 }
 
@@ -99,18 +116,7 @@ hr {
   padding: 5px;
 }
 
-body {
-  background: linear-gradient(160deg,
-    rgba(0,0,148,0.9) 0%,
-    rgba(22,46,95,0.80) 10%,
-    rgba(0,0,0,0.90) 100%
-  );
-  font-family: 'Lato', sans-serif;
-  color: var(--text);
-}
-ol {
-	margin-left: 20px;
-}
+
 
 
 /* ================================================================
@@ -118,19 +124,23 @@ ol {
    ================================================================ */
 
 .orange-btn {
-  padding: 5px; 
+  display: flex;
+  padding: 4px; 
   font-family: 'Playfair Display', serif;
   background: orange;
   border: 2px solid gold;
   text-decoration: none;
   color: white;
+  text-align: center;
+  margin: 5px 5px;
 }
 
 .gold-btn{
   display block;
-  font-family: 'Playfair Display', serif;
+  font: 12px '', serif;
   background: gold;
   border: 2px solid gold;
+  border-radius: 5px;
   margin: auto; 
   justify-content: center; 
   padding: 5px; 
@@ -138,6 +148,10 @@ ol {
   text-align: center;
   text-decoration: none;
   color: black;
+}
+
+.gold-btn.align-left {
+  margin: 2px 20px;
 }
 
 .gold-btn-44{
@@ -213,6 +227,22 @@ ol {
 /* ================================================================
    BLOCKS
    ================================================================ */
+   
+ .block-flex-row-no-border {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-width: 0px;
+	gap: 10px;
+	margin: 5px;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	
+}
+   
    .gold-block {
    	  display: flex;
 	  border: 2px double gold;
@@ -295,6 +325,8 @@ ol {
    ================================================================ */
 .card {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   box-sizing: border-box;
   border: 2px solid gold;
@@ -309,7 +341,12 @@ ol {
   position: relative;
   max-width: 100vw;
   margin: 5px;
-  padding: 10px;
+  padding: 5px;
+
+}
+
+.card.align-left {
+	align-items: flex-start;
 }
 
 .overflow-y {
@@ -325,33 +362,10 @@ ol {
 	align-items: center;
 }
 	
-.block-flex-row-no-border {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	border-width: 0px;
-	gap: 10px;
-}
+
 
 }
-.card .card {
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  border: 2px solid gold;
-  border-radius: 0px;
-  background: linear-gradient(160deg,
-    rgba(0,50,120,0.35) 0%,
-    rgba(65,156,185,0.05) 80%,
-    rgba(50,50,50,0.30) 100%
-  );
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(200,169,110,0.12);
-  position: relative;
-  max-width: 100vw;
-  margin: 2px;
-  padding: 5px;
-}
+
 .card::before {
   content: '◆';
   position: absolute; top: 12px; right: 14px;
@@ -492,6 +506,13 @@ ol {
   align-items: center;
   justify-content: flex-start ;
   gap: 8px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--gold);
+  margin: 12px 10px 4px;
+  padding: 5px;
+  letter-spacing: 0.06em;
   
 }
 
@@ -505,3 +526,75 @@ ol {
 .notepad-checkbox {
   margin: 10px 20px;
 }
+
+/* =========================================================
+   COOKBOOK MENU STYLES
+========================================================= */
+/* =========================================================
+   MENU VISIBILITY
+========================================================= */
+
+.menu-visible {
+  display: block;
+}
+
+
+/* =========================================================
+   CATEGORY LIST ITEMS
+========================================================= */
+
+.nested-li {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   COMING SOON PLACEHOLDER
+========================================================= */
+
+.coming-soon-item {
+  opacity: 0.5;
+}
+
+
+/* =========================================================
+   SUB HEADER
+========================================================= */
+
+.sub-header {
+  margin-left: 20px;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.menu-back-btn {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   RECIPE ITEMS
+========================================================= */
+
+.menu-item {
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   LABELS + ARROWS
+========================================================= */
+
+.recipe-label {
+
+}
+
+.recipe-arrow {
+
+}
+/* =========================================================
+   END COOKBOOK MENU STYLES
+========================================================= */

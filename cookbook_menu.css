@@ -54,6 +54,11 @@ h2 {
 }
 
 h3 {
+	font-family: 'Corinthia', handwriting;
+font-size: 32px;
+font-weight: 400;
+font-style: ;
+color: #c8a96e;
   margin-top: 10px;
   text-indent: 10px;
 }
