@@ -36,14 +36,17 @@
  
    	<h4>🛒 Add Items : </h4>
  
-  <!-- GROCERY LIST -->
- <div class="card overflow-y" style="height: 300px" id="grocery-list"></div>
- <!-- END GROCERY LIST -->
+<!-- GROCERY LIST -->
+
+<div id="grocery-list" class="card overflow-y notepad-list" style="height: 400px;"></div>
+ 
+<!-- END GROCERY LIST -->
 
   <hr>
   
 <!-- INPUT NAV ROW-->
-<div class="block-flex-row-no-border">
+
+<div class="blue-block flex-row">
 	
 	<div class="orange-btn" onclick="startVoice()">🎤</div>
 
@@ -54,8 +57,6 @@
 </div>
 <!-- END INPUT NAV ROW-->
 
-<div class="notepad"></div>
-    
   </div>
 <!-- END GROCERY LIST CARD -->
 
@@ -68,13 +69,13 @@
 <div class="paywall-overlay" id="groceryMenuPaywall">
       
 <div class="paywall-overlay-inner">
-	  <h4>◆ Grocery Menu :</h4>
+	  <h3>◆ Grocery Menu :</h3>
         
     <h4>" 🔒 Members Only ! "</h4>
         
-    <p>Members get access to the fully loaded Grocery Menu and the ability to browse and add multiple items by category.</p>
+    <p>Free Version Members get 1 free preview of the grocery menu then you have to upgrade to continue using the ability to browse and add multiple items by category.</p>
         
-    <div class="blue-btn" onclick="window.location.href='subscribe.html'">◆ Subscribe Now !
+    <div class="blue-btn" onclick="window.location.href='subscribe.html'">◆ See more info !
     </div>
     
 </div>
@@ -102,48 +103,6 @@
   </div>
   <div class="page-ornament"></div>
 </div>
-
-
-<!-- ── ADD MODAL ── -->
-<div class="modal-overlay" id="addModal">
-  <div class="modal">
-    <h2>Add Item</h2>
-    <input type="text" id="addInput" placeholder="e.g. Orange Juice" />
-    <div class="modal-buttons">
-      <button class="gold-btn" onclick="closeModal('addModal')">Cancel</button>
-      <button class="blue-btn" onclick="confirmAdd()">◆ Add</button>
-    </div>
-  </div>
-</div>
-
-<!-- ── REMOVE MODAL ── -->
-<div class="modal-overlay" id="removeModal">
-  <div class="modal">
-    <h2>Remove Item</h2>
-    <input type="text" id="removeInput" placeholder="Type item name to remove" />
-    <div class="modal-buttons">
-      <button class="gold-btn" onclick="closeModal('removeModal')">Cancel</button>
-      <button class="blue-btn" onclick="confirmRemove()">◆ Remove</button>
-    </div>
-  </div>
-</div>
-
-<!-- ── MENU MODAL ── -->
-<div class="menu-modal-overlay" id="menuModal">
-  <div class="menu-modal-box">
-    <div class="menu-modal-header">
-      <h2>Grocery Menu</h2>
-      <button class="menu-modal-close" onclick="closeMenuModal()">✕</button>
-    </div>
-    <div class="menu-modal-body">
-      <div class="search-wrap" style="margin-bottom:16px;">
-        <input class="search-input" type="text" id="menuSearch" placeholder="Search items…" oninput="menuLiveSearch()">
-      </div>
-      <div id="searchResults"></div>
-    
-        <span class="browser-title">Browse by Category :</span>
-        <button id="backBtn" onclick="goBack()">← Back</button>
-      </div>
   
     
     </div>
