@@ -84,40 +84,6 @@ hr {
 }
 
 
-/* ==========================6px======================================
-  BLOCK ELEMENTS
-   ================================================================ */
-   
-.nav-row {
-  display: flex; gap: 10px;
-  margin: 5px;
-  padding: 5px;
-  justify-content: center;
-  align-items: center;
-}
-
-.page-header {
-  display: block;
-  font-family: serif;
-  margin: 3px;
-  padding: 5px;
-  text-align: center;
-}
-
-.section {
-	display: block;
-  margin: 10 auto;
-  padding: 20px;
-}
-.section-wrapper {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto;
-  padding: 5px;
-}
-
-
-
 
 /* ================================================================
    BUTTONS
@@ -245,18 +211,18 @@ hr {
    
    .gold-block {
    	  display: flex;
+   	  justify-content: center;
+   	  align-items: center;
 	  border: 2px double gold;
 	  color: gold;
 	  margin: 0px; 
 	  background-color: var(--blue-btn-bg);
 	  justify-content: center; 
-	  padding: 10px; 
-	  align-items: center;
+	  padding: 2px; 
+	  
 }
 
    .white-block {
-   	  flex: none; 
-   	  display: inline-block
   	  display: flex;
 	  border: 2px double white;
 	  color: black;
@@ -272,11 +238,10 @@ hr {
 	  border: 2px double gold;
 	  color: var(--gold);
 	  margin: 10px; 
-	  background: var(--blue-btn-bg);
+	  background: var(--blue-bg);
 	  justify-content: center; 
-	  padding: 10px; 
+	  padding: 2px; 
 	  align-items: center;
-	  height: 36px;
 	  border-radius: 10px;
 	  border: 2px solid gold;
 	  color: var(gold-glow);
@@ -345,9 +310,6 @@ hr {
 
 }
 
-.card.align-left {
-	align-items: flex-start;
-}
 
 .overflow-y {
 	overflow-y: auto;
@@ -361,9 +323,10 @@ hr {
 	justify-content: space-between;
 	align-items: center;
 }
-	
 
 
+.card.align-left {
+	align-items: flex-start;
 }
 
 .card::before {
@@ -373,29 +336,6 @@ hr {
   font-size: 28px; pointer-events: none;
   width: 100%;
   padding: 0px;
-}
-
-.card-header {
-  display: flex;
-  font-family: 'Playfair Display', serif;
-  font-size: 18px; 
-  font-weight: 700;
-  color: var(--gold-glow);
-  margin: 10px;
-}
-.card-title {
-  display: flex;
-  font-family: 'Playfair Display', serif;
-  font-size: 18px; font-weight: 700;
-  color: var(--text); line-height: 1.15;
-  margin-bottom: 7px;
-}
-
-.card-body {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 5px 5px;
 }
 
 
@@ -501,18 +441,28 @@ hr {
 	text-align: center;
 	font-size: 14px;
 }
+
+.notepad-list {
+  width: 100%;
+}
+
+.card.notepad-list {
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+}
+
 .notepad-item {
   display: flex;
   align-items: center;
   justify-content: flex-start ;
-  gap: 8px;
+  gap: 30px;
   font-family: 'Playfair Display', serif;
   font-weight: 400;
   font-size: 18px;
-  color: var(--gold);
-  margin: 12px 10px 4px;
+  color: var(--white);
+  margin: 0px;
   padding: 5px;
-  letter-spacing: 0.06em;
   
 }
 
@@ -520,11 +470,11 @@ hr {
   margin-left: auto;
   margin-right: 10px;
   padding: 5px;
-  background: var(--gold);
+  background: orange;
 }
 
 .notepad-checkbox {
-  margin: 10px 20px;
+  margin: 10px 10px;
 }
 
 /* =========================================================
