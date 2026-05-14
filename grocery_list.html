@@ -4,112 +4,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Grocery List :</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
   <link rel="manifest" href="manifest.json">
 </head>
+
 <body>
-<!-- ── NAV BAR ── -->
+
+<!-- NAV -->
 <div class="card">
-	
   <a id="homepage-redirect-link" class="gold-btn" href="index.html">🏠 Back</a>
-  
   <div class="nav-divider"></div>
-
 </div>
-<!-- ── END NAV BAR ── -->
 
-
-<!-- ── GROCERY LIST CARD ── -->
+<!-- GROCERY LIST -->
 <div class="card" style="height: 500px">
 
-  <h3>◆   📋 Grocery List :   ◆ </h3>	
+  <h3>📋 Grocery List :</h3>
 
-<div class="card flex-row">
+  <div class="card flex-row">
+    <p id="toggle-lock-message">Use the padlock to lock your selections.</p>
+    <div class="orange-btn" onclick="toggleLock()" id="lockBtn">🔓 Lock</div>
+  </div>
 
-    <p id="toggle-lock-message" style="max-width: 90%;">Use the padlock to lock your selections.</p>
-    
-    <div class="orange-btn" onclick="toggleLock()" id="lockBtn">🔓 Lock
-    </div>
+  <h4>Add Items :</h4>
 
-</div>
- 
-   	<h4>🛒 Add Items : </h4>
- 
-<!-- GROCERY LIST -->
-
-<div id="grocery-list" class="card overflow-y notepad-list" style="height: 400px;"></div>
- 
-<!-- END GROCERY LIST -->
+  <div id="grocery-list" class="card overflow-y notepad-list" style="height: 400px;"></div>
 
   <hr>
-  
-<!-- INPUT NAV ROW-->
 
-<div class="blue-block flex-row">
-	
-	<div class="orange-btn" onclick="startVoice()">🎤</div>
-
+<!-- TEXT AND VOICE INPUT NAV ROW -->
+  <div class="blue-block flex-row">
+    <div class="orange-btn" onclick="startVoice()">🎤</div>
     <input class="text-input" type="text" id="voiceInput" placeholder="Add items here...">
-    
     <div class="orange-btn" onclick="addFromInput()">＋</div>
-    
-</div>
-<!-- END INPUT NAV ROW-->
-
   </div>
-<!-- END GROCERY LIST CARD -->
+<!-- END TEXT AND VOICE INPUT NAV ROW -->
 
-  <!-- GROCERY MENU (paywall) -->
+</div>
+<!-- END GROCERY LIST -->
 
-  
-<div class="card paywall-card" id="grocery-menu-card">
+<!-- =========================
+     GROCERY MENU TOGGLE SYSTEM
+     ========================= -->
 
-    <!-- Paywall overlay -->
-<div class="paywall-overlay" id="groceryMenuPaywall">
-      
-<div class="paywall-overlay-inner">
-	  <h3>◆ Grocery Menu :</h3>
-        
-    <h4>" 🔒 Members Only ! "</h4>
-        
-    <p>Free Version Members get 1 free preview of the grocery menu then you have to upgrade to continue using the ability to browse and add multiple items by category.</p>
-        
-    <div class="blue-btn" onclick="window.location.href='subscribe.html'">◆ See more info !
+<div class="card" id="grocery-menu">
+
+    <h3>◆ 🛒 Grocery Menu :</h3>
+
+    <div class="orange-btn"
+         id="grocery-menu-toggle-button"
+         onclick="toggleGroceryMenu()">
+      ◆ - Open Menu - ◆ 
+
     </div>
-    
-</div>
-      
-</div>
 
-<!-- Card content (blurred when paywall is active) -->
-    
-<div class="paywall-content" id="groceryMenuContent">
-      
-  <div class="orange-btn" onclick="openMenuModal()">◆ Grocery Menu
-  </div>
-  
-</div>
+    <div id="grocery-menu-list" class="toggle-menu-list hidden"></div>
 
 </div>
 
-</div>
+<!-- END GROCERY MENU TOGGLE SYSTEM -->
 
-<!-- ── SHARE CARD ── -->
+<!-- SHARE -->
 <div class="card">
   <div class="blue-block">◆ Share This App ◆</div>
   <div class="tip-box">
     <p>Enjoying the app? Share it with friends and family so they can try it too.</p>
   </div>
-  <div class="page-ornament"></div>
-</div>
-  
-    
-    </div>
-  </div>
 </div>
 
-<script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('service_worker.js'); }</script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service_worker.js');
+}
+</script>
+
 <script src="grocery_list_data.js"></script>
 <script type="module" src="firebase_login_auth.js"></script>
 

@@ -285,3 +285,8 @@ window.check_and_open_recipe = function(recipe, icon, cat_name) {
 function show_preview_banner() { /*... keep as before ...*/ }
 window.show_paywall_modal  = function() { /*... keep as before ...*/ };
 window.close_paywall_modal = function() { /*... keep as before ...*/ };
+
+/* =========================================================
+   GLOBAL BRIDGE (MENU ACCESS)
+   ========================================================= */
+window.cookbook_unlocked = cookbook_unlocked;

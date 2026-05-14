@@ -83,8 +83,18 @@ hr {
   --blue-glow: rgba(0,202,255,0.5);
 }
 
+/* ================================================================
+   DESCRIPTORS - CONDITIONS
+   ================================================================ */
 
-
+.hidden {
+  display: none;
+}
+.chevron {
+  margin-right: 8px;
+  color: #c8a96e;
+  font-style: normal;
+}
 /* ================================================================
    BUTTONS
    ================================================================ */
@@ -99,6 +109,10 @@ hr {
   color: white;
   text-align: center;
   margin: 5px 5px;
+}
+
+.card .orange-btn {
+	margin: 5px auto;
 }
 
 .gold-btn{
@@ -329,6 +343,10 @@ hr {
 	align-items: flex-start;
 }
 
+.card > .align-center {
+	align-items: center;
+}
+
 .card::before {
   content: '◆';
   position: absolute; top: 12px; right: 14px;
@@ -442,6 +460,81 @@ hr {
 	font-size: 14px;
 }
 
+
+/* =======================================
+   GROCERY MENU ITEMS
+======================================== */
+
+/* =========================
+   GROCERY MENU TOGGLE LIST
+   ========================= */
+
+#grocery-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+#grocery-menu #grocery-menu-list {
+  margin: 10;
+  padding: 0;
+}
+
+#grocery-menu .toggle-menu-group {
+  list-style: none;
+  margin: 30px;
+  padding: 0;
+}
+
+#grocery-menu .toggle-menu-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px; /* or whatever value you want */
+  cursor: pointer;
+  padding: 6px 5px;
+}
+
+#grocery-menu .grocery-menu-chevron {
+  margin-right: 0px;
+}
+
+#grocery-menu .toggle-menu-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+#grocery-menu .toggle-menu-li {
+  list-style: none;
+  padding: 4px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#grocery-menu .add-btn {
+  background: #ff8c00;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+#grocery-menu .add-btn:hover {
+  background: #e67600;
+  margin-right: 8px;
+}
+
+
+/* ------ GROCERY LIST NOTEPAD MENU ---- */
 .notepad-list {
   width: 100%;
 }
@@ -477,43 +570,7 @@ hr {
   margin: 10px 10px;
 }
 
-/* =========================================================
-   COOKBOOK MENU STYLES
-========================================================= */
-/* =========================================================
-   MENU VISIBILITY
-========================================================= */
-
-.menu-visible {
-  display: block;
-}
-
-
-/* =========================================================
-   CATEGORY LIST ITEMS
-========================================================= */
-
-.nested-li {
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   COMING SOON PLACEHOLDER
-========================================================= */
-
-.coming-soon-item {
-  opacity: 0.5;
-}
-
-
-/* =========================================================
-   SUB HEADER
-========================================================= */
-
-.sub-header {
-  margin-left: 20px;
-}
+/* ------ GROCERY MENU ITEMS ---- */
 
 
 /* =========================================================
@@ -530,6 +587,7 @@ hr {
 ========================================================= */
 
 .menu-item {
+  
   cursor: pointer;
 }
 

@@ -11,15 +11,17 @@
 
 <body>
 	
-<!-- ── NAV BAR ── -->
-<div class="card align-left">
+<!-- ── AUTH NAV BAR ── -->
+<div id="auth-nav" class="card flex-row">
 	
-  <a id="homepage-redirect-link" class="gold-btn align-left" href="index.html">🏠 Back:</a>
+  <div id="nav-user-email">Welcome, Guest :
+  </div>
   
-  <div class="nav-divider"></div>
-
+  <div id="sign-out-btn" class="orange-btn mr5px">Sign Out :
+  </div>
+  
 </div>
-<!-- ── END NAV BAR ── -->
+<!-- ──  END AUTH NAV BAR ── -->
 
 
 <!-- ── WELCOME CARD ── -->
@@ -34,7 +36,7 @@
   <!-- GROCERY LIST -->
  <div class="block-flex-row-no-border">
  	
- 	 <h4>📋 Grocery List :</h4>
+ 	 <h3>📋 Grocery List :</h3>
   
       <a href="grocery_list.html" class="orange-btn" >Open !</a>
 
@@ -43,8 +45,11 @@
   <div class="card flex-row">
   	
   	<div class"flex-column">
+  		
+    <h3>Features :</h3>
+  
 <ol>
-    <li><h5>Smart Add Tool :</h5>
+    <li><h5>Smart Add Tool :   <span class="red">+</span></h5>
     	<p>Build your grocery list by typing an item name into the text box or speaking into the microphone(🎤) and pressing the add(+) button.</p></li>
     
     <li><h5>Smart Lock : 🔒</h5>
@@ -67,7 +72,7 @@
   <!-- COOKBOOK -->
   <div class="block-flex-row-no-border">
   
-  <h4>📖 Cookbook :</h4>    
+  <h3>📖 Cookbook :</h3>    
   
   <a href="cookbook_menu.html" class="orange-btn">Open !</a>
   
@@ -76,6 +81,8 @@
    <div class="card flex-row">
    	
    <div class"flex-column">
+   	
+   	<h3>Features :</h3>
   
   <ol>
     <li><h5>Recipe Cards :</h5>
