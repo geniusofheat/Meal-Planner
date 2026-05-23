@@ -23,7 +23,7 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/firebase_config.js',
   '/Meal-Planner/firebase_login_auth.js',
   '/Meal-Planner/meal_planner_icon_192.png',
-  '/Meal-Planner/meal_planner_icon_512.png'
+  '/Meal-Planner/meal_planner_icon_512.png', 
 
   '/Meal-Planner/meats_data.js',
   '/Meal-Planner/dips_and_sauces_data.js',
