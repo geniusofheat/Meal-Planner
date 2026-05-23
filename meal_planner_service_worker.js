@@ -12,7 +12,6 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/login.html',
   '/Meal-Planner/login.css',
   '/Meal-Planner/meal_planner.html',
-  '/Meal-Planner/recipe_builder.html',
   '/Meal-Planner/cookbook_menu.html',
   '/Meal-Planner/favorites_list.html',
   '/Meal-Planner/grocery_list.html',
