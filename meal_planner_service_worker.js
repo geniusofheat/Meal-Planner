@@ -3,44 +3,39 @@
 // Auto-updating: always fetches fresh files, cache is backup only
 // ============================================================
 
-const CACHE_NAME = 'Meal-Planner-v2';
-
+const CACHE_NAME = 'Meal-Planner';
 const FILES_TO_CACHE = [
-  '/Meal-Planner/index.css',	
-  '/Meal-Planner/index.html',
-  '/Meal-Planner/index_data.js',
-  '/Meal-Planner/login.css',  
-  '/Meal-Planner/login.html',
-  '/Meal-Planner/login_data.js',
-  '/Meal-Planner/free_version_index.html',
-  '/Meal-Planner/full_version_index.html',  
-  '/Meal-Planner/meal_planner_icon_192.png',
-  '/Meal-Planner/meal_planner_icon_512.png',
-
-  
-  '/Meal-Planner/meal_planner.html',
-  '/Meal-Planner/meal_planner_data.js',  
-  '/Meal-Planner/cookbook_menu.html',
-  '/Meal-Planner/cookbook_menu_data.js',  
-  '/Meal-Planner/favorites_list.html',
-  '/Meal-Planner/grocery_list.html',
-  '/Meal-Planner/firebase_config.js',
-  '/Meal-Planner/firebase_login_auth.js',
-
-
-  '/Meal-Planner/dips_and_sauces_and_gravies_data.js',
-  '/Meal-Planner/desserts_data.js',
-  '/Meal-Planner/pastas_data.js',
-  '/Meal-Planner/beans_and_legumes_data.js',
-  '/Meal-Planner/beverages_data.js',
-  '/Meal-Planner/breads_and_grains_data.js',
-  '/Meal-Planner/candy_data.js',
-  '/Meal-Planner/meats_data.js',
-  '/Meal-Planner/salads_data.js',
-  '/Meal-Planner/seafood_data.js',
-  '/Meal-Planner/vegetables_data.js',
-
+  './index.css',	
+  './index.html',
+  './index_data.js',
+  './login.css',  
+  './login.html',
+  './login_data.js',
+  './free_version_index.html',
+  './full_version_index.html',  
+  './meal_planner_icon_192.png',
+  './meal_planner_icon_512.png',
+  './meal_planner.html',
+  './meal_planner_data.js',  
+  './cookbook_menu.html',
+  './cookbook_menu_data.js',  
+  './favorites_list.html',
+  './grocery_list.html',
+  './firebase_config.js',
+  './firebase_login_auth.js',
+  './dips_and_sauces_and_gravies_data.js',
+  './desserts_data.js',
+  './pastas_data.js',
+  './beans_and_legumes_data.js',
+  './beverages_data.js',
+  './breads_and_grains_data.js',
+  './candy_data.js',
+  './meats_data.js',
+  './salads_data.js',
+  './seafood_data.js',
+  './vegetables_data.js',
 ];
+
 
 // Install — cache all files
 self.addEventListener('install', event => {
