@@ -28,14 +28,14 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/firebase_login_auth.js',
 
   '/Meal-Planner/meats_data.js',
-  '/Meal-Planner/dips_and_sauces_data.js',
+  '/Meal-Planner/dips_and_sauces_and_gravies_data.js',
   '/Meal-Planner/desserts_data.js',
   '/Meal-Planner/pastas_data.js',
   '/Meal-Planner/beans_and_legumes_data.js',
   '/Meal-Planner/beverages_data.js',
   '/Meal-Planner/breads_and_grains_data.js',
   '/Meal-Planner/candy_data.js',
-
+  '/Meal-Planner/meats_data.js',
   '/Meal-Planner/salads_data.js',
   '/Meal-Planner/seafood_data.js',
   '/Meal-Planner/vegetables_data.js',
