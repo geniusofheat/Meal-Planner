@@ -100,7 +100,7 @@ function renderList() {
     items.map(item => `
       <div class="notepad-item">
 
-        <input type="checkbox"
+        <input type="checkbox" class="notepad-checkbox"
                ${item.checked ? "checked" : ""}
                onchange="toggleCheck(${item.id})"
                ${locked ? "disabled" : ""}>
@@ -109,7 +109,7 @@ function renderList() {
           ${item.name}
         </label>
 
-        ${!locked ? `<button onclick="removeItem(${item.id})">✕</button>` : ""}
+        ${!locked ? `<button class="notepad-remove" onclick="removeItem(${item.id})">✕</button>` : ""}
 
       </div>
     `).join("") +
