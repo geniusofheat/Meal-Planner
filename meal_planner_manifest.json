@@ -14,19 +14,19 @@
   "categories": ["food", "lifestyle"],
   "icons": [
     {
-      "src": "meal_planner_icon_192.png",
+      "src": "/Meal_Planner/meal_planner_icon_192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "meal_planner_icon_512.png",
+      "src": "/Meal_Planner/meal_planner_icon_512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "meal_planner_icon_512.png",
+      "src": "/Meal_Planner/meal_planner_icon_512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
