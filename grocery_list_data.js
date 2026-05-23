@@ -118,10 +118,10 @@ function renderList() {
     `</div>`;
 }
 
-/* =========================
-   ADD ITEM
-   ========================= */
-async function addItem(name) {
+function addItem(name) {
+  const user = auth.currentUser;
+  if (!user) return;
+
   const items = getItems();
 
   items.push({
@@ -130,8 +130,9 @@ async function addItem(name) {
     checked: false
   });
 
-  await saveLists();
-  renderList();
+  saveLists().then(() => {
+    renderList();
+  });
 }
 window.addItem = addItem;
 
