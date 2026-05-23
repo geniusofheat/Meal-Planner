@@ -27,7 +27,7 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/firebase_config.js',
   '/Meal-Planner/firebase_login_auth.js',
 
-  '/Meal-Planner/meats_data.js',
+
   '/Meal-Planner/dips_and_sauces_and_gravies_data.js',
   '/Meal-Planner/desserts_data.js',
   '/Meal-Planner/pastas_data.js',
