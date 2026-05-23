@@ -263,3 +263,7 @@ function toggleLock() {
   renderList();
 }
 window.toggleLock = toggleLock;
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderList();
+});
