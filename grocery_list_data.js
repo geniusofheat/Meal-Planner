@@ -1,324 +1,257 @@
-/* =========================
-   MENU DATA (UNCHANGED)
-   ========================= */
-const MENU = {
-  "Meats": {
-    "Chicken": ["Breasts","Thighs","Legs","Wings"],
-    "Beef": ["Ground Beef","Chuck Steak","Sirloin Steak","Thin Cut","T-Bone","Ribeye Steak"],
-    "Pork": ["Ham","Pork Chops","Sausage","Short Ribs","Baby Back Ribs","Spare Ribs"],
-    "Turkey": ["Sliced","Whole"],
-    "Seafood": ["Salmon","Shrimp","Tilapia","Tuna","Cod","Crawfish"]
-  },
+/* ============================================================
+   GROCERY LIST DATA — FIRESTORE VERSION
+   ============================================================ */
 
-  "Vegetables": {
-    "Lettuce": ["1 Lb"],
-    "Tomato": ["1 Lb"],
-    "Cucumber": ["1 Lb"],
-    "Peas": ["1 Lb"],
-    "Carrots": ["1 Lb"],
-    "Onions": ["1 Lb"],
-    "Mushrooms": ["1 Lb"],
-    "Cabbage": ["1 Lb"],
-    "Potatoes": ["1 Lb"],
-    "Broccoli": ["1 Lb"]
-  },
-
-  "Fruits": {
-    "Apples": ["1 Lb"],
-    "Oranges": ["1 Lb"],
-    "Bananas": ["1 Lb"],
-    "Grapes": ["1 Lb"],
-    "Strawberries": ["1 Lb"]
-  },
-
-  "Snacks": {
-    "Chips": ["Doritos","Lays","Ruffles"],
-    "Cookies": ["Chocolate Chip","Oatmeal"],
-    "Candy Bars": ["Snickers","Twix","Milky Way"]
-  }
-};
-
-/* =========================
-   STORAGE
-   ========================= */
-const STORAGE_KEY = "grocery_app_state";
+import { auth, db } from './firebase_config.js';
+import {
+  doc, getDoc, setDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 /* =========================
    STATE
    ========================= */
-let items = [];
+let groceryLists = {};
+let activeListName = "Default";
+
 let locked = false;
 let itemCounter = 0;
-
-let expandedNodes = new Set();
-let previewUsed = false;
+let showingSavedLists = false;
 
 /* =========================
-   INIT
+   FIRESTORE PATH
+   users/{uid}/groceryData/main
    ========================= */
-document.addEventListener("DOMContentLoaded", () => {
-  loadState();
+function getRef(uid) {
+  return doc(db, "users", uid, "groceryData", "main");
+}
+
+/* =========================
+   LOAD FROM FIRESTORE
+   ========================= */
+async function loadLists() {
+  const user = await new Promise(resolve =>
+  onAuthStateChanged(auth, resolve)
+);
+  if (!user) return;
+
+  const snap = await getDoc(getRef(user.uid));
+
+  if (snap.exists()) {
+    const data = snap.data();
+    groceryLists = data.lists || {};
+    activeListName = data.activeListName || "Default";
+  } else {
+    groceryLists = { Default: [] };
+    activeListName = "Default";
+    await saveLists();
+  }
+
   renderList();
-  renderGroceryMenu();
+}
+
+/* =========================
+   SAVE TO FIRESTORE
+   ========================= */
+async function saveLists() {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  await setDoc(getRef(user.uid), {
+    lists: groceryLists,
+    activeListName
+  });
+}
+
+/* =========================
+   GET ACTIVE ITEMS
+   ========================= */
+function getItems() {
+  if (!groceryLists[activeListName]) {
+    groceryLists[activeListName] = [];
+  }
+  return groceryLists[activeListName];
+}
+
+/* =========================
+   INIT AFTER LOGIN
+   ========================= */
+auth.onAuthStateChanged(user => {
+  if (user) loadLists();
 });
 
 /* =========================
-   PERSISTENCE
-   ========================= */
-function saveState() {
-  const state = {
-    items,
-    locked,
-    itemCounter,
-    expandedNodes: Array.from(expandedNodes)
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-}
-
-function loadState() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (!saved) return;
-
-  try {
-    const state = JSON.parse(saved);
-    items = state.items || [];
-    locked = state.locked || false;
-    itemCounter = state.itemCounter || 0;
-    expandedNodes = new Set(state.expandedNodes || []);
-  } catch (e) {
-    console.error("Failed to load state:", e);
-  }
-}
-
-/* =========================
-   GROCERY LIST (UNCHANGED CORE)
+   RENDER LIST
    ========================= */
 function renderList() {
-  const el = document.getElementById('grocery-list');
+  const el = document.getElementById("grocery-list");
+
+  if (showingSavedLists) {
+    el.innerHTML = renderSavedListsPanel();
+    return;
+  }
+
+  const items = getItems();
 
   if (!items.length) {
-    el.innerHTML = '<div class="empty-state">No items yet — use the buttons below to add items.</div>';
+    el.innerHTML = `<div class="empty-state">No items yet.</div>`;
     return;
   }
 
   el.innerHTML =
     `<div class="notepad-list">` +
     items.map(item => `
-      <div class="notepad-item" id="row-${item.id}">
+      <div class="notepad-item">
 
-        <input class="notepad-checkbox"
-               type="checkbox"
-               id="chk-${item.id}"
-               ${item.checked ? 'checked' : ''}
+        <input type="checkbox"
+               ${item.checked ? "checked" : ""}
                onchange="toggleCheck(${item.id})"
-               ${locked ? 'disabled' : ''}>
+               ${locked ? "disabled" : ""}>
 
-        <label class="notepad-text ${item.checked ? 'crossed' : ''}"
-               for="chk-${item.id}">
+        <label class="${item.checked ? "crossed" : ""}">
           ${item.name}
         </label>
 
-        ${!locked ? `
-          <button class="notepad-remove"
-                  onclick="removeItem(${item.id})"
-                  title="Remove">✕</button>
-        ` : ''}
+        ${!locked ? `<button onclick="removeItem(${item.id})">✕</button>` : ""}
 
       </div>
-    `).join('') +
+    `).join("") +
     `</div>`;
 }
 
-function addItem(name) {
+/* =========================
+   ADD ITEM
+   ========================= */
+async function addItem(name) {
+  const items = getItems();
+
   items.push({
-    id: ++itemCounter,
+    id: Date.now(),
     name,
     checked: false
   });
 
-  saveState();
+  await saveLists();
   renderList();
 }
-
 window.addItem = addItem;
 
 /* =========================
-   REMOVE / CHECK ITEMS
+   REMOVE ITEM
    ========================= */
-function removeItem(id) {
-  items = items.filter(i => i.id !== id);
-  saveState();
+async function removeItem(id) {
+  groceryLists[activeListName] =
+    getItems().filter(i => i.id !== id);
+
+  await saveLists();
   renderList();
 }
 window.removeItem = removeItem;
 
-function toggleCheck(id) {
-  const item = items.find(i => i.id === id);
+/* =========================
+   TOGGLE CHECK
+   ========================= */
+async function toggleCheck(id) {
+  const item = getItems().find(i => i.id === id);
   if (item) item.checked = !item.checked;
 
-  saveState();
+  await saveLists();
   renderList();
 }
 window.toggleCheck = toggleCheck;
 
 /* =========================
-   RENDER TREE FUNCTION
+   SAVE LIST UI
    ========================= */
-function renderGroceryMenu() {
-  let html = '<ul class="toggle-menu-list">';
-
-  Object.keys(MENU).forEach(key => {
-    const id = [key].join("::");
-    const open = expandedNodes.has(id);
-
-    html += `
-      <li class="toggle-menu-group">
-	    <div class="toggle-menu-trigger" onclick="toggleNode('${id}')">
-		<span class="grocery-menu-chevron">${open ? "▼" : "›"}</span>
-		<span>${key}</span>
-		</div>
-        ${open ? renderChildren(MENU[key], [key]) : ""}
-      </li>`;
-  });
-
-  html += '</ul>';
-  document.getElementById("grocery-menu-list").innerHTML = html;
+function saveCurrentList() {
+  document.getElementById("saveListContainer").style.display = "block";
 }
+window.saveCurrentList = saveCurrentList;
 
-function renderChildren(node, path) {
-  if (Array.isArray(node)) {
-    return `
-      <ul class="toggle-menu-list">
-        ${node.map(item => `
-          <li class="toggle-menu-li">
-            <span>${item}</span>
-            <button class="add-btn" onclick="addItem('${item.replace(/'/g,"\\'")}')">+ Add</button>
-          </li>
-        `).join("")}
-      </ul>`;
-  }
+async function confirmSaveList() {
+  const input = document.getElementById("saveListNameInput");
+  const name = input.value.trim();
+  if (!name) return;
 
-  let html = '<ul class="toggle-menu-list">';
-  Object.keys(node).forEach(key => {
-    const id = [...path, key].join("::");
-    const open = expandedNodes.has(id);
+  groceryLists[name] = JSON.parse(JSON.stringify(getItems()));
+  activeListName = name;
 
-    html += `
-      <li class="toggle-menu-group">
-    	<div class="toggle-menu-trigger" onclick="toggleNode('${id}')">
-		<span class="grocery-menu-chevron">${open ? "▼" : "›"}</span>
-		<span>${key}</span>
-		</div>
-        ${open ? renderChildren(node[key], [...path, key]) : ""}
-      </li>`;
-  });
-  html += '</ul>';
-  return html;
+  await saveLists();
+
+  input.value = "";
+  document.getElementById("saveListContainer").style.display = "none";
+
+  renderList();
 }
+window.confirmSaveList = confirmSaveList;
 
 /* =========================
-   COLLAPSE SIBLINGS LOGIC
+   SAVED LISTS VIEW
    ========================= */
-function toggleNode(id) {
-
-  const parts = id.split("::");
-  const level = parts.length;
-
-  if (expandedNodes.has(id)) {
-    expandedNodes.delete(id);
-  } else {
-
-    [...expandedNodes].forEach(openId => {
-      const openParts = openId.split("::");
-
-      if (
-        openParts.length === level &&
-        openParts.slice(0, level - 1).join("::") === parts.slice(0, level - 1).join("::")
-      ) {
-        expandedNodes.delete(openId);
-      }
-    });
-
-    expandedNodes.add(id);
-    previewUsed = true;
-  }
-
-  saveState();
-  renderGroceryMenu();
+function toggleSavedLists() {
+  showingSavedLists = !showingSavedLists;
+  renderList();
 }
-
-window.toggleNode = toggleNode;
+window.toggleSavedLists = toggleSavedLists;
 
 /* =========================
-   MENU TOGGLE
+   LOAD LIST
    ========================= */
-function toggleGroceryMenu() {
-  const tree = document.getElementById('grocery-menu-list');
-  const btn  = document.getElementById('grocery-menu-toggle-button');
+async function loadList(name) {
+  activeListName = name;
+  showingSavedLists = false;
 
-  if (tree.classList.contains('hidden')) {
-    tree.classList.remove('hidden');
-    btn.textContent = '◆ Close Grocery Menu';
-    renderGroceryMenu();
-  } else {
-    tree.classList.add('hidden');
-    btn.textContent = '◆ Open Grocery Menu';
-  }
+  await saveLists();
+  renderList();
 }
-window.toggleGroceryMenu = toggleGroceryMenu;
+window.loadList = loadList;
+
+/* =========================
+   DELETE LIST
+   ========================= */
+async function deleteList(name) {
+  delete groceryLists[name];
+
+  if (activeListName === name) {
+    activeListName = Object.keys(groceryLists)[0] || "Default";
+  }
+
+  await saveLists();
+  renderList();
+}
+window.deleteList = deleteList;
+
+/* =========================
+   SAVED LISTS UI
+   ========================= */
+function renderSavedListsPanel() {
+  const names = Object.keys(groceryLists);
+
+  return `
+    <div class="saved-lists-panel">
+      <h3>Saved Lists</h3>
+
+      ${names.map(name => `
+        <div>
+          <button onclick="loadList('${name.replace(/'/g, "\\'")}')">
+            ${name} - (${groceryLists[name].length} items)
+          </button>
+
+          <button onclick="deleteList('${name.replace(/'/g, "\\'")}')">✕</button>
+        </div>
+      `).join("")}
+
+    </div>
+  `;
+}
 
 /* =========================
    LOCK
    ========================= */
 function toggleLock() {
   locked = !locked;
-
   document.getElementById("lockBtn").textContent =
     locked ? "🔒 Unlock" : "🔓 Lock";
 
-  saveState();
   renderList();
 }
 window.toggleLock = toggleLock;
-
-/* =========================
-   PLACEHOLDER INPUT
-   ========================= */
-function addFromInput() {
-  const v = document.getElementById("voiceInput").value;
-  if (v) addItem(v);
-}
-window.addFromInput = addFromInput;
-
-function startVoice() {
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  if (!SpeechRecognition) {
-    alert("Speech recognition not supported in this browser.");
-    return;
-  }
-
-  const recognition = new SpeechRecognition();
-  recognition.lang = "en-US";
-  recognition.interimResults = false;
-  recognition.maxAlternatives = 1;
-
-  recognition.start();
-
-  recognition.onresult = function (event) {
-    const text = event.results[0][0].transcript;
-    document.getElementById("voiceInput").value = text;
-  };
-
-  recognition.onerror = function () {};
-}
-
-window.startVoice = startVoice;
-
-/* =========================
-   FIREBASE HOOK (REQUIRED)
-   ========================= */
-window.getCurrentUserStatus = function () {
-  return window.cookbook_unlocked ? "full" : "free";
-};
