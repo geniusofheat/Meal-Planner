@@ -29,10 +29,8 @@ function getRef(uid) {
    LOAD FROM FIRESTORE
    ========================= */
 async function loadLists() {
-  const user = await new Promise(resolve =>
-  onAuthStateChanged(auth, resolve)
-);
-  if (!user) return;
+  const user = auth.currentUser;
+if (!user) return;
 
   const snap = await getDoc(getRef(user.uid));
 
@@ -135,6 +133,15 @@ function addItem(name) {
   });
 }
 window.addItem = addItem;
+
+function addFromInput() {
+  const input = document.getElementById("textInput");
+  const name = input.value.trim();
+  if (!name) return;
+  addItem(name);
+  input.value = "";
+}
+window.addFromInput = addFromInput;
 
 /* =========================
    REMOVE ITEM
