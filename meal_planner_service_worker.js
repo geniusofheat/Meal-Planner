@@ -28,6 +28,8 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/beverages_data.js',
   '/Meal-Planner/breads_and_grains_data.js',
   '/Meal-Planner/candy_data.js',
+  '/Meal-Planner/free_version_index.html',
+  '/Meal-Planner/full_version_index.html',
   '/Meal-Planner/salads_data.js',
   '/Meal-Planner/seafood_data.js',
   '/Meal-Planner/vegetables_data.js',
