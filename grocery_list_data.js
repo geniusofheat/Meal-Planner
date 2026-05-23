@@ -39,6 +39,11 @@ const MENU = {
 };
 
 /* =========================
+   STORAGE
+   ========================= */
+const STORAGE_KEY = "grocery_app_state";
+
+/* =========================
    STATE
    ========================= */
 let items = [];
@@ -52,8 +57,38 @@ let previewUsed = false;
    INIT
    ========================= */
 document.addEventListener("DOMContentLoaded", () => {
+  loadState();
   renderList();
+  renderGroceryMenu();
 });
+
+/* =========================
+   PERSISTENCE
+   ========================= */
+function saveState() {
+  const state = {
+    items,
+    locked,
+    itemCounter,
+    expandedNodes: Array.from(expandedNodes)
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadState() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return;
+
+  try {
+    const state = JSON.parse(saved);
+    items = state.items || [];
+    locked = state.locked || false;
+    itemCounter = state.itemCounter || 0;
+    expandedNodes = new Set(state.expandedNodes || []);
+  } catch (e) {
+    console.error("Failed to load state:", e);
+  }
+}
 
 /* =========================
    GROCERY LIST (UNCHANGED CORE)
@@ -101,6 +136,7 @@ function addItem(name) {
     checked: false
   });
 
+  saveState();
   renderList();
 }
 
@@ -111,6 +147,7 @@ window.addItem = addItem;
    ========================= */
 function removeItem(id) {
   items = items.filter(i => i.id !== id);
+  saveState();
   renderList();
 }
 window.removeItem = removeItem;
@@ -118,6 +155,8 @@ window.removeItem = removeItem;
 function toggleCheck(id) {
   const item = items.find(i => i.id === id);
   if (item) item.checked = !item.checked;
+
+  saveState();
   renderList();
 }
 window.toggleCheck = toggleCheck;
@@ -163,6 +202,7 @@ function renderChildren(node, path) {
   Object.keys(node).forEach(key => {
     const id = [...path, key].join("::");
     const open = expandedNodes.has(id);
+
     html += `
       <li class="toggle-menu-group">
     	<div class="toggle-menu-trigger" onclick="toggleNode('${id}')">
@@ -203,6 +243,7 @@ function toggleNode(id) {
     previewUsed = true;
   }
 
+  saveState();
   renderGroceryMenu();
 }
 
@@ -231,9 +272,11 @@ window.toggleGroceryMenu = toggleGroceryMenu;
    ========================= */
 function toggleLock() {
   locked = !locked;
+
   document.getElementById("lockBtn").textContent =
     locked ? "🔒 Unlock" : "🔓 Lock";
 
+  saveState();
   renderList();
 }
 window.toggleLock = toggleLock;
@@ -268,12 +311,10 @@ function startVoice() {
     document.getElementById("voiceInput").value = text;
   };
 
-  recognition.onerror = function () {
-    // silent fail (or log if you want)
-  };
+  recognition.onerror = function () {};
 }
 
-	window.startVoice = startVoice;
+window.startVoice = startVoice;
 
 /* =========================
    FIREBASE HOOK (REQUIRED)
