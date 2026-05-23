@@ -7,7 +7,7 @@ const CACHE_NAME = 'Meal-Planner';
 
 const FILES_TO_CACHE = [
   '/Meal-Planner/index.html',
-  '/Meal-Planner/index.js',
+  '/Meal-Planner/index_data.js',
   '/Meal-Planner/index.css',
   '/Meal-Planner/login.html',
   '/Meal-Planner/login.css',
@@ -19,8 +19,8 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/firebase_config.js',
   '/Meal-Planner/firebase_login_auth.js',
   '/Meal-Planner/login_data.js',
-  '/Meal-Planner/meal_planner.js',
-  '/Meal-Planner/recipe_builder.js',
+  '/Meal-Planner/meal_planner_data.js',
+  '/Meal-Planner/recipe_builder_data.js',
   '/Meal-Planner/cookbook_menu_data.js',
   '/Meal-Planner/meats_data.js',
   '/Meal-Planner/dips_and_sauces_data.js',
