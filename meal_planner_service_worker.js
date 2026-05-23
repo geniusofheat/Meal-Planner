@@ -3,23 +3,28 @@
 // Auto-updating: always fetches fresh files, cache is backup only
 // ============================================================
 
-const CACHE_NAME = 'Meal-Planner';
+const CACHE_NAME = 'Meal-Planner-v2';
 
 const FILES_TO_CACHE = [
+  '/Meal-Planner/index.css',	
   '/Meal-Planner/index.html',
   '/Meal-Planner/index_data.js',
-  '/Meal-Planner/index.css',
+  '/Meal-Planner/login.css',  
   '/Meal-Planner/login.html',
-  '/Meal-Planner/login.css',
+  '/Meal-Planner/login_data.js',
+  '/Meal-Planner/free_version_index.html',
+  '/Meal-Planner/full_version_index.html',  
   '/Meal-Planner/meal_planner.html',
+  '/Meal-Planner/meal_planner_data.js',  
   '/Meal-Planner/cookbook_menu.html',
+  '/Meal-Planner/cookbook_menu_data.js',  
   '/Meal-Planner/favorites_list.html',
   '/Meal-Planner/grocery_list.html',
   '/Meal-Planner/firebase_config.js',
   '/Meal-Planner/firebase_login_auth.js',
-  '/Meal-Planner/login_data.js',
-  '/Meal-Planner/meal_planner_data.js',
-  '/Meal-Planner/cookbook_menu_data.js',
+  '/Meal-Planner/meal_planner_icon_192.png',
+  '/Meal-Planner/meal_planner_icon_512.png'
+
   '/Meal-Planner/meats_data.js',
   '/Meal-Planner/dips_and_sauces_data.js',
   '/Meal-Planner/desserts_data.js',
@@ -28,13 +33,11 @@ const FILES_TO_CACHE = [
   '/Meal-Planner/beverages_data.js',
   '/Meal-Planner/breads_and_grains_data.js',
   '/Meal-Planner/candy_data.js',
-  '/Meal-Planner/free_version_index.html',
-  '/Meal-Planner/full_version_index.html',
+
   '/Meal-Planner/salads_data.js',
   '/Meal-Planner/seafood_data.js',
   '/Meal-Planner/vegetables_data.js',
-  '/Meal-Planner/meal_planner_icon_192.png',
-  '/Meal-Planner/meal_planner_icon_512.png'
+
 ];
 
 // Install — cache all files
