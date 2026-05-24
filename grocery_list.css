@@ -1,20 +1,6 @@
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html, body { height:100%; overflow-x:hidden; background:#0a0904; }
 
-:root {
-  --gold: #c8a96e;
-  --gold-dim: rgba(200,169,110,0.18);
-  --gold-border: rgba(200,169,110,0.55);
-  --gold-glow: rgba(200,169,110,0.07);
-  --text: #f0e8d0;
-  --text-muted: rgba(240,232,208,0.55);
-  --text-dim: rgba(200,169,110,0.65);
-  --blue-btn-bg: radial-gradient(circle at center, rgba(173,216,230,0.62) 0%, rgba(0,100,190,0.80) 48%, rgba(5,12,28,0.90) 100%);
-  --blue-pill-bg: radial-gradient(circle at center, rgba(0,128,255,1) 0%, rgba(0,128,255,0.5) 50%, rgba(0,0,0,0.3) 100%);
-  --blue-border: rgba(80,160,220,0.5);
-  --blue-glow: rgba(0,202,255,0.5);
-}
-
 body {
   background: linear-gradient(160deg,
     rgba(0,0,148,0.9) 0%,
@@ -25,91 +11,138 @@ body {
   color: var(--text);
 }
 
-p {
-  color: #fefeff;
-  text-indent: 5px;
-  padding: 10px;
-  font-size: 12px;
+h3 {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 400;
+  color: #c8a96e;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 h4 {
+  font-family: 'Google Sans', sans-serif;
+  color: #c8a96e;
+  margin-bottom: 10px;
   margin-top: 10px;
   text-indent: 10px;
 }
 
-/* APP */
-#app {
-  width: 100%;
-  min-height: 100vh;
-  background: linear-gradient(160deg,
-    rgba(0,0,148,0.9) 0%,
-    rgba(22,46,95,0.80) 10%,
-    rgba(0,0,0,0.90) 100%
-  );
+p {
+  color: #fefeff;
+  text-indent: 10px;
+  margin: 10px;
+  padding: 10px;
+  font-size: 16px;
 }
 
-/* NAV */
-#nav-Bar {
-  display: flex;
-  align-items: center;
-  padding: 14px 16px 10px;
-  border-bottom: 1px solid var(--gold-border);
+hr {
+  color: #c8a96e;
+  margin-bottom: 10px;
 }
 
-.nav-pill-wrap {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* ================================================================
+   ROOT VARIABLES
+   ================================================================ */
+
+:root {
+  --gold: #c8a96e;
+  --dim-orange: rgba(255,160,66,0.5);
+  --bright-orange: rgba(255,177,66,0.5);
+  --gold-border: rgba(200,169,110,0.55);
+  --gold-glow: rgba(255,206,138,0.5);
+  --bg: #0e0c06;
+  --text: #f0e8d0;
+  --text-muted: rgba(240,232,208,0.55);
+  --text-dim: rgba(200,169,110,0.65);
+  --blue-btn-bg: radial-gradient(circle at center, rgba(173,216,230,0.62) 0%, rgba(0,100,190,0.80) 48%, rgba(5,12,28,0.90) 100%);
+  --blue-border: rgba(80,160,220,0.5);
+  --blue-glow: rgba(0,202,255,0.5);
 }
 
-.nav-pill-outer {
-  border: 2px solid gold;
-  border-radius: 20px;
-  padding: 2px;
-  background: var(--blue-pill-bg);
-}
-
-.nav-pill-inner {
-  height: 36px;
-  min-width: 80px;
-  border-radius: 16px;
-  background: var(--blue-pill-bg);
-  color: #e0f4ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
-}
-
-.nav-divider {
+/* ================================================================
+   DESCRIPTORS - CONDITIONS - DIVIDERS
+   ================================================================ */
+   
+  .nav-divider {
   width: 1px;
-  height: 32px;
-  background: var(--gold-border);
-  opacity: 0.4;
+  height: 24px;
+  background: var(--gold);
+  margin: 0 8px;
 }
 
-.nav-section {
-  flex: 1;
-  text-align: center;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #e0f4ff;
+.hidden {
+  display: none;
+}
+
+.crossed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+
+.orange-btn {
   display: flex;
+  padding: 4px;
+  font-family: 'Playfair Display', serif;
+  background: orange;
+  border: 2px solid gold;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  margin: 5px 5px;
+}
+
+.card .orange-btn {
+  margin: 5px auto;
+}
+
+.gold-btn {
+  display: block;
+  font: 12px '', serif;
+  background: gold;
+  border: 2px solid gold;
+  border-radius: 5px;
+  margin: auto;
   justify-content: center;
-}
-
-/* SECTION */
-.section-wrapper {
-  margin: 0 auto;
   padding: 5px;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: black;
 }
 
-/* CARD */
+/* ================================================================
+   BLOCKS
+   ================================================================ */
+
+.blue-block {
+  display: flex;
+  border: 2px solid gold;
+  color: var(--gold);
+  margin: 10px;
+  background: var(--blue-btn-bg);
+  justify-content: center;
+  padding: 5px;
+  align-items: center;
+  border-radius: 10px;
+  font-family: 'Roman', serif;
+  font-size: 16px;
+  letter-spacing: 0.10em;
+}
+
+/* ================================================================
+   CARD
+   ================================================================ */
+
 .card {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  box-sizing: border-box;
   border: 2px solid gold;
   border-radius: 16px;
   background: linear-gradient(160deg,
@@ -117,200 +150,220 @@ h4 {
     rgba(65,156,185,0.05) 80%,
     rgba(50,50,50,0.30) 100%
   );
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6), inset 0 1px 0 rgba(200,169,110,0.12);
+  position: relative;
+  max-width: 100vw;
   margin: 5px;
-  padding: 10px;
-}
-
-.card-header {
   padding: 5px;
 }
 
-.card-title {
-  font-size: 18px;
-  color: var(--text);
+.card::before {
+  content: '◆';
+  position: absolute; top: 12px; right: 14px;
+  color: rgba(200,169,110,0.1);
+  font-size: 28px; pointer-events: none;
+  width: 100%;
+  padding: 0px;
 }
 
-/* SEARCH */
-.search-bar-container {
-  display: flex;
-  gap: 8px;
+.card.align-left {
+  align-items: flex-start;
+}
+
+.overflow-y {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+.flex-row {
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  border: 2px solid gold;
-  padding: 5px;
-  background: var(--gold-glow);
 }
 
-.search-input {
-  flex: 1;
-  height: 44px;
-  border-radius: 4px;
-  background: var(--blue-btn-bg);
-  color: gold;
-  font-size: 11px;
-  border: 2px solid gold;
-  padding: 5px;
-}
+/* ================================================================
+   TIP BOX
+   ================================================================ */
 
-/* BUTTON */
-.blue-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  border: 3px solid var(--gold);
-  background: var(--blue-btn-bg);
-  color: #e0f4ff;
+.tip-box {
+  border-left: 2px solid var(--gold);
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-family: 'Lato', sans-serif;
   font-size: 14px;
-  margin: 5px auto;
+  font-style: italic;
+  color: rgba(200,169,110,0.7);
+  line-height: 1.55;
+  background: var(--gold-glow);
+  border-radius: 0 6px 6px 0;
+  text-indent: 10px;
 }
 
-/* LOCK BADGE */
-.lock-badge {
-  font-size: 10px;
-  color: rgba(200,169,110,0.5);
-  border: 1px solid var(--gold-border);
-  padding: 5px 12px;
+/* ================================================================
+   TEXT INPUT
+   ================================================================ */
+
+.text-input {
+  height: 44px;
+  background: black;
+  color: white;
+  text-align: center;
+  font-size: 14px;
 }
 
-/* NOTEPAD */
-.notepad {
-  background: var(--blue-btn-bg);
-  color: #fefeff;
-  padding-left: 10px;
-}
+/* ================================================================
+   GROCERY MENU TOGGLE SYSTEM
+   ================================================================ */
 
-#grocery-list {
+#grocery-menu {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
-
-/* PAYWALL */
-.paywall-card { position: relative; }
-
-.paywall-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 15, 35, 0.88);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.paywall-overlay-inner {
-  text-align: center;
-  padding: 24px;
-}
-
-/* SUB HEADING */
-.sub-heading {
-  font-size: 18px;
-  font-weight: bold;
-  color: #fefeff;
-  opacity: 0.7;
-  margin: 16px 0 8px;
-  text-align: center;
-}
-
-/* TOOL ROW */
-.tool-row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin: 14px;
-}
-
-/* DIVIDER */
-.divider {
-  width: 90%;
-  margin: 10px auto;
-  border-bottom: 1px solid var(--gold);
-}
-
-/* MODAL */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(200,169,110,0.3);
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal {
+  align-items: flex-start;
   width: 100%;
-  max-width: 340px;
-  border: 1px solid var(--gold-border);
-  border-radius: 16px;
-  background: rgba(0,0,100,0.95);
-  padding: 28px 24px;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.modal-buttons {
+#grocery-menu #grocery-menu-list {
+  margin: 10px;
+  padding: 0;
+}
+
+#grocery-menu .toggle-menu-group {
+  list-style: none;
+  margin: 30px;
+  padding: 0;
+}
+
+#grocery-menu .toggle-menu-trigger {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  cursor: pointer;
+  padding: 6px 5px;
 }
 
-/* MENU MODAL */
-.menu-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  display: none;
+#grocery-menu .grocery-menu-chevron {
+  margin-right: 0px;
 }
 
-.menu-modal-box {
-  width: 100%;
-  max-width: 640px;
-  border: 1px solid var(--gold-border);
-  border-radius: 16px 16px 0 0;
+#grocery-menu .toggle-menu-list {
+  margin: 0;
+  padding-left: 18px;
 }
 
-.menu-modal-header {
+#grocery-menu .toggle-menu-li {
+  list-style: none;
+  padding: 4px 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+#grocery-menu .add-btn {
+  background: #ff8c00;
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+#grocery-menu .add-btn:hover {
+  background: #e67600;
+  margin-right: 8px;
+}
+
+/* ================================================================
+   GROCERY LIST NOTEPAD
+   ================================================================ */
+
+.grocery-list-placeholder {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  text-align: center;
   padding: 20px;
 }
 
-.menu-modal-close {
-  border: 1px solid var(--gold-border);
-  background: transparent;
-  color: var(--gold);
-  cursor: pointer;
+.notepad-list {
+  width: 100%;
 }
 
-.menu-modal-body {
-  padding: 16px;
+.card.notepad-list {
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
 }
 
-/* BROWSER */
-.browser-header {
+.notepad-item {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--text);
+  margin: 0px;
+  padding: 5px;
+}
+
+.notepad-remove {
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 5px;
+  background: orange;
+}
+
+.notepad-checkbox {
+  margin: 10px 10px;
+}
+
+/* ================================================================
+   SAVED LISTS PANEL
+   ================================================================ */
+   
+.save-list-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px;
+}
+
+.saved-lists-panel {
+  width: 100%;
+  padding: 10px;
+}
+
+.saved-lists-panel h3 {
   margin-bottom: 10px;
 }
 
-.browser-title {
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
+.saved-lists-panel div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(200,169,110,0.2);
 }
 
-#breadcrumb {
-  font-size: 13px;
-  font-style: italic;
-  color: var(--text-dim);
+/* ================================================================
+   GROCERY LIST TOP ROW
+   ================================================================ */
+
+.grocery-list-top-row {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 10px;
 }
 
-#backBtn {
-  font-size: 9px;
-  cursor: pointer;
-}
 
-/* PAGE ORNAMENT */
-.page-ornament {
-  font-size: 9px;
-  text-align: center;
-  padding: 10px 0 24px;
-}
