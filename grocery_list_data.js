@@ -89,31 +89,28 @@ function renderList() {
   }
 
   const items = getItems();
-
-  if (!items.length) {
-    el.innerHTML = `<div class="grocery-list-placeholder">No items yet. Please use the buttons below to add items.</div>`;
-    return;
-  }
+  const blankCount = Math.max(0, 8 - items.length);
+  const blanks = Array(blankCount)
+    .fill('<div class="notepad-row blank"></div>')
+    .join("");
 
   el.innerHTML =
-    `<div class="notepad-list">` +
+`<div class="grocery-list-title">
+  ${activeListName === "Default" ? "Default (Default List)" : activeListName}
+</div>` +
     items.map(item => `
-      <div class="notepad-item">
-
-        <input type="checkbox" class="notepad-checkbox"
+      <div class="notepad-row">
+        <input type="checkbox"
                ${item.checked ? "checked" : ""}
                onchange="toggleCheck(${item.id})"
                ${locked ? "disabled" : ""}>
-
         <label class="${item.checked ? "crossed" : ""}">
           ${item.name}
         </label>
-
-        ${!locked ? `<button class="notepad-remove" onclick="removeItem(${item.id})">✕</button>` : ""}
-
+        ${!locked ? `<button class="remove-btn" onclick="removeItem(${item.id})">✕</button>` : ""}
       </div>
     `).join("") +
-    `</div>`;
+    blanks;
 }
 
 function addItem(name) {
@@ -283,3 +280,16 @@ window.toggleLock = toggleLock;
 document.addEventListener("DOMContentLoaded", () => {
   renderList();
 });
+
+function handleBack() {
+  const user = auth.currentUser;
+
+  if (user && user.isFullVersion) {
+    window.location.href = "full_version_index.html";
+    return;
+  }
+
+  window.location.href = "free_version_index.html";
+}
+
+window.handleBack = handleBack;
