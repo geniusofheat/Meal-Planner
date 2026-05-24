@@ -2,89 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Grocery List :</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grocery Notepad</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=Playfair+Display:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="grocery_list.css">
-  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
 
-<!-- NAV -->
-<div class="card">
-  <a id="homepage-redirect-link" class="gold-btn" href="index.html">🏠 Back</a>
-  <div class="nav-divider"></div>
-</div>
-
-<!-- GROCERY LIST -->
-<div class="card" style="height: 500px">
-
-  <h3>📋 Grocery List :</h3>
-
-  <!-- MY LISTS BUTTON — top right -->
-  <div class="grocery-list-top-row">
-    <div class="orange-btn" onclick="toggleSavedLists()">📂 My Lists</div>
+<header>
+  <div class="header-left">
+    <button onclick="handleBack()">← Back</button>
   </div>
 
-  <div class="card flex-row">
-    <p id="toggle-lock-message">Use the padlock to lock your selections.</p>
-    <div class="orange-btn" onclick="toggleLock()" id="lockBtn">🔓 Lock</div>
+  <div class="header-right">
+    <div class="notepad-date" id="dateDisplay"></div>
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="notepad-title-row">
+    <div class="notepad-title">Grocery List</div>    <button class="hdr-btn" id="lockBtn" onclick="toggleLock()">🔓 Lock</button>
   </div>
 
-  <h4>Add Items :</h4>
-
-  <div id="grocery-list" class="card overflow-y notepad-list" style="height: 400px;"></div>
-
-  <hr>
-
-  <!-- SAVE LIST CONTAINER (hidden until Save is pressed) -->
-  <div id="saveListContainer" class="save-list-container hidden">
-    <input class="text-input" type="text" id="saveListNameInput" placeholder="Enter list title...">
-    <div class="orange-btn" onclick="confirmSaveList()">✔ Save</div>
+  <div id="saveListContainer" class="save-name-row" style="display:none;">
+    <input id="saveListNameInput" placeholder="Name this list..." />
+    <button class="hdr-btn" onclick="confirmSaveList()">✓</button>
   </div>
 
-<!-- TEXT AND VOICE INPUT NAV ROW -->
-  <div class="blue-block flex-row">
-    <div class="orange-btn" onclick="voiceInput()">🎤</div>
-    <input class="text-input" type="text" id="textInput" placeholder="Add items here...">
-    <div class="orange-btn" onclick="addItems()">＋</div>
-    <div class="orange-btn" onclick="saveCurrentList()">💾 Save</div>
+
+
+  <div class="notepad-body">
+    <div id="grocery-list"></div>
+      <!-- BUTTONS ONLY ROW -->
+  <div class="toolbar-row">
+
+    <button class="hdr-btn" onclick="toggleSavedLists()">📋</button>
+
+
+    <button class="hdr-btn-label" onclick="saveCurrentList()">Save</button>
+
   </div>
-<!-- END TEXT AND VOICE INPUT NAV ROW -->
 
-</div>
-<!-- END GROCERY LIST -->
-
-<!-- =========================
-     GROCERY MENU TOGGLE SYSTEM
-     ========================= -->
-
-<div class="card" id="grocery-menu">
-
-    <h3>◆ 🛒 Grocery Menu :</h3>
-
-    <div class="orange-btn"
-         id="grocery-menu-toggle-button"
-         onclick="toggleGroceryMenu()">
-      ◆ - Open Menu - ◆ 
-
-    </div>
-
-    <div id="grocery-menu-list" class="toggle-menu-list hidden"></div>
-
-</div>
-
-<!-- END GROCERY MENU TOGGLE SYSTEM -->
-
-<!-- SHARE -->
-<div class="card">
-  <div class="blue-block">◆ Share This App ◆</div>
-  <div class="tip-box">
-    <p>Enjoying the app? Share it with friends and family so they can try it too.</p>
   </div>
-</div>
+
+  <!-- INPUT IS COMPLETELY SEPARATE -->
+  <div class="block-flex-row-no-border">
+    <input class="text-input" id="textInput" placeholder="Add item..." />
+    <button class="hdr-btn" onclick="addItems()">＋</button>
+    <button class="hdr-btn" onclick="voiceInput()">🎤</button>  
+  </div>
+
+
+</main>
 
 <script>
 if ('serviceWorker' in navigator) {

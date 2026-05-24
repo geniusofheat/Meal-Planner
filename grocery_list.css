@@ -8,7 +8,7 @@
 }
 
 body {
-  background: #f0f0f0;
+  background: #ffffff;
   font-family: 'Crimson Pro', serif;
 }
 
@@ -45,7 +45,8 @@ header {
 ===================== */
 
 main {
-  background: #ffffff;
+  background-color: #ffffff !important;
+  background-image: none;
   max-width: 680px;
   margin: 16px auto 0;
   border-radius: 2px;
@@ -54,11 +55,15 @@ main {
   position: relative;
 }
 
+
+/* =====================
+   THIS CHANGES THE RED VERTICAL LINE
+===================== */
 /* Red margin line */
 main::before {
   content: '';
   position: absolute;
-  top: 0; left: 52px; bottom: 0;
+  top: 0; left: 62px; bottom: 0;/* Change the value of left */
   width: 1px;
   background: rgba(220, 80, 80, 0.4);
   pointer-events: none;
@@ -190,10 +195,17 @@ main::before {
   padding: 10px;
 }
 
+/* =========================
+   NOTEPAD-ROW CONTROLS THE ITEMS IN THE LIST
+   ========================= */
+/* =========================
+   THIS IS THE CHECKBOX PADDING
+   ========================= */
+
 .notepad-row {
   display: flex;
   align-items: center;
-  padding: 0 16px 0 60px;
+  padding: 0 16px 0 20px;/* This controls the space between the left edge and the checkbox */
   min-height: 44px;
   border-bottom: 1px solid var(--rule-blue);
   background: #ffffff;
@@ -201,7 +213,7 @@ main::before {
 }
 
 .notepad-row input[type="checkbox"] {
-  margin-right: 20px;
+  margin-right: 50px;
   accent-color: var(--gold);
   width: 16px;
   height: 16px;
@@ -223,7 +235,7 @@ main::before {
 .notepad-row .remove-btn {
   background: none;
   border: none;
-  color: #ccc;
+  color: var(--gold);
   font-size: 16px;
   cursor: pointer;
   padding: 4px 8px;
@@ -448,6 +460,7 @@ footer {
 #grocery-list {
   flex: 1;
   overflow-y: auto;
+  background: #ffffff;
 }
 .grocery-list-title {
   font-family: 'Playfair Display', serif;
