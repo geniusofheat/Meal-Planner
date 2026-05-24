@@ -91,7 +91,7 @@ function renderList() {
   const items = getItems();
 
   if (!items.length) {
-    el.innerHTML = `<div class="grocery-list-placeholder">No items yet. Please use the button below to add items.</div>`;
+    el.innerHTML = `<div class="grocery-list-placeholder">No items yet. Please use the buttons below to add items.</div>`;
     return;
   }
 
