@@ -535,6 +535,15 @@ hr {
 
 
 /* ------ GROCERY LIST NOTEPAD MENU ---- */
+
+.grocery-list-placeholder {
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
 .notepad-list {
   width: 100%;
 }
