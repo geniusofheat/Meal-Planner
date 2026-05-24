@@ -36,9 +36,9 @@
 
 <!-- TEXT AND VOICE INPUT NAV ROW -->
   <div class="blue-block flex-row">
-    <div class="orange-btn" onclick="startVoice()">🎤</div>
+    <div class="orange-btn" onclick="voiceInput()">🎤</div>
     <input class="text-input" type="text" id="textInput" placeholder="Add items here...">
-    <div class="orange-btn" onclick="addFromInput()">＋</div>
+    <div class="orange-btn" onclick="addItems()">＋</div>
   </div>
 <!-- END TEXT AND VOICE INPUT NAV ROW -->
 
@@ -82,8 +82,6 @@ if ('serviceWorker' in navigator) {
 
 <script type="module" src="grocery_list_data.js"></script>
 <script type="module" src="firebase_login_auth.js"></script>
-<script src="//cdn.jsdelivr.net/npm/eruda"></script>
-<script>eruda.init();</script>
-  
+
 </body>
 </html>

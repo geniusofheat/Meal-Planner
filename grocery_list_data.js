@@ -134,14 +134,30 @@ function addItem(name) {
 }
 window.addItem = addItem;
 
-function addFromInput() {
+function addItems() {
   const input = document.getElementById("textInput");
   const name = input.value.trim();
   if (!name) return;
   addItem(name);
   input.value = "";
 }
-window.addFromInput = addFromInput;
+window.addItems = addItems;
+
+function voiceInput() {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = 'en-US';
+  recognition.start();
+
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById("textInput").value = transcript;
+  };
+
+  recognition.onerror = function(event) {
+    console.error("Voice error:", event.error);
+  };
+}
+window.voiceInput = voiceInput;
 
 /* =========================
    REMOVE ITEM
