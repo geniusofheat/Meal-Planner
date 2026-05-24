@@ -92,6 +92,7 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     await check_paid_status(user.uid);
     unlockGroceryMenu();
+    user.isFullVersion = cookbook_unlocked;
     await showPostLoginOptions(user);
     prefillContactForm(user);
 
