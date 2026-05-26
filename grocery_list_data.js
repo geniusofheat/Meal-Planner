@@ -96,7 +96,7 @@ function renderList() {
 
   el.innerHTML =
 `<div class="grocery-list-title">
-  ${activeListName === "Default" ? "Default (Default List)" : activeListName}
+  ${activeListName === "Default" ? "Default List :" : activeListName}
 </div>` +
     items.map(item => `
       <div class="notepad-row">
