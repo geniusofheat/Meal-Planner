@@ -1,4 +1,4 @@
-
+const desserts_data = [
   {
     "id": "chocolate",
     "icon": "🍫",
