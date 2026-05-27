@@ -20,7 +20,11 @@ html, body {
   --text: #f0e8d0;
   --text-muted: rgba(240,232,208,0.55);
   --text-dim: rgba(200,169,110,0.65);
-  --blue-btn-bg: radial-gradient(circle at center, rgba(173,216,230,0.62) 0%, rgba(0,100,190,0.80) 48%, rgba(5,12,28,0.90) 100%);
+  --blue-btn-bg: radial-gradient(circle at center, 
+  	rgba(173,216,230,0.22) 0%,
+  	rgba(0,100,190,0.20) 48%, 
+  	rgba(5,12,28,0.20) 100%);
+  	
   --blue-bg: radial-gradient(circle at center, rgba(0,128,255,1) 0%, rgba(0,128,255,0.5) 50%, rgba(0,0,0,0.3) 100%);
   --blue-border: rgba(80,160,220,0.5);
   --blue-glow: rgba(0,202,255,0.5);
@@ -37,40 +41,65 @@ body {
 }
 
 p {
-  color: #fefeff;
-  text-indent: 5px;
+  color: #b3b3b3;
+  text-indent: 10px;
   padding: 10px;
-  font-size: 12px;
+  font-size: 16px;
 }
 
-h1 {
-  margin-top: 10px;
-  text-indent: 10px;
+
+
+h3 		{
+	font-family: 'Playfair Display', serif;
+	color: #c8a96e;
+  	margin: 5px 0px 15px 0px;
+  	text-align: center;
+  	letter-spacing: 0.03em;
 }
 
-h2 {
-  margin-top: 10px;
-  text-indent: 10px;
+h4 	    {
+  	font-family: 'Playfair Display', serif;
+  	text-align: center;
+  	margin: 10px auto;
+  	color: #c8a96e;
+    letter-spacing: 0.03em;
 }
 
-h3 {
-	font-family: 'Corinthia', handwriting;
-font-size: 32px;
-font-weight: 400;
-font-style: ;
-color: #c8a96e;
-  margin-top: 10px;
-  text-indent: 10px;
+#recipe_modal h3 {
+	font-family: 'Playfair Display', serif;
+  	text-align: center;
+  	margin: 20px auto;
 }
 
-h4 {
-  margin-top: 10px;
-  text-indent: 10px;
+#recipe_modal h4 {
+	font-family: 'Playfair Display', serif;
+  	text-align: left;
+  	margin: 20px auto;
+}
+
+h4.color {
+	color: yellow;
 }
 
 h5 {
-  margin-top: 10px;
-  text-indent: 10px;
+	font-family: 'Playfair Display', serif;
+  	text-align: left;
+  	margin: 10px auto;
+  	color: #c8a96e;
+}
+
+ul {
+	padding: 10px 20px;
+  	border-bottom: 1px solid gold;
+  	letter-spacing: 0.03em;
+	margin: 5px 20px;
+}
+li {
+	padding: 10px 20px;
+	color: #c2b997;
+}
+hr {
+	border: 1px solid #c8a96e;
 }
 
 .divider {
@@ -121,6 +150,7 @@ h5 {
   margin: 5px;
   padding: 10px;
 }
+
 
 /* SEARCH */
 .search-bar-container {
@@ -264,57 +294,12 @@ h5 {
 
 /* DYNAMIC LIST */
 .menu {
+  border: 1px solid orange;
   display: none;
-  background: var(--blue-btn-bg);
-  margin: 10px 0 0;
-}
-
-/* DYNAMIC LIST ITEM */
-.menu-item {
-display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 100%;
-  border: 3px solid var(--gold);
-  background: var(--gold-glow);
-  color: #e0f4ff;
-  font-size: 14px;
-  margin: 5px auto;
+  margin: 10px 40px;
 }
 
 /* DYNAMIC LIST ITEM ACTIVATED HEADER*/
-.menu-header {
-  display: inline-block;
-  justify-content: ;
-  align-items: center;
-  border: 3px solid var(--gold);
-  background: var(--blue-btn-bg);
-  color: #e0f4ff;
-  font-size: 14px;
-  margin: 5px auto;
-  border-radius: 10px;
-  color: gold;
-  font: serif 14px ;
-  padding: 5px;
-  margin-left: 0px;
-}
-
-/* DYNAMIC BUTTON */
-
-.menu-back-btn {
-  display: flex;
-  background-color: var(--blue-bg); 
-  height: 40px;
-  width: 80px;
-  border: 2px solid gold;
-  border-radius: 5px;
-  color: gold;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 10px;
-  margin-left: auto;  /* aligns button to the right */
-}
 
 .menu-item:last-child { 
 	margin-bottom: 0;
@@ -326,7 +311,6 @@ display: flex;
   align-items: center;
   height: 40px;
   width: 100%;
-  border: 3px solid var(--gold);
   background: var(--gold-glow);
   color: #e0f4ff;
   font-size: 14px;
@@ -355,13 +339,12 @@ display: flex;
     box-sizing:border-box;
 }
 
+
 #recipe_modal_title {
 	font-family: serif;
-    font-size:20px;color:gold;
-    margin-bottom:16px;
-    padding-right:30px;
     color: var(--gold);
 }
+
 
 #recipe_modal_content {
 	max-width:600px;
@@ -371,9 +354,10 @@ display: flex;
     border-radius:12px;
     padding:24px;
     position:relative;
-    max-height:85vh;
+    max-height:100vh;
     overflow-y:auto
 }
+
 
 #recipe_modal_close_btn {
 	position:absolute;
@@ -386,14 +370,15 @@ display: flex;
     cursor:pointer;
 }
     
-/* ================================================================
-   TOGGLE MENU — append these rules to cookbook_menu.css
-   ================================================================ */
+/* =======================================
+   TOGGLE MENU 
+   ==================================== */
 
 /* ── TOGGLE ROW (the tappable header) ── */
 .toggle-row {
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   align-items: center;
   padding: 14px 12px;
   border-bottom: 1px solid rgba(200,169,110,0.25);
@@ -408,20 +393,26 @@ display: flex;
 }
 
 .toggle-row:active {
-  background: rgba(200,169,110,0.08);
+	border: 1px solid gold;
 }
 
 .toggle-row.open {
-  background: rgba(200,169,110,0.10);
-  border-bottom-color: transparent;
+  border: 1px solid gold;
 }
 
 /* ── TOGGLE LABEL ── */
 .toggle-label {
   font-family: 'Playfair Display', serif;
-  font-size: 16px;
   color: #c8a96e;
   letter-spacing: 0.03em;
+}
+
+.toggle-label li {
+  font-family: 'Playfair Display', serif;
+  background: var(--gold-dim);
+  color: #c8a96e;
+  padding: 5px;
+  
 }
 
 /* ── TOGGLE ARROW ── */
@@ -439,40 +430,26 @@ display: flex;
 /* ── TOGGLE BODY (collapsed by default) ── */
 .toggle-body {
   display: none;
-  padding: 8px 12px 12px;
-  border-bottom: 1px solid rgba(200,169,110,0.18);
+  padding: 8px;
+  border-bottom: 1px solid gold
+  width: 100%;
+}
+
+
+.toggle-body ul li {
+  padding: 8px 0px;
 }
 
 .toggle-body.open {
   display: block;
+  border: 1px solid gold;
 }
 /* ── END TOGGLE MENU ── */
-/* ================================================================
-   STYLES FROM index.css NEEDED BY cookbook_menu.html
-   Paste these at the bottom of cookbook_menu.css
-   ================================================================ */
-
-/* ── HEADINGS ── */
-h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  color: #c8a96e;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-h4 {
-  font-family: 'Playfair Display', serif;
-  color: #c8a96e;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  text-indent: 10px;
-}
 
 /* ── FLEX ROW CARD MODIFIER ── */
 .flex-row {
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -531,8 +508,8 @@ h4 {
 
 .nav-welcome-message {
   flex: 1;
-  font-size: 12px;
-  color: rgba(200,169,110,0.7);
+  font-size: 16px;
+  color: #b3b3b3;
   font-family: 'Lato', sans-serif;
 }
 
@@ -572,6 +549,4 @@ p.desc {
   font-style: italic;
   color: rgba(200,169,110,0.7);
 }
-/* ================================================================
-   END STYLES FROM index.css
-   ================================================================ */
+

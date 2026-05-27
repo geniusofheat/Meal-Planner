@@ -28,20 +28,16 @@ let current_cat_name = null;
 // ================================================================
 function toggleCategory(cat_id) {
   const list_el = document.getElementById(cat_id);
-  const header_el = document.getElementById(cat_id + '_header');
   if (!list_el) return;
 
   if (active_category && active_category !== cat_id) {
     const active_el = document.getElementById(active_category);
-    const active_head_el = document.getElementById(active_category + '_header');
     if (active_el) { active_el.innerHTML = ''; active_el.style.display = 'none'; }
-    if (active_head_el) active_head_el.innerHTML = '';
   }
 
   if (list_el.style.display === 'block') {
     list_el.innerHTML = '';
     list_el.style.display = 'none';
-    if (header_el) header_el.innerHTML = '';
     active_category = null;
     return;
   }
@@ -51,7 +47,6 @@ function toggleCategory(cat_id) {
 
   if (!cat_data || cat_data.length === 0) {
     const li = document.createElement('li');
-    li.className = 'nested-li';
     li.textContent = 'Coming soon.';
     li.style.opacity = '0.5';
     list_el.appendChild(li);
@@ -59,83 +54,55 @@ function toggleCategory(cat_id) {
     cat_data.forEach(function (subcat, sub_idx) {
       const li = document.createElement('li');
       li.className = 'nested-li';
-      li.innerHTML = '<span class="recipe-label">' + subcat.icon + ' ' + subcat.name + '</span><span class="recipe-arrow">›</span>';
+      li.dataset.subIdx = sub_idx;
+li.innerHTML = subcat.name + ' ›';
       li.style.cursor = 'pointer';
-      li.addEventListener('click', function () { show_recipes(cat_id, sub_idx); });
+      li.addEventListener('click', function () { show_recipes(cat_id, sub_idx, li); });
       list_el.appendChild(li);
     });
   }
 
-  const header_text = cat_id.replace(/_/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
-  if (header_el) header_el.innerHTML = '<span>' + header_text + '</span>';
-
   list_el.style.display = 'block';
   const card_el = list_el.closest('.card');
   if (card_el) card_el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
   active_category = cat_id;
 }
-// END § 2
 
-
-function show_recipes(cat_id, sub_idx) {
+function show_recipes(cat_id, sub_idx, clicked_li) {
   const list_el  = document.getElementById(cat_id);
   const cat_data = cookbook_data[cat_id];
 
   if (!list_el || !cat_data) return;
 
   const subcat = cat_data[sub_idx];
-
   if (!subcat || !Array.isArray(subcat.recipes)) return;
 
-  list_el.innerHTML = '';
+  const existing = list_el.querySelector('.recipe-sublist');
 
-  const existing_sub_header = document.getElementById(cat_id + '_sub_header');
-  if (existing_sub_header) existing_sub_header.remove();
+  if (existing && existing.dataset.subIdx == sub_idx) {
+    existing.remove();
+    return;
+  }
 
-  const sub_header = document.createElement('div');
-  sub_header.id = cat_id + '_sub_header';
-  sub_header.className = 'menu-header';
-  sub_header.style.marginLeft = '20px';
-  sub_header.innerHTML = subcat.icon + ' ' + subcat.name;
+  if (existing) existing.remove();
 
-  list_el.parentNode.insertBefore(sub_header, list_el);
+  const recipe_ul = document.createElement('ul');
+  recipe_ul.className = 'recipe-sublist';
+  recipe_ul.dataset.subIdx = sub_idx;
 
-  const back_li = document.createElement('li');
-  back_li.className = 'menu-back-btn';
-  back_li.innerHTML = '← Back';
-  back_li.style.cursor = 'pointer';
-
-  back_li.onclick = function () {
-    const sub_head = document.getElementById(cat_id + '_sub_header');
-    if (sub_head) sub_head.remove();
-    toggleCategory(cat_id);
-  };
-
-  list_el.appendChild(back_li);
-
-// ── Build recipe list ──
-subcat.recipes.forEach(function (recipe, index) {
-  const li = document.createElement('li');
-  li.className = 'menu-item';
-  li.innerHTML = recipe.name;
-  li.style.cursor = 'pointer';
-
-  li.addEventListener('click', function () {
-    console.log("RECIPE CLICKED:", recipe);
-
-    open_recipe_modal(recipe, subcat.icon, subcat.name);
+  subcat.recipes.forEach(function (recipe, index) {
+    const li = document.createElement('li');
+    li.className = 'menu-item';
+    li.innerHTML = recipe.name;
+    li.style.cursor = 'pointer';
+    li.addEventListener('click', function () {
+      open_recipe_modal(recipe, subcat.icon, subcat.name);
+    });
+    recipe_ul.appendChild(li);
   });
 
-  li.dataset.catId = cat_id;
-  li.dataset.subIdx = String(sub_idx);
-  li.dataset.recipeIndex = String(index);
-
-  list_el.appendChild(li);
-});
+  clicked_li.insertAdjacentElement('afterend', recipe_ul);
 }
-
-
 // ================================================================
 //  § 4 — OPEN RECIPE MODAL
 // ================================================================
@@ -152,15 +119,15 @@ function open_recipe_modal(recipe, icon, cat_name) {
   title.textContent = icon + ' ' + recipe.name;
 
   let html = '';
-  html += '<p>' + recipe.servings + '</p>';
-  html += '<p>Ingredients</p><ul>';
+  html += '<h4 class="color">Serving Size : ' + recipe.servings + '</h4>';
+  html += '<h4>Ingredients :</h4><ul>';
 
   recipe.ingredients.forEach(function (ing) {
     html += '<li>' + ing + '</li>';
   });
 
   html += '</ul>';
-  html += '<p>Preparation</p>';
+  html += '<h4>Preparation :</h4>';
   html += '<p>' + recipe.prep + '</p>';
 
   html += '<button onclick="save_to_favorites()">Save</button>';

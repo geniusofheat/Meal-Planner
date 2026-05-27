@@ -16,34 +16,29 @@
 <!-- ── LOGIN NAV BAR ── -->
 <div id="auth-nav" class="card flex-row">
   <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
-  <button id="sign-out-btn" class="gold-btn" style="display:none;">Sign Out :</button>
+  <button id="sign-out-btn" class="orange-btn" style="margin-right: 20px;" >Sign Out :</button>
 </div>
 <!-- ── END LOGIN NAV BAR ── -->
 
 <!-- ── NAV BAR ── -->
 <div class="card flex-row">
-  <a id="homepage-redirect-link" class="gold-btn" href="index.html">🏠 Back:</a>
+  <a id="homepage-redirect-link" class="orange-btn" href="index.html">🏠 Back:</a>
   <div class="nav-divider"></div>
-  <a class="gold-btn" href="favorites_list.html">Fav's</a>
+  <a class="orange-btn" href="favorites_list.html">Fav's</a>
 </div>
 <!-- ── END NAV BAR ── -->
 
 <!-- COOKBOOK INTRO -->
 <div class="card">
   <h3>📖 Cookbook :</h3>
+  <hr>
   <p>All the recipes we provide are researched and verified by proven chef inspired ingredients and preparation instructions.</p>
   <p>The free version of cookbook allows you to view the items in the menu but only allows access to one recipe card until you subscribe to the full version.</p>
   <p class="desc">Browse the menu sections below or use the search bar to search for specific recipes or ingredients.</p>
 </div>
 <!-- END COOKBOOK INTRO -->
 
-<!-- INPUT NAV ROW -->
-<div class="card flex-row">
-  <div class="orange-btn" onclick="startVoice()">🎤</div>
-  <input class="text-input" type="text" id="search_input" placeholder="Enter Search Text..." onkeydown="search_on_enter(event)" autocomplete="off">
-  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
-</div>
-<!-- END INPUT NAV ROW -->
+
 
 <!-- Search results message -->
 <div id="search_results" class="search-error-message"></div>
@@ -53,7 +48,17 @@
 ══════════════════════════════════════ -->
 <div class="card" id="cookbook-toggle-menu">
 
-  <h3>📋 Menu :</h3>
+  <h3>📋 Menu Items :</h3>
+  
+  <hr>
+  
+  <!-- SEARCH ROW -->
+<div class="card flex-row">
+  <div class="orange-btn" onclick="startVoice()">🎤</div>
+  <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
+  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
+</div>
+<!-- END SEARCH ROW -->
 
   <!-- ── BEVERAGES ── -->
   <div class="toggle-row" id="Beverages" onclick="openToggle('beverages', this)">
@@ -62,7 +67,7 @@
   </div>
   <div class="toggle-body" id="beverages_toggle_body">
     <div id="beverages_header" class="menu-header"></div>
-    <ul class="menu" id="beverages"></ul>
+    <ul id="beverages"></ul>
   </div>
   <!-- ── END BEVERAGES ── -->
 
@@ -73,7 +78,7 @@
   </div>
   <div class="toggle-body" id="beans_and_legumes_toggle_body">
     <div id="beans_and_legumes_header" class="menu-header"></div>
-    <ul class="menu" id="beans_and_legumes"></ul>
+    <ul id="beans_and_legumes"></ul>
   </div>
   <!-- ── END BEANS AND LEGUMES ── -->
 
@@ -84,7 +89,7 @@
   </div>
   <div class="toggle-body" id="breads_and_grains_toggle_body">
     <div id="breads_and_grains_header" class="menu-header"></div>
-    <ul class="menu" id="breads_and_grains"></ul>
+    <ul id="breads_and_grains"></ul>
   </div>
   <!-- ── END BREADS AND GRAINS ── -->
 
@@ -95,7 +100,7 @@
   </div>
   <div class="toggle-body" id="desserts_toggle_body">
     <div id="desserts_header" class="menu-header"></div>
-    <ul class="menu" id="desserts"></ul>
+    <ul id="desserts"></ul>
   </div>
   <!-- ── END DESSERTS ── -->
 
@@ -106,7 +111,7 @@
   </div>
   <div class="toggle-body" id="dips_sauces_and_gravies_toggle_body">
     <div id="dips_sauces_and_gravies_header" class="menu-header"></div>
-    <ul class="menu" id="dips_sauces_and_gravies"></ul>
+    <ul id="dips_sauces_and_gravies"></ul>
   </div>
   <!-- ── END DIPS, SAUCES, AND GRAVIES ── -->
 
@@ -117,7 +122,7 @@
   </div>
   <div class="toggle-body" id="meats_toggle_body">
     <div id="meats_header" class="menu-header"></div>
-    <ul class="menu" id="meats"></ul>
+    <ul id="meats"></ul>
   </div>
   <!-- ── END MEATS ── -->
 
@@ -128,7 +133,7 @@
   </div>
   <div class="toggle-body" id="pastas_toggle_body">
     <div id="pastas_header" class="menu-header"></div>
-    <ul class="menu" id="pastas"></ul>
+    <ul id="pastas"></ul>
   </div>
   <!-- ── END PASTAS AND RICE ── -->
 
@@ -139,7 +144,7 @@
   </div>
   <div class="toggle-body" id="salads_toggle_body">
     <div id="salads_header" class="menu-header"></div>
-    <ul class="menu" id="salads"></ul>
+    <ul id="salads"></ul>
   </div>
   <!-- ── END SALADS ── -->
 
@@ -150,7 +155,7 @@
   </div>
   <div class="toggle-body" id="soups_and_stews_toggle_body">
     <div id="soups_and_stews_header" class="menu-header"></div>
-    <ul class="menu" id="soups_and_stews"></ul>
+    <ul id="soups_and_stews"></ul>
   </div>
   <!-- ── END SOUPS AND STEWS ── -->
 
@@ -161,7 +166,7 @@
   </div>
   <div class="toggle-body" id="vegetables_toggle_body">
     <div id="vegetables_header" class="menu-header"></div>
-    <ul class="menu" id="vegetables"></ul>
+    <ul id="vegetables"></ul>
   </div>
   <!-- ── END VEGETABLE DISHES ── -->
 
@@ -172,7 +177,7 @@
   </div>
   <div class="toggle-body" id="side_dishes_toggle_body">
     <div id="side_dishes_header" class="menu-header"></div>
-    <ul class="menu" id="side_dishes"></ul>
+    <ul id="side_dishes"></ul>
   </div>
   <!-- ── END SIDE DISHES ── -->
 
@@ -190,7 +195,7 @@
 <div id="recipe_modal">
   <div id="recipe_modal_content">
     <button id="recipe_modal_close_btn" onclick="close_recipe_modal()">✕</button>
-    <div id="recipe_modal_title"></div>
+    <h3 id="recipe_modal_title"></h3>
     <div id="recipe_modal_body"></div>
   </div>
 </div>
