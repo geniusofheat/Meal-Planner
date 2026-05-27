@@ -63,9 +63,9 @@ li.innerHTML = subcat.name + ' ›';
   }
 
   list_el.style.display = 'block';
-  const card_el = list_el.closest('.card');
-  if (card_el) card_el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  active_category = cat_id;
+const heading_el = list_el.previousElementSibling;
+if (heading_el) heading_el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+active_category = cat_id;
 }
 
 function show_recipes(cat_id, sub_idx, clicked_li) {
