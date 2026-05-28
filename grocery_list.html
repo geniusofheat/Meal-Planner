@@ -24,37 +24,45 @@
 
 <main class="main">
 
+<!-- GROCERY LIST NOTEPAD -->
   <div class="notepad-title-row">
     <div class="notepad-title">Grocery List</div>    <button class="hdr-btn" id="lockBtn" onclick="toggleLock()">🔓 Lock</button>
   </div>
+<!-- END GROCERY LIST NOTEPAD -->
 
+<!-- ADD ITEM INPUT ROW -->
   <div id="saveListContainer" class="save-name-row" style="display:none;">
+  	
     <input id="saveListNameInput" placeholder="Name this list..." />
+    
     <button class="hdr-btn" onclick="confirmSaveList()">✓</button>
   </div>
-
+<!-- END ADD ITEM INPUT ROW -->
 
 
   <div class="notepad-body">
     <div id="grocery-list"></div>
-      <!-- BUTTONS ONLY ROW -->
-  <div class="toolbar-row">
-
-    <button class="hdr-btn" onclick="toggleSavedLists()">📋</button>
-
-
-    <button class="hdr-btn-label" onclick="saveCurrentList()">Save</button>
-
-  </div>
-
-  </div>
-
-  <!-- INPUT IS COMPLETELY SEPARATE -->
-  <div class=".input-nav-row">
+    
+<!-- INPUT IS COMPLETELY SEPARATE -->
+  <div class="block-flex-row-no-border">
     <input class="text-input" id="textInput" placeholder="Add item..." />
     <button class="hdr-btn" onclick="addItems()">＋</button>
     <button class="hdr-btn" onclick="voiceInput()">🎤</button>  
   </div>
+
+
+  <div class="toolbar-row">
+
+<!-- END SAVE LIST BUTTON AND CUSTOM LISTS BUTTON -->
+    <button class="hdr-btn" onclick="toggleSavedLists()">📋</button>
+
+
+    <button class="hdr-btn-label" onclick="saveCurrentList()">Save</button>
+<!-- END SAVE LIST BUTTON AND CUSTOM LISTS BUTTON -->
+  </div>
+
+  </div>
+
 
 
 </main>
