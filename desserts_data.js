@@ -1,185 +1,5 @@
 const desserts_data = [
-  {
-    "id": "chocolate",
-    "icon": "🍫",
-    "name": "Chocolate & Candy",
-    "desc": "Homemade chocolate bars, fondants, mousse, fudge, nougat, truffles, and candy creations from scratch.",
-    "recipes": [
-      {
-        "name": "3 Musketeers Style Bars",
-        "servings": "1 batch",
-        "ingredients": [
-          "1 cup (170 g) milk chocolate chips",
-          "1 cup (240 ml) whipped topping such as Cool Whip"
-        ],
-        "prep": "Melt chocolate chips and cool slightly. Fold in whipped topping until combined. Spread into a parchment lined dish and freeze 1 hour. Cut into bars and dip in melted chocolate. Let set on parchment."
-      },
-      {
-        "name": "Candy Bar Nougat",
-        "servings": "1 batch",
-        "ingredients": [
-          "1 cup (200 g) sugar",
-          "¼ cup (60 ml) water",
-          "¼ cup (80 g) corn syrup",
-          "2 large egg whites",
-          "1 tbsp sugar for meringue",
-          "½ tsp vanilla extract"
-        ],
-        "prep": "Cook sugar, water, and corn syrup to 260°F. Whip egg whites with 1 tbsp sugar to stiff peaks. Slowly pour hot syrup into whites while whipping. Add vanilla. Whip until thick and slightly cooled. Pour into a lined pan and let set."
-      },
-      {
-        "name": "Caramel Fudge",
-        "servings": "1 batch",
-        "ingredients": [
-          "1 can (14 oz) sweetened condensed milk",
-          "½ cup (115 g) unsalted butter",
-          "1 cup (220 g) packed brown sugar",
-          "1 cup (170 g) white chocolate chips",
-          "1 tsp vanilla extract"
-        ],
-        "prep": "Combine condensed milk, butter, and brown sugar in a heavy saucepan. Stir constantly until mixture reaches 235°F. Remove from heat, add white chocolate chips and vanilla, stir until smooth. Pour into a lined pan and chill until set. Cut into squares."
-      },
-      {
-        "name": "Caramel Shortbread Twix Bars",
-        "servings": "1 batch",
-        "ingredients": [
-          "Shortbread: 1 cup (226 g) butter softened, ½ cup (60 g) powdered sugar, 2 cups (240 g) all-purpose flour, pinch of salt",
-          "Caramel: 1 cup (220 g) brown sugar, ½ cup (115 g) butter, ½ cup (120 ml) heavy cream, 1 tsp vanilla",
-          "1½ cups (255 g) chocolate chips, melted"
-        ],
-        "prep": "Press shortbread into a lined pan and bake at 325°F for 18–20 minutes. Cool. Make caramel by cooking brown sugar, butter, and cream until thickened. Pour over shortbread. Cool. Pour melted chocolate over caramel layer. Chill until set then cut into bars."
-      },
-      {
-        "name": "Cherry Fondant",
-        "servings": "1 batch",
-        "ingredients": [
-          "1 can (14 oz) sweetened condensed milk",
-          "½ cup (115 g) butter, room temperature",
-          "3 cups (360 g) powdered sugar",
-          "Red food coloring",
-          "½ cup dried cherries, rehydrated and finely chopped"
-        ],
-        "prep": "Beat butter until smooth. Add condensed milk. Gradually add powdered sugar until a firm pliable dough forms. Add food coloring and cherries. Knead until evenly combined. Roll into balls or press into molds and refrigerate until firm."
-      },
-      {
-        "name": "Chocolate Covered Strawberries",
-        "servings": "1 batch",
-        "ingredients": [
-          "1 lb (450 g) fresh strawberries, rinsed and dried completely",
-          "2 cups (340 g) dark or milk chocolate chips",
-          "1 tbsp coconut oil or shortening",
-          "White chocolate for drizzle (optional)"
-        ],
-        "prep": "Melt chocolate chips with coconut oil in a double boiler or microwave in 30-second intervals, stirring until smooth. Dip each strawberry into chocolate holding by the stem. Allow excess to drip off. Place on parchment paper. Drizzle with white chocolate if desired. Refrigerate 15 minutes until set."
-      },
-      {
-        "name": "Chocolate Mousse",
-        "servings": "4 servings",
-        "ingredients": [
-          "6 oz (170 g) dark chocolate, finely chopped",
-          "3 tbsp (45 g) unsalted butter",
-          "3 large eggs, separated",
-          "3 tbsp (37 g) sugar",
-          "1 cup (240 ml) heavy cream",
-          "¼ tsp cream of tartar",
-          "1 tsp vanilla extract"
-        ],
-        "prep": "Melt chocolate and butter over a double boiler. Cool slightly. Whisk egg yolks and 2 tbsp sugar into chocolate. Beat egg whites with cream of tartar to soft peaks, add remaining sugar, beat to stiff peaks. Whip cream to soft peaks. Fold egg whites into chocolate then fold in whipped cream. Chill at least 2 hours."
-      },
-      {
-        "name": "Chocolate Truffles",
-        "servings": "~24 truffles",
-        "ingredients": [
-          "8 oz (225 g) dark chocolate, finely chopped",
-          "½ cup (120 ml) heavy cream",
-          "2 tbsp (30 g) unsalted butter",
-          "1 tsp vanilla extract",
-          "Cocoa powder, powdered sugar, or crushed nuts for rolling"
-        ],
-        "prep": "Heat cream to a simmer. Pour over chopped chocolate, let sit 2 minutes, then stir until smooth. Add butter and vanilla. Chill 2 hours until firm. Use a melon baller or spoon to scoop and roll into balls. Roll in cocoa powder or coatings of choice. Refrigerate until serving."
-      },
-      {
-        "name": "Fruit Gummies",
-        "servings": "1 batch",
-        "ingredients": [
-          "1 cup fresh fruit puree",
-          "2 tbsp honey or sugar",
-          "2½ tsp unflavored powdered gelatin",
-          "2 tbsp cold water"
-        ],
-        "prep": "Bloom gelatin in cold water 5 minutes. Warm fruit puree with honey — do not boil. Add bloomed gelatin and stir until fully dissolved. Pour into silicone molds and refrigerate at least 2 hours."
-      },
-      {
-        "name": "Fudge Bars",
-        "servings": "1 batch",
-        "ingredients": [
-          "1½ cups (300 g) sugar",
-          "1 cup (240 ml) water",
-          "½ cup (115 g) butter",
-          "400 g (14 oz) powdered milk",
-          "50 g (1.8 oz) cocoa powder",
-          "1 tsp vanilla extract"
-        ],
-        "prep": "Boil sugar and water until syrupy. Remove from heat and add butter. Mix powdered milk and cocoa in a large bowl. Pour hot syrup over dry mix. Add vanilla and stir well. Spread into a lined pan and chill until firm. Cut into bars."
-      },
-      {
-        "name": "Homemade Chocolate Bars — Dark",
-        "servings": "1 batch",
-        "ingredients": [
-          "4 tsp powdered sugar",
-          "6 tsp cocoa powder",
-          "4 tsp coconut oil, melted",
-          "½ tsp vanilla extract"
-        ],
-        "prep": "Mix all ingredients until completely smooth. Pour into a silicone mold and tap to remove air bubbles. Refrigerate until set, about 30 minutes."
-      },
-      {
-        "name": "Homemade Chocolate Bars — Milk",
-        "servings": "1 batch",
-        "ingredients": [
-          "4 tsp powdered sugar",
-          "2 tsp powdered milk",
-          "2 tsp cocoa powder",
-          "4 tsp coconut oil, melted",
-          "½ tsp vanilla extract"
-        ],
-        "prep": "Mix all ingredients until smooth. Pour into a silicone mold and refrigerate until set."
-      },
-      {
-        "name": "Homemade Chocolate Bars — White",
-        "servings": "1 batch",
-        "ingredients": [
-          "2 tsp powdered sugar",
-          "6 tsp powdered milk",
-          "5 tsp coconut oil, melted",
-          "½ tsp vanilla extract"
-        ],
-        "prep": "Mix all ingredients until smooth. Pour into a silicone mold and refrigerate until set."
-      },
-      {
-        "name": "Peanut Butter Fudge",
-        "servings": "1 batch",
-        "ingredients": [
-          "2 cups (400 g) granulated sugar",
-          "½ cup (120 ml) whole milk",
-          "1 cup (260 g) creamy peanut butter",
-          "1 tsp vanilla extract"
-        ],
-        "prep": "Combine sugar and milk in a heavy saucepan over medium heat. Bring to a boil stirring constantly. Cook to 235°F (soft ball stage). Remove from heat and immediately stir in peanut butter and vanilla. Stir vigorously until mixture thickens. Pour into a greased 8x8 pan. Cool completely before cutting into squares."
-      },
-      {
-        "name": "Vanilla Fondant",
-        "servings": "1 batch",
-        "ingredients": [
-          "2 cups (240 g) powdered sugar, sifted",
-          "2 tbsp (30 g) unsalted butter, softened",
-          "2–3 tbsp whole milk",
-          "1 tsp pure vanilla extract"
-        ],
-        "prep": "Beat butter until smooth. Add vanilla. Gradually add powdered sugar alternating with milk until a soft moldable consistency forms. Knead briefly until smooth. Shape as desired."
-      }
-    ]
-  },
+
   {
     "id": "cookies",
     "icon": "🍪",
@@ -437,6 +257,47 @@ const desserts_data = [
       }
     ]
   },
+  
+  
+  
+
+  
+      {
+    "id": "Confections",
+    "icon": "🍦",
+    "name": "Confections",
+    "desc": "A confection is any sweet food made primarily from sugar or other sweeteners, often combined with flavorings, colorings, or other ingredients. The term covers a broad range of sweets including candy, chocolate, fudge, fondant, nougat, and decorative sugar work like royal icing. In baking and pastry arts, confections are typically made by cooking sugar to specific temperatures to achieve different textures ranging from soft and creamy to hard and brittle..",
+    "recipes": [
+    	
+     {name:"Fondant",servings:"1 serving = 1 pound",ingredients:["1/2 cup soft butter","3 cups of powdered sugar","1 cup of milk","1 packet of gelatine(flavored or unflavored)","1 cup of corn syrup","2 tsp of glycerine"],prep:"Place 1/2 cup of milk and 1 pack of gelatine in a large mixing bowl and stir until dissolved. Reserve the other 1/2 cup of milk. Wait 3 or 4 minutes for the gelatine to hydrate. Pour the hydrated gelatine into a small sauce pan and heat on low until syrupy. Pour back into the mixing bowl. Add the corn syrup, vanilla extract, glycerine, soft butter, and 1/2 cup of milk. Mix well. Add 3 cups of powdered sugar. Mix until a dough ball forms. Add more sugar if too sticky. Add more milk if too dry. Knead until smooth. Cover and refridgerate."},
+
+      {name:"Vanilla Fondant",servings:"1 batch",ingredients:["2 cups (240 g) powdered sugar, sifted","2 tbsp (30 g) unsalted butter, softened","2–3 tbsp whole milk","1 tsp pure vanilla extract"],prep:"Beat butter until smooth. Add vanilla. Gradually add powdered sugar alternating with milk until a soft moldable consistency forms. Knead briefly until smooth. Shape as desired."},
+      
+      {name:"Cherry Fondant",servings:"1 batch",ingredients:["1 can (14 oz) sweetened condensed milk","½ cup (115 g) butter, room temperature","3 cups (360 g) powdered sugar","Red food coloring","½ cup dried cherries, rehydrated and finely chopped"],prep:"Beat butter until smooth. Add condensed milk. Gradually add powdered sugar until a firm pliable dough forms. Add food coloring and cherries. Knead until evenly combined. Roll into balls or press into molds and refrigerate until firm."},
+
+      {name:"Candy Bar Nougat",servings:"1 batch",ingredients:["1 cup (200 g) sugar","¼ cup (60 ml) water","¼ cup (80 g) corn syrup","2 large egg whites","1 tbsp sugar for meringue","½ tsp vanilla extract"],prep:"Cook sugar, water, and corn syrup to 260°F. Whip egg whites with 1 tbsp sugar to stiff peaks. Slowly pour hot syrup into whites while whipping. Add vanilla. Whip until thick and slightly cooled. Pour into a lined pan and let set."},
+      
+      {name:"Chocolate Fudge",servings:"16 squares",ingredients:["3 cups semisweet chocolate chips","1 can sweetened condensed milk","1 tbsp butter","1 tsp vanilla extract"],prep:"Combine chocolate chips, condensed milk, and butter in a saucepan over low heat. Stir until melted and smooth. Remove from heat and add vanilla. Pour mixture into a parchment-lined pan and smooth top. Chill until firm then cut into squares."},
+      
+      
+      {name:"Fudge Bars",servings:"1 batch",ingredients:["1½ cups (300 g) sugar","1 cup (240 ml) water","½ cup (115 g) butter","400 g (14 oz) powdered milk","50 g (1.8 oz) cocoa powder","1 tsp vanilla extract"],prep:"Boil sugar and water until syrupy. Remove from heat and add butter. Mix powdered milk and cocoa in a large bowl. Pour hot syrup over dry mix. Add vanilla and stir well. Spread into a lined pan and chill until firm. Cut into bars."},
+      
+       {name:"Peanut Butter Fudge",servings:"1 batch",ingredients:["2 cups (400 g) granulated sugar","½ cup (120 ml) whole milk","1 cup (260 g) creamy peanut butter","1 tsp vanilla extract"],prep:"Combine sugar and milk in a heavy saucepan over medium heat. Bring to a boil stirring constantly. Cook to 235°F (soft ball stage). Remove from heat and immediately stir in peanut butter and vanilla. Stir vigorously until mixture thickens. Pour into a greased 8x8 pan. Cool completely before cutting into squares."},
+      
+        {name:"Penuche Fudge",servings:"16 squares",ingredients:["2 cups brown sugar","1 cup milk","2 tbsp butter","1 tsp vanilla extract","1 cup chopped pecans"],prep:"Combine brown sugar, milk, and butter in saucepan and cook to soft-ball stage about 236°F. Remove from heat and beat mixture until thick and creamy. Stir in vanilla and pecans. Spread into greased pan and allow to set before cutting."},
+  
+        {name:"Royal Icing",servings:"1 batch",ingredients:["3 tbsp meringue powder","6 tbsp warm water","4 cups (480 g) powdered sugar, sifted"],prep:"Beat meringue powder and warm water until foamy. Add sifted powdered sugar and beat on high speed for 5–7 minutes until stiff glossy peaks form. For flooding consistency add water a few drops at a time. Keep covered with a damp cloth to prevent drying. Colors can be added with gel food coloring."}
+  
+      ]
+  },
+  
+  
+  
+  
+  
+  
+  
+  
   {
     "id": "creams",
     "icon": "🍦",
@@ -532,6 +393,21 @@ const desserts_data = [
         ],
         "prep": "Heat cream until just simmering. Pour over chocolate chips and let sit 2 minutes. Add butter and stir from the center outward until perfectly smooth and glossy. For a glaze use immediately. For frosting cool to room temperature and whip until fluffy. For truffles refrigerate until firm."
       },
+       {
+       	"name": "Chocolate Mousse",
+       	"servings": "4 servings",
+       	"ingredients": [
+       	"6 oz (170 g) dark chocolate, finely chopped",
+       	"3 tbsp (45 g) unsalted butter",
+       	"3 large eggs, separated",
+       	"3 tbsp (37 g) sugar",
+       	"1 cup (240 ml) heavy cream",
+       	"¼ tsp cream of tartar",
+       	"1 tsp vanilla extract"
+       	],
+       	"prep": "Melt chocolate and butter over a double boiler. Cool slightly. Whisk egg yolks and 2 tbsp sugar into chocolate. Beat egg whites with cream of tartar to soft peaks, add remaining sugar, beat to stiff peaks. Whip cream to soft peaks. Fold egg whites into chocolate then fold in whipped cream. Chill at least 2 hours."
+       },
+ 
       {
         "name": "Chocolate Pastry Cream",
         "servings": "1 batch",
