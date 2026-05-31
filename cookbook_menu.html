@@ -105,7 +105,7 @@
   <!-- ── END DESSERTS ── -->
 
   <!-- ── DIPS, SAUCES, AND GRAVIES ── -->
-  <div class="toggle-row" id="Dips_Sauces_And_Gravies" onclick="openToggle('dips_sauces_and_gravies', this)">
+  <div class="toggle-row" id="dips_sauces_And_gravies" onclick="openToggle('dips_sauces_and_gravies', this)">
     <span class="toggle-label">🥣 Dips, Sauces, & Gravies</span>
     <span class="toggle-arrow">▸</span>
   </div>
@@ -114,6 +114,18 @@
     <ul id="dips_sauces_and_gravies"></ul>
   </div>
   <!-- ── END DIPS, SAUCES, AND GRAVIES ── -->
+
+  <!-- ── HARD AND SOFT CANDY ── -->
+  <div class="toggle-row" id="Hard_And_Soft_Candy" onclick="openToggle('hard_and_soft_candy', this)">
+    <span class="toggle-label">🍬 Hard & Soft Candy</span>
+    <span class="toggle-arrow">▸</span>
+  </div>
+  <div class="toggle-body" id="hard_and_soft_candy_toggle_body">
+    <div id="hard_and_soft_candy_header" class="menu-header"></div>
+    <ul id="hard_and_soft_candy"></ul>
+  </div>
+  <!-- ── END HARD AND SOFT CANDY ── -->
+
 
   <!-- ── MEATS ── -->
   <div class="toggle-row" id="Meats" onclick="openToggle('meats', this)">
@@ -206,6 +218,7 @@
 <script src="breads_and_grains_data.js"></script>
 <script src="desserts_data.js"></script>
 <script src="dips_sauces_and_gravies_data.js"></script>
+<script src="hard_and_soft_candy_data.js"></script>
 <script src="meats_data.js"></script>
 <script src="pastas_data.js"></script>
 <script src="salads_data.js"></script>
@@ -216,41 +229,6 @@
 
 <script type="module" src="firebase_login_auth.js"></script>
 
-<!-- ── TOGGLE ACCORDION LOGIC ── -->
-<script>
-var _openCategory = null;
-var _openRow      = null;
-
-function openToggle(category, row) {
-  var body = document.getElementById(category + '_toggle_body');
-  if (!body) return;
-
-  // If this row is already open, close it
-  if (_openCategory === category) {
-    body.classList.remove('open');
-    row.classList.remove('open');
-    _openCategory = null;
-    _openRow      = null;
-    return;
-  }
-
-  // Close the previously open one
-  if (_openCategory) {
-    var prevBody = document.getElementById(_openCategory + '_toggle_body');
-    if (prevBody) prevBody.classList.remove('open');
-    if (_openRow)  _openRow.classList.remove('open');
-  }
-
-  // Open the new one and load its recipes
-  body.classList.add('open');
-  row.classList.add('open');
-  _openCategory = category;
-  _openRow      = row;
-
-  toggleCategory(category);
-}
-</script>
-<!-- ── END TOGGLE ACCORDION LOGIC ── -->
 
 </body>
 </html>

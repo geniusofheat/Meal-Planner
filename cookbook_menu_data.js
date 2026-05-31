@@ -5,9 +5,9 @@ const cookbook_data = {
   beverages: typeof beverages_data !== 'undefined' ? beverages_data : null,
   beans_and_legumes: typeof beans_and_legumes_data !== 'undefined' ? beans_and_legumes_data : null,
   breads_and_grains: typeof breads_and_grains_data !== 'undefined' ? breads_and_grains_data : null,
-  candy: typeof candy_data !== 'undefined' ? candy_data : null,
   desserts: typeof desserts_data !== 'undefined' ? desserts_data : null,
   dips_sauces_and_gravies: typeof dips_sauces_and_gravies_data !== 'undefined' ? dips_sauces_and_gravies_data : null,
+  hard_and_soft_candy: typeof hard_and_soft_candy_data !== 'undefined' ? hard_and_soft_candy_data : null,
   side_dishes: typeof side_dishes_data !== 'undefined' ? side_dishes_data : null,
   meats: typeof meats_data !== 'undefined' ? meats_data : null,
   pastas: typeof pastas_data !== 'undefined' ? pastas_data : null,
@@ -22,6 +22,45 @@ let current_recipe = null;
 let current_cat_name = null;
 // END § 1
 
+//- ── TOGGLE ACCORDION LOGIC ── 
+
+var _openCategory = null;
+var _openRow      = null;
+
+function openToggle(category, row) {
+  var body = document.getElementById(category + '_toggle_body');
+  if (!body) return;
+
+  // If this row is already open, close it
+  if (_openCategory === category) {
+    body.classList.remove('open');
+    row.classList.remove('open');
+    _openCategory = null;
+    _openRow      = null;
+    return;
+  }
+
+  // Close the previously open one
+  if (_openCategory) {
+    var prevBody = document.getElementById(_openCategory + '_toggle_body');
+    if (prevBody) prevBody.classList.remove('open');
+    if (_openRow)  _openRow.classList.remove('open');
+  }
+
+  // Open the new one and load its recipes
+  body.classList.add('open');
+  row.classList.add('open');
+  _openCategory = category;
+  _openRow      = row;
+
+  toggleCategory(category);
+  setTimeout(function () {
+  body.previousElementSibling.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, 150);
+}
+
+//-- ── END TOGGLE ACCORDION LOGIC ── 
+
 
 // ================================================================
 //  § 2 — TOGGLE CATEGORY
@@ -29,18 +68,6 @@ let current_cat_name = null;
 function toggleCategory(cat_id) {
   const list_el = document.getElementById(cat_id);
   if (!list_el) return;
-
-  if (active_category && active_category !== cat_id) {
-    const active_el = document.getElementById(active_category);
-    if (active_el) { active_el.innerHTML = ''; active_el.style.display = 'none'; }
-  }
-
-  if (list_el.style.display === 'block') {
-    list_el.innerHTML = '';
-    list_el.style.display = 'none';
-    active_category = null;
-    return;
-  }
 
   const cat_data = cookbook_data[cat_id];
   list_el.innerHTML = '';
@@ -55,26 +82,17 @@ function toggleCategory(cat_id) {
       const li = document.createElement('li');
       li.className = 'nested-li';
       li.dataset.subIdx = sub_idx;
-li.innerHTML = subcat.name + ' ›';
+      li.innerHTML = '<span class="subcat-chevron">▶</span> ' + subcat.name;
       li.style.cursor = 'pointer';
       li.addEventListener('click', function () { show_recipes(cat_id, sub_idx, li); });
       list_el.appendChild(li);
     });
   }
-
-  list_el.style.display = 'block';
-  
-list_el.style.display = 'block';
-active_category = cat_id;
-
-setTimeout(function() {
-  const heading_el = list_el.parentElement.previousElementSibling;
-  if (heading_el) {
-    heading_el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}, 150);
 }
 
+// ================================================================
+//  § 3 — SHOW RECIPES
+// ================================================================
 function show_recipes(cat_id, sub_idx, clicked_li) {
   const list_el  = document.getElementById(cat_id);
   const cat_data = cookbook_data[cat_id];
@@ -84,20 +102,30 @@ function show_recipes(cat_id, sub_idx, clicked_li) {
   const subcat = cat_data[sub_idx];
   if (!subcat || !Array.isArray(subcat.recipes)) return;
 
-  const existing = list_el.querySelector('.recipe-sublist');
+  const existing   = list_el.querySelector('.recipe-sublist');
+  const chevron_el = clicked_li.querySelector('.subcat-chevron');
 
   if (existing && existing.dataset.subIdx == sub_idx) {
     existing.remove();
+    if (chevron_el) chevron_el.textContent = '▶';
     return;
   }
 
-  if (existing) existing.remove();
+  if (existing) {
+    // Reset chevron on previously open subcat
+    const prev_li = list_el.querySelector('.nested-li[data-sub-idx="' + existing.dataset.subIdx + '"]');
+    if (prev_li) {
+      const prev_chevron = prev_li.querySelector('.subcat-chevron');
+      if (prev_chevron) prev_chevron.textContent = '▶';
+    }
+    existing.remove();
+  }
 
   const recipe_ul = document.createElement('ul');
   recipe_ul.className = 'recipe-sublist';
   recipe_ul.dataset.subIdx = sub_idx;
 
-  subcat.recipes.forEach(function (recipe, index) {
+  subcat.recipes.forEach(function (recipe) {
     const li = document.createElement('li');
     li.className = 'menu-item';
     li.innerHTML = recipe.name;
@@ -109,7 +137,9 @@ function show_recipes(cat_id, sub_idx, clicked_li) {
   });
 
   clicked_li.insertAdjacentElement('afterend', recipe_ul);
+  if (chevron_el) chevron_el.textContent = '▼';
 }
+
 // ================================================================
 //  § 4 — OPEN RECIPE MODAL
 // ================================================================
@@ -216,12 +246,6 @@ let plan_selected_dow = null;
 //  § 8 — INIT
 // ================================================================
 document.addEventListener('DOMContentLoaded', function () {
-  ['beverages','beans_and_legumes','breads_and_grains','desserts','side_dishes','meats','pastas','salads','soups_and_stews','candy','rice','dips_sauces_and_gravies','vegetables']
-    .forEach(function (id) {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-
   const modal = document.getElementById('recipe_modal');
   if (modal) {
     modal.addEventListener('click', function (e) {

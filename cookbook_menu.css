@@ -417,10 +417,11 @@ hr {
 
 /* ── TOGGLE ARROW ── */
 .toggle-arrow {
-  font-size: 14px;
+  font-size: 2em;
   color: #c8a96e;
   transition: transform 0.25s ease;
   display: inline-block;
+  margin-right: 40px;
 }
 
 .toggle-row.open .toggle-arrow {
@@ -431,7 +432,7 @@ hr {
 .toggle-body {
   display: none;
   padding: 8px;
-  border-bottom: 1px solid gold
+  border-bottom: 1px solid gold;
   width: 100%;
 }
 
@@ -550,3 +551,9 @@ p.desc {
   color: rgba(200,169,110,0.7);
 }
 
+.nested-li {
+  list-style: none;
+}
+.is-open {
+  display: block;
+}
