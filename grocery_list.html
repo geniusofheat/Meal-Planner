@@ -14,7 +14,7 @@
 
 <header>
   <div class="header-left">
-    <button onclick="handleBack()">← Back</button>
+    <button class="orange-btn" onclick="handleBack()">← Back</button>
   </div>
 
   <div class="header-right">
@@ -25,39 +25,44 @@
 <main class="main">
 
 <!-- GROCERY LIST NOTEPAD -->
-  <div class="notepad-title-row">
-    <div class="notepad-title">Grocery List</div>    <button class="hdr-btn" id="lockBtn" onclick="toggleLock()">🔓 Lock</button>
+  <div class="toolbar-row">
+    <div class="notepad-title">Grocery List :</div>    
+    
+    <button class="orange-btn" style="display: flex; justify-content: flex-end;" id="lockBtn" onclick="toggleLock()">🔓 Lock</button>
   </div>
 <!-- END GROCERY LIST NOTEPAD -->
 
-<!-- ADD ITEM INPUT ROW -->
-  <div id="saveListContainer" class="save-name-row" style="display:none;">
-  	
-    <input id="saveListNameInput" placeholder="Name this list..." />
-    
-    <button class="hdr-btn" onclick="confirmSaveList()">✓</button>
-  </div>
-<!-- END ADD ITEM INPUT ROW -->
-
-
   <div class="notepad-body">
     <div id="grocery-list"></div>
-    
-<!-- INPUT IS COMPLETELY SEPARATE -->
-  <div class="block-flex-row-no-border">
-    <input class="text-input" id="textInput" placeholder="Add item..." />
-    <button class="hdr-btn" onclick="addItems()">＋</button>
-    <button class="hdr-btn" onclick="voiceInput()">🎤</button>  
-  </div>
 
+<!-- GROCERY LIST TITLE INPUT ROW -->
+  <div id="saveListContainer" class="block-flex-row-no-border" style="display:none;">
+  	
+    <input id="saveListNameInput" class="text-input" placeholder="Name this list...">
+    
+    <button class="orange-btn-44" onclick="confirmSaveList()">Save :</button>
+  </div>
+<!-- END GROCERY LIST TITLE INPUT ROW -->
+
+
+<!-- ADD ITEM INPUT ROW -->
+  <div class="toolbar-row">
+  	
+    <input class="text-input" id="textInput" placeholder="Add item...">
+    
+    <button class="orange-btn-44" onclick="addItems()">＋</button>
+    
+    <button class="orange-btn-44" onclick="voiceInput()">🎤</button>  
+  </div>
+<!-- END ADD ITEM INPUT ROW -->
 
   <div class="toolbar-row">
 
 <!-- END SAVE LIST BUTTON AND CUSTOM LISTS BUTTON -->
-    <button class="hdr-btn" onclick="toggleSavedLists()">📋</button>
+    <button class="orange-btn" onclick="toggleSavedLists()">📋</button>
 
 
-    <button class="hdr-btn-label" onclick="saveCurrentList()">Save</button>
+    <button class="orange-btn" onclick="saveCurrentList()">Save</button>
 <!-- END SAVE LIST BUTTON AND CUSTOM LISTS BUTTON -->
   </div>
 

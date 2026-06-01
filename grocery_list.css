@@ -41,6 +41,36 @@ header {
 }
 
 /* =====================
+	BUTTONS
+===================== */
+
+.orange-btn    {
+  padding: 4px; 
+  font-family: 'Playfair Display', serif;
+  background: orange;
+  border: 2px solid gold;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  margin: 5px 5px;
+}
+
+.orange-btn-44 {
+  width: 44px;
+  height: 44px;
+  padding: 4px; 
+  font-family: 'Playfair Display', serif;
+  background: orange;
+  border: 2px solid gold;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  margin: 0px 5px;
+}
+
+
+
+/* =====================
    MAIN — NOTEPAD
 ===================== */
 
@@ -392,22 +422,20 @@ footer {
 ===================== */
 
 .toolbar-row {
-  max-width: 680px;
-  margin: 10px auto 24px;
 
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;   /* prevents stacking */
-  align-items: center;
+  justify-content: center;
+  align-items:center;
 
   gap: 10px;
+  
+  max-width: 680px;
+  margin: 10px auto 24px;
 
   background: #1a1a2e;
   border: 1px solid var(--gold);
   border-radius: 6px;
   padding: 8px;
-
-  overflow-x: auto; /* prevents break on small screens */
 }
 
 /* INPUT MUST SHRINK, NOT PUSH BUTTONS DOWN */
@@ -471,3 +499,32 @@ footer {
   border-bottom: 2px solid var(--rule-blue);
   color: var(--ink);
 }
+
+/* --- SETTINGS ICON --- */
+#settings-button-outer {
+width: 48px;
+height: 48px;
+
+border: 2px solid gold;     /* outer gold border */
+border-radius: 12px;
+
+padding: 5px;               /* white space between borders */
+
+background: white;
+
+font-size: 24px;
+line-height: 1;
+text-align: center;
+
+box-sizing: border-box;
+}
+
+#tools_button::before {
+content: "";
+}
+
+#settings-button-inner {
+box-shadow: inset 0 0 0 2px #808080;
+background-color: #a0a0a0;
+}
+/* --- SETTINGS ICON --- */
