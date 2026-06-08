@@ -16,18 +16,14 @@ const FILES_TO_CACHE = [
   'full_version_index.html',  
   'icon-192.png',
   'icon-512.png',
-  'meal_planner_service_worker.js',
-
-  
-  'meal_planner.html',
-  'meal_planner_data.js',  
   'cookbook_menu.html',
   'cookbook_menu_data.js',  
   'favorites_list.html',
   'grocery_list.html',
   'firebase_config.js',
   'firebase_login_auth.js',
-
+  'meal_planner_manifest.json',
+  'meal_planner_data.js',  
   'meats_data.js',
   'dips_and_sauces_data.js',
   'desserts_data.js',
@@ -36,7 +32,6 @@ const FILES_TO_CACHE = [
   'beverages_data.js',
   'breads_and_grains_data.js',
   'candy_data.js',
-
   'salads_data.js',
   'seafood_data.js',
   'vegetables_data.js',
