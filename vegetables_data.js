@@ -1,5 +1,216 @@
 const vegetables_data = [
 
+// ===========================
+// 🌱 SPROUTS
+// ===========================
+{
+  id: 'sprouts',
+  icon: '🌱',
+  name: 'Sprouts',
+  desc: 'Edible sprouts grown from seeds and legumes under controlled moisture, airflow, temperature, and light exposure.',
+  recipes: [
+    {
+      id: 'sp1',
+      name: 'Mung Bean Sprouts',
+      servings: 'N/A (growing batch)',
+      ingredients: [
+        '1/2 cup mung beans (raw, whole)',
+        'Wide-mouth glass jar',
+        'Sprouting mesh lid or cheesecloth',
+        'Cool filtered water'
+      ],
+      prep: 'Initial soak activates germination. After soak, sprouts must remain moist but never submerged. Proper airflow is required to prevent bacterial growth.',
+      growing_instructions: {
+        soak_phase: {
+          duration_hours: '8–12',
+          water_temp: 'Cool (60–75°F)',
+          purpose: 'Hydrates seed coat and initiates germination enzyme activity'
+        },
+
+        germination_phase: {
+          days_1_to_2: {
+            light: 'Dark or shaded cabinet',
+            action: 'Rinse and fully drain 2–3 times daily',
+            requirement: 'Jar must be angled for drainage (no standing water)',
+            expected_change: 'Seed splits and white tail emerges (1–5 mm)'
+          },
+
+          days_3_to_4: {
+            light: 'Indirect daylight only (no direct sun)',
+            action: 'Continue rinsing 2–3 times daily',
+            expected_change: 'Sprout elongates (1–2 inches), hulls loosen naturally',
+            warning: 'Overheating or poor drainage causes sour smell or mold'
+          }
+        },
+
+        harvest_conditions: {
+          ideal_length: '1–2 inches sprout length',
+          texture: 'Crisp, white with minimal yellowing',
+          timing: '2–4 days after soak',
+          stop_signs: 'Any sour odor, slimy texture, or fuzzy growth indicates spoilage'
+        },
+
+        environmental_requirements: {
+          airflow: 'Essential — stagnant air increases bacterial risk',
+          humidity: 'Moderate; jar must never retain pooled water',
+          temperature_range: '65–75°F optimal'
+        }
+      }
+    },
+
+    {
+      id: 'sp2',
+      name: 'Lentil Sprouts',
+      servings: 'N/A (growing batch)',
+      ingredients: [
+        '1/2 cup brown or green lentils',
+        'Sprouting jar',
+        'Clean water'
+      ],
+      prep: 'Lentils sprout quickly due to thin seed coats. Over-soaking causes decay and split seeds.',
+      growing_instructions: {
+        soak_phase: {
+          duration_hours: '8–10',
+          purpose: 'Softens seed coat for radicle emergence'
+        },
+
+        germination_phase: {
+          days_1_to_2: {
+            light: 'Dark storage preferred',
+            action: 'Rinse 2x daily, drain fully',
+            expected_change: 'Tiny white root tip appears within 24–36 hours'
+          },
+
+          days_2_to_3: {
+            light: 'Indirect light acceptable',
+            action: 'Continue rinsing twice daily',
+            expected_change: 'Sprouts reach 0.5–1 inch',
+            warning: 'Excess moisture causes fermentation smell'
+          }
+        },
+
+        harvest_conditions: {
+          ideal: 'Short tail sprouts (½–1 inch)',
+          timing: '2–3 days total',
+          note: 'Lentils are best slightly shorter than mung for texture balance'
+        }
+      }
+    },
+
+    {
+      id: 'sp3',
+      name: 'Alfalfa Sprouts',
+      servings: 'N/A (growing batch)',
+      ingredients: [
+        '1–2 tbsp alfalfa seeds',
+        'Fine mesh sprouting lid',
+        'Cool water'
+      ],
+      prep: 'Alfalfa is highly mold-sensitive and requires excellent airflow and low heat conditions.',
+      growing_instructions: {
+        soak_phase: {
+          duration_hours: '4–6',
+          purpose: 'Quick hydration only — over-soaking reduces germination quality'
+        },
+
+        germination_phase: {
+          days_1_to_3: {
+            light: 'Dark environment preferred',
+            action: 'Rinse 2–3 times daily, shake vigorously to aerate',
+            requirement: 'Must drain completely each rinse cycle'
+          },
+
+          days_3_to_5: {
+            light: 'Indirect sunlight only',
+            action: 'Continue rinsing 2x daily',
+            expected_change: 'Green leaf emergence begins'
+          }
+        },
+
+        harvest_conditions: {
+          ideal: 'Tiny green leaf cluster appears (4–6 days)',
+          texture: 'Crisp with mild grassy flavor',
+          warning: 'Strong odor or sliminess = discard batch'
+        }
+      }
+    },
+
+    {
+      id: 'sp4',
+      name: 'Broccoli Sprouts',
+      servings: 'N/A (growing batch)',
+      ingredients: [
+        '1 tbsp broccoli seeds',
+        'Shallow sprouting tray or jar',
+        'Filtered water'
+      ],
+      prep: 'Broccoli sprouts require cooler temperatures to preserve sulforaphane development.',
+      growing_instructions: {
+        soak_phase: {
+          duration_hours: '6–8'
+        },
+
+        germination_phase: {
+          days_1_to_2: {
+            light: 'Dark environment strictly required',
+            action: 'Rinse 2x daily, drain fully',
+            note: 'Avoid light exposure to maximize nutrient density'
+          },
+
+          days_2_to_4: {
+            light: 'Indirect light only',
+            action: 'Rinse twice daily',
+            expected_change: 'Small green cotyledons form'
+          }
+        },
+
+        harvest_conditions: {
+          ideal: '3–5 day harvest window',
+          note: 'Earlier harvest = higher sulforaphane concentration'
+        }
+      }
+    },
+
+    {
+      id: 'sp5',
+      name: 'Chickpea Sprouts',
+      servings: 'N/A (growing batch)',
+      ingredients: [
+        '1/2 cup chickpeas',
+        'Large sprouting jar',
+        'Clean water'
+      ],
+      prep: 'Chickpeas expand significantly and require high drainage capacity.',
+      growing_instructions: {
+        soak_phase: {
+          duration_hours: '12–18'
+        },
+
+        germination_phase: {
+          days_1_to_2: {
+            light: 'Dark preferred',
+            action: 'Rinse 3x daily',
+            note: 'High heat buildup risk — spread seeds evenly'
+          },
+
+          days_2_to_4: {
+            light: 'Indirect light',
+            action: 'Rinse 2–3x daily',
+            expected_change: 'Thick white shoots form'
+          }
+        },
+
+        harvest_conditions: {
+          ideal: '3–4 days',
+          texture: 'Crunchy, bean-like sprout',
+          warning: 'Any sour smell indicates fermentation failure'
+        }
+      }
+    }
+  ]
+},
+  
+  
   // ===========================
   // 🥗 VEGGIE SALADS
   // ===========================
@@ -76,7 +287,8 @@ const vegetables_data = [
       {id: 'gv2', name: 'Grilled Zucchini with Herbs', servings: '4 servings', ingredients: ['4 medium zucchini, sliced lengthwise into planks', '3 tbsp olive oil', '4 garlic cloves, minced', '1 tbsp fresh thyme', '1 tbsp fresh rosemary, chopped', 'Juice of 1 lemon', 'Salt and pepper', 'Parmesan shavings to serve'], prep: 'Slice zucchini lengthwise into ¼-inch thick planks. Whisk olive oil, garlic, thyme, rosemary, salt, and pepper. Brush both sides of zucchini planks with herb oil. Heat grill to medium-high and oil the grates. Grill zucchini 3–4 minutes per side until grill marks form and zucchini is tender but not mushy. Transfer to a platter and immediately squeeze lemon juice over. Top with Parmesan shavings.'},
       {id: 'gv3', name: 'Grilled Portobello Mushrooms', servings: '4 servings', ingredients: ['4 large portobello mushroom caps, stems removed', '4 tbsp olive oil', '4 garlic cloves, minced', '2 tbsp balsamic vinegar', '1 tbsp fresh thyme', '1 tbsp soy sauce', 'Salt and pepper', 'Fresh parsley to garnish'], prep: 'Wipe mushroom caps clean with a damp cloth. Whisk olive oil, garlic, balsamic, thyme, and soy sauce. Brush both sides of mushrooms generously with marinade. Let sit 15 minutes. Heat grill to medium-high. Grill mushrooms gill-side up 4–5 minutes, flip, then cook another 4–5 minutes. The mushrooms will release liquid — this is normal. Season with salt and pepper. Garnish with fresh parsley. Serve as a side or in a burger bun as a meat-free main.'},
       {id: 'gv4', name: 'Grilled Asparagus', servings: '4 servings', ingredients: ['2 lbs thick asparagus spears, woody ends snapped off', '3 tbsp olive oil', '4 garlic cloves, minced', 'Zest and juice of 1 lemon', '¼ cup Parmesan, grated', 'Salt and pepper', 'Red pepper flakes'], prep: 'Snap or cut the woody ends off asparagus. Toss with olive oil, garlic, salt, pepper, and red pepper flakes. Heat grill to high. Lay asparagus perpendicular to the grates so they do not fall through. Grill 2–4 minutes per side depending on thickness — they should be tender with good char marks but still have a slight bite. Transfer to a platter. Squeeze lemon juice over and top with lemon zest and Parmesan.'},
-      {id: 'gv5', name: 'Grilled Vegetable Platter', servings: '6 servings', ingredients: ['1 red bell pepper, quartered', '1 yellow bell pepper, quartered', '1 zucchini, sliced lengthwise', '1 eggplant, sliced into rounds', '1 red onion, sliced into thick rounds', '1 cup mushrooms', '4 tbsp olive oil', '2 tbsp balsamic vinegar', '2 garlic cloves, minced', '1 tbsp Italian seasoning', 'Salt and pepper', 'Fresh basil to garnish'], prep: 'Combine olive oil, balsamic, garlic, and Italian seasoning. Toss all vegetables with marinade and season with salt and pepper. Let sit 15 minutes. Heat grill to medium-high. Grill each vegetable by size — peppers and eggplant 4–5 minutes per side, zucchini and onions 3–4 minutes per side, mushrooms 3 minutes per side. Arrange on a large platter. Drizzle any remaining marinade over. Garnish with fresh basil.'}
+      {id: 'gv5', name: 'Grilled Vegetable Platter', servings: '6 servings', ingredients: ['1 red bell pepper, quartered', '1 yellow bell pepper, quartered', '1 zucchini, sliced lengthwise', '1 eggplant, sliced into rounds', '1 red onion, sliced into thick rounds', '1 cup mushrooms', '4 tbsp olive oil', '2 tbsp balsamic vinegar', '2 garlic cloves, minced', '1 tbsp Italian seasoning', 'Salt and pepper', 'Fresh basil to garnish'], prep: 'Combine olive oil, balsamic, garlic, and Italian seasoning. Toss all vegetables with marinade and season with salt and pepper. Let sit 15 minutes. Heat grill to medium-high. Grill each vegetable by size — peppers and eggplant 4–5 minutes per side, zucchini and onions 3–4 minutes per side, mushrooms 3 minutes per side. Arrange on a large platter. Drizzle any remaining marinade over. Garnish with fresh basil.'},
+      
     ]
   }
 

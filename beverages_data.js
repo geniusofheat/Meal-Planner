@@ -1,7 +1,7 @@
  const beverages_data = [
   {
     "id": "smoothies",
-    "icon": "🥤",
+    "icon": "🍵",
     "name": "Smoothies",
     "recipes": [
       {
@@ -226,7 +226,7 @@
   },
   {
     "id": "coffee",
-    "icon": "☕",
+    "icon": "🍵",
     "name": "Coffee & Espresso",
     "recipes": [
       {

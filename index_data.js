@@ -9,9 +9,11 @@ onAuthStateChanged(auth, async (user) => {
   const paid = snap.exists() && snap.data().paid === true;
 
   if (paid) {
-    window.location.replace('full_version_index.html');
+    await navigator.serviceWorker.ready;
+window.location.replace('full_version_index.html');
   } else {
-    window.location.replace('free_version_index.html');
+    await navigator.serviceWorker.ready;
+window.location.replace('free_version_index.html');
   }
 });
 
