@@ -6,8 +6,8 @@
 <title>Meal Planner Index :</title>
 <link href="https://fonts.googleapis.com/css2?family=Google+Sans&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="index.css">
-<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="account_type.css">
+<link rel="manifest" href="meal_planner_manifest.json">
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 	
 	<p>The cost for full version of the grocery list tool is $1, charged semi annual(Every 6 months). Read the next section to find out what the full version of the grocery list tool provides.</p>
 	
-	<a class="orange-btn" id="full-version-signup" href="login.html?card=create-account&plan=free">Sign Up !</a>
+	<a class="orange-btn" id="full-version-signup" href="index.html?card=create-account&plan=free">Sign Up !</a>
 	
 <ol>
 
@@ -114,12 +114,12 @@
     </ol>
   </ul>
   
- <a class="orange-btn" id="full-version-signup" href="login.html?card=create-account&plan=full">Sign Up !</a>
+ <a class="orange-btn" id="full-version-signup" href="index.html?card=create-account&plan=full">Sign Up !</a>
   
   </div>
   
 
-  <div class="blue-block" style="color: green;" onclick="window.location.href='login.html'">
+  <div class="blue-block" style="color: green;" onclick="window.location.href='index.html'">
   	
     " <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
       <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="20" fill="green">$</text>
@@ -154,8 +154,8 @@
   </div>
 </div>
 
-<script type="module" src="index_data.js"></script>
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('service_worker.js');}</script>
+<script type="module" src="account_type_data.js"></script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('meal_planner_service_worker.js');}</script>
 <script type="module" src="firebase_config.js"></script>
 <script type="module" src="firebase_login_auth.js"></script>
 

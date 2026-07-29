@@ -16,6 +16,36 @@ let currentUser       = null;
 let cookbook_unlocked = false;
 let preview_used      = false;
 
+// ── Card switcher (shared with index_data.js via window) ───────
+// Any card that should be part of the same-page switching system
+// must have its id listed here.
+const ALL_CARD_IDS = [
+  'sign-in-out',
+  'free_version_card',
+  'full_version_card',
+  'account-recovery',
+  'contfor-form'
+];
+
+window.showOnlyCard = function(idToShow) {
+  ALL_CARD_IDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.toggle('hidden', id !== idToShow);
+  });
+};
+
+// Show only the sign-in card by default the instant this runs.
+window.showOnlyCard('sign-in-out');
+
+// Delegated click handler: any link/button with data-show-card="id"
+// switches to that card, no matter where it's added in the future.
+document.addEventListener('click', (e) => {
+  const trigger = e.target.closest('[data-show-card]');
+  if (!trigger) return;
+  e.preventDefault();
+  window.showOnlyCard(trigger.getAttribute('data-show-card'));
+});
+
 // ── Update nav bar ─────────────────────────────────────────────
 export async function updateNavBar(user) {
   const navEmail   = document.getElementById('nav-user-email');
@@ -78,11 +108,14 @@ function unlockGroceryMenu() {
 }
 
 // ── Page destinations ──────────────────────────────────────────
-const LOGIN_PAGE = 'login.html';
+const LOGIN_PAGE = 'index.html';
 const FREE_PAGE  = 'free_version_index.html';
 const FULL_PAGE  = 'full_version_index.html';
 
-const on_login_page = window.location.pathname.includes('login');
+// The sign-in page is identified by the presence of the sign-in
+// form itself, not by filename — this keeps working even if the
+// page gets renamed again later.
+const on_login_page = !!document.getElementById('sign-in-form');
 
 // ── Auth state listener ────────────────────────────────────────
 onAuthStateChanged(auth, async (user) => {
@@ -102,15 +135,15 @@ onAuthStateChanged(auth, async (user) => {
       homeLink.href = cookbook_unlocked ? FULL_PAGE : FREE_PAGE;
     }
 
-    // ── Auto-redirect if already signed in and on login page ──
+    // ── Auto-redirect if already signed in and on sign-in page ─
     if (on_login_page) {
       window.location.href = cookbook_unlocked ? FULL_PAGE : FREE_PAGE;
       return;
     }
 
 } else {
-    // ── Not signed in — send to login if on a protected page ──
-    const on_public_page = on_login_page || window.location.pathname.includes('index');
+    // ── Not signed in — send to sign-in page if on a protected page ──
+    const on_public_page = on_login_page || window.location.pathname.includes('account_type');
     if (!on_public_page) {
       window.location.href = LOGIN_PAGE;
     }
@@ -131,7 +164,7 @@ export async function signIn(email, password, showError) {
 
   } catch (e) {
     if (e.code === 'auth/user-not-found') {
-      if (showError) showError('No account found. Please use the Create Account card to register.');
+      if (showError) showError('No account found. Please use the Create Account link to register.');
     } else {
       if (showError) showError('Incorrect email or password.');
     }
@@ -186,8 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (el) { el.textContent = msg; el.style.display = 'block'; }
   }
 
-  function showCreateError(msg) {
-    const el = document.getElementById('auth_error');
+  function showCreateError(msg, cardType) {
+    const el = document.getElementById(cardType === 'full' ? 'full_auth_error' : 'free_auth_error');
     if (el) { el.textContent = msg; el.style.display = 'block'; }
   }
 
@@ -199,13 +232,22 @@ document.addEventListener('DOMContentLoaded', () => {
     signIn(email, password, showSignInError);
   });
 
-  // ── CREATE ACCOUNT ────────────────────────────────────────
-  const createBtn = document.getElementById('email-create-btn');
-  if (createBtn) createBtn.addEventListener('click', () => {
-    const username = document.getElementById('create_username').value.trim();
-    const email    = document.getElementById('create_email').value.trim();
-    const password = document.getElementById('create_password').value;
-    createAccount(username, email, password, showCreateError);
+  // ── CREATE ACCOUNT — FREE VERSION ─────────────────────────
+  const freeCreateBtn = document.getElementById('free-create-btn');
+  if (freeCreateBtn) freeCreateBtn.addEventListener('click', () => {
+    const username = document.getElementById('free_username').value.trim();
+    const email    = document.getElementById('free_email').value.trim();
+    const password = document.getElementById('free_password').value;
+    createAccount(username, email, password, (msg) => showCreateError(msg, 'free'));
+  });
+
+  // ── CREATE ACCOUNT — FULL VERSION ─────────────────────────
+  const fullCreateBtn = document.getElementById('full-create-btn');
+  if (fullCreateBtn) fullCreateBtn.addEventListener('click', () => {
+    const username = document.getElementById('full_username').value.trim();
+    const email    = document.getElementById('full_email').value.trim();
+    const password = document.getElementById('full_password').value;
+    createAccount(username, email, password, (msg) => showCreateError(msg, 'full'));
   });
 
   // ── PASSWORD RECOVERY ────────────────────────────────────

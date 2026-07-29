@@ -1,0 +1,302 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.flex {
+	display: flex;
+	flex-direction: row;
+	margin: 0 auto;
+}
+
+.hidden {
+	display: none;
+}
+/* ================= ROOT COLORS ================= */
+:root {
+  --gold: #c8a96e;
+  --gold-border: rgba(200,169,110,0.55);
+  --gold-glow: rgba(200,169,110,0.07);
+  --text: #fefeff;
+
+  --blue-btn-bg: radial-gradient(circle at center,
+    rgba(173,216,230,0.62) 0%,
+    rgba(0,100,190,0.80) 48%,
+    rgba(5,12,28,0.90) 100%);
+
+  --blue-border: rgba(80,160,220,0.5);
+  --blue-glow: rgba(0,202,255,0.5);
+}
+
+/* ================= PAGE BACKGROUND ================= */
+body {
+  background: linear-gradient(160deg,
+    rgba(0,0,148,0.9) 0%,
+    rgba(22,46,95,0.80) 10%,
+    rgba(0,0,0,0.90) 100%);
+  font-family: 'Lato', sans-serif;
+  color: var(--text);
+}
+
+/* ================= APP WRAPPER ================= */
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ================= NAV ================= */
+.nav-card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gold;
+  border-radius: 5px;
+  background: linear-gradient(160deg,
+    rgba(0,50,120,0.35) 0%,
+    rgba(65,156,185,0.05) 80%,
+    rgba(50,50,50,0.30) 100%);
+  margin: 10px;
+  padding: 10px;
+}
+
+.nav-welcome-message {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  	color: gold;
+  	font-size: 10px;
+}
+
+/* ================= CARD ================= */
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid gold;
+  border-radius: 16px;
+  background: linear-gradient(160deg,
+    rgba(0,50,120,0.35) 0%,
+    rgba(65,156,185,0.05) 80%,
+    rgba(50,50,50,0.30) 100%);
+  margin: 5px;
+  padding: 10px;
+}
+
+/* ================= CARD CONTENT ================= */
+.card-header {
+  padding: 5px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+/* ================================================================
+   BLOCKS
+   ================================================================ */
+   .gold-block {
+   	  display: inline-block;
+	  border: 2px double gold;
+	  color: gold;
+	  margin: 0px; 
+	  background-color: var(--blue-btn-bg);
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+}
+
+   .white-block {
+   	  flex: none; 
+   	  display: inline-block
+  	  display: flex;
+	  border: 2px double white;
+	  color: black;
+	  margin: 0px; 
+	  background-color: white;
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+}
+
+   .blue-block {
+   	  display: flex;
+	  border: 2px double gold;
+	  color: var(--gold);
+	  margin: 10px; 
+	  background: var(--blue-btn-bg);
+	  justify-content: center; 
+	  padding: 10px; 
+	  align-items: center;
+	  height: 36px;
+	  border-radius: 10px;
+	  border: 2px solid gold;
+	  color: var(gold-glow);
+	  font-family: 'Roman', serif;
+	  font-size: 16px; letter-spacing: 0.10em;
+	  align-items: center; 
+	  padding: 5px;
+	  
+}
+
+
+/* ================================================================
+   BARS
+   ================================================================ */
+   .blue-bar {
+	  height: 36px;
+	  border-radius: 10px;
+	  border: 2px solid gold;
+	  background: var(--blue-bg);
+	  color: var(gold-glow);
+	  font-family: 'Playfair Display', serif;
+	  font-size: 14px; letter-spacing: 0.14em;
+	  display: block; 
+	  align-items: center; 
+	  justify-content: center;
+	  margin: 10px;
+	  padding: 5px;
+	  
+}
+.desc {
+  font-size: 12px;
+  color: var(--text);
+  margin: 5px 0;
+}
+
+/* ================= INPUTS ================= */
+.input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--gold);
+  background: #0f1a33;
+  color: var(--text);
+  margin: 5px 0;
+  width: 100%;
+}
+
+
+.gold-block {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+
+.orange-btn {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  padding: 5px; 
+  font-family: 'Playfair Display', serif;
+  background: orange;
+  border: 2px solid gold;
+  text-decoration: none;
+  color: black;
+  
+  margin: 0 auto;
+  
+}
+
+.gold-btn{
+  display block;
+  font-family: 'Playfair Display', serif;
+  background: gold;
+  border: 2px solid gold;
+  margin: auto; 
+  justify-content: center; 
+  padding: 5px; 
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+}
+
+.gold-btn-44{
+  display block;
+  font-family: 'Playfair Display', serif;
+  height: 44px; 
+  width: 44px; 
+  background: gold;
+  border: 2px solid gold;
+  margin: auto; 
+  justify-content: center; 
+  padding: 5px; 
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 150px;
+  border: 3px solid var(--gold);
+  background: var(--dim-orange);
+  color: #e0f4ff;
+  font-family: serif;
+  font-size: 14px;
+  margin: 5px auto
+  text-decoration: none;
+}
+
+
+.blue-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 3px solid var(--gold);
+  background: var(--blue-btn-bg);
+  color: #e0f4ff;
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  transition: filter 0.2s;
+  text-shadow: 0 0 8px rgba(120,200,255,0.4);
+  box-shadow: 0 0 18px var(--blue-glow), inset 0 1px 0 rgba(180,230,255,0.12);
+  padding: 5px;
+  margin: 5px auto;
+}
+.blue-btn:active { background-color: orange; color: #0a0904; }
+.blue-btn:disabled { opacity: 0.3; pointer-events: none; }
+
+.blue-btn-150 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  width: 150px;
+  border: 3px solid var(--gold);
+  background: var(--blue-btn-bg);
+  color: #e0f4ff;
+  font-size: 14px;
+  margin: 5px auto;
+  text-decoration: none;
+}
+
+
+
+
+/* ================= HORIZONTAL RULE ================= */
+hr {
+  border: none;
+  border-top: 1px solid var(--gold-border);
+  margin: 10px 0;
+}
