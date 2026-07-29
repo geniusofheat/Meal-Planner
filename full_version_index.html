@@ -6,7 +6,7 @@
 <title>Meal Planner — Full Account :</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&family=Crimson+Pro:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="account_type_stylesheet.css">
-<link rel="manifest" href="manifest.json">
+<link rel="manifest" href="meal_planner_manifest.json">
 </head>
 
 <body>
@@ -29,121 +29,151 @@
 
   <h3>Full Version Tools :</h3>
 
-  <p class="tool-tip">Tool features are explained in detail. Click the open button to open the tool.</p>
-
-  <hr>
-  
-  <!-- GROCERY LIST -->
- <div class="block-flex-row-no-border">
- 	
- 	 <h3>📋 Grocery List :</h3>
-  
-      <a href="grocery_list.html" class="orange-btn" >Open !</a>
-
-</div>
-
-  <div class="card flex-row">
-  	
-  	<div class"flex-column">
-  		
-    <h3>Features :</h3>
-  
-<ol>
-    <li><h5>Smart Add Tool :   <span class="red">+</span></h5>
-    	<p>Build your grocery list by typing an item name into the text box or speaking into the microphone(🎤) and pressing the add(+) button.</p></li>
-    
-    <li><h5>Smart Lock : 🔒</h5>
-    	<p>When shopping, check the items you purchase. Press the lock button to lock your selections.</p></li>
-    
-    <li><h5>Grocery Menu :</h5>
-    	<p>Browse a directory of grocery items within a smart menu to select multiple items without typing.</p></li>
-    
-    <li><h5>Grocery Menu Smart Search :</h5>
-    	<p>Search the grocery menu with the text box by typing a name or by speaking into the microphone(🎤).</p></li>
-    
-    <li><h5>Save Grocery List :</h5>
-    	<p>You can pin the grocery list to the meal planner for future reference. This allows you to plan a grocery trip for a specific day.</p></li>
-    </ol>
-    
-    </div>
-
-  </div>
-
-  <!-- COOKBOOK -->
-  <div class="block-flex-row-no-border">
-  
-  <h3>📖 Cookbook :</h3>    
-  
-  <a href="cookbook_menu.html" class="orange-btn">Open !</a>
-  
-  </div>
- 
-   <div class="card flex-row">
-   	
-   <div class"flex-column">
-   	
-   	<h3>Features :</h3>
-  
-  <ol>
-    <li><h5>Recipe Cards :</h5>
-    <p>You have access to hundreds of chef-inspired recipes sorted and alphabetized into categories. Each recipe card opens in its own popup window so you can keep your place in the menu.</p>
-
-    	</li>
-    
-    <li><h5>Favorite Recipes :</h5>
-    	<p>Add recipes to your favorites list by pressing the star button.</p>
-    	</li>
-    
-    <li><h5>Meal Planner Access :</h5>
-    	<p>Use recipes with the meal planner. Press the plan button within each recipe card.</p></li>
-    
-    <li><h5>Recipe Creator :</h5>
-    	<p>Recipe creator lets you create a recipe card with the same cookbook recipe layout. Accessible only in the cookbook.</p></li>
-    
-    <li><h5>Recipe Finder :</h5
-    ><p>The smart search tool lets you search recipes by name or ingredients. Use the text box or the microphone to search the cookbook.</p></li>
-    </ol>
-
-</div>
-
-  </div>
+  <p class="tool-tip">Tap a tool name to see its features. Click the open button to open the tool.</p>
 
   <hr>
 
-  <!-- RECIPE FINDER -->
-  <h4>🔎 Recipe Finder :</h4>
-  
-    <div class="card flex-row">
-    	
-    <p>Search the entire cookbook by recipe name or ingredients. The recipe finder scans every category and highlights every match so you can find exactly what you're looking for.</p>
-    
-    <a href="recipe_finder.html" class="orange-btn">Open !</a>
-  </div>
+  <ol class="tool-list" style="list-style-position:inside; padding-left:0;">
 
-  <hr>
+    <!-- GROCERY LIST -->
+    <li>
+      <div class="block-flex-row-no-border">
+        <h3 style="cursor:pointer;" onclick="toggleFeatures('grocery-list-features')">📋 Grocery List :</h3>
+        <a href="grocery_list.html" class="orange-btn">Open !</a>
+      </div>
 
-  <!-- FAVORITES -->
-  <h4>♡ Favorites List :</h4>
-  
-    <div class="card flex-row">
-    	
-    <p>Your personal collection of saved recipes all in one place. Save any recipe from the cookbook to your favorites list and access them any time.</p>
-    <a href="favorites_list.html" class="orange-btn">Open !</a>
-  </div>
+      <div class="card flex-row" id="grocery-list-features" style="display:none;">
+        <div class="flex-column">
+          <h3>Features :</h3>
+          <ol>
+            <li><h5>Smart Add Tool : <span class="red">+</span></h5>
+              <p>Build your grocery list by typing an item name into the text box or speaking into the microphone(🎤) and pressing the add(+) button.</p></li>
 
-  <hr>
+            <li><h5>Smart Lock : 🔒</h5>
+              <p>When shopping, check the items you purchase. Press the lock button to lock your selections.</p></li>
 
-  <!-- MEAL PLANNER -->
-  <h4>📅 Meal Planner :</h4>
+            <li><h5>Grocery Menu :</h5>
+              <p>Browse a directory of grocery items within a smart menu to select multiple items without typing.</p></li>
 
-  	<div class="card flex-row">
-  	
-    <p>Plan a different meal every day of the month by choosing recipes from the cookbook or your favorites list. You can also create your own recipe cards and save them to favorites for use in the planner.</p>
-    <a href="meal_planner.html" class="orange-btn">Open !</a>
-  </div>
+            <li><h5>Grocery Menu Smart Search :</h5>
+              <p>Search the grocery menu with the text box by typing a name or by speaking into the microphone(🎤).</p></li>
 
-  <hr>
-  
+            <li><h5>Save Grocery List :</h5>
+              <p>You can pin the grocery list to the meal planner for future reference. This allows you to plan a grocery trip for a specific day.</p></li>
+          </ol>
+        </div>
+      </div>
+      <hr>
+    </li>
+
+    <!-- COOKBOOK -->
+    <li>
+      <div class="block-flex-row-no-border">
+        <h3 style="cursor:pointer;" onclick="toggleFeatures('cookbook-features')">📖 Cookbook :</h3>
+        <a href="cookbook_menu.html" class="orange-btn">Open !</a>
+      </div>
+
+      <div class="card flex-row" id="cookbook-features" style="display:none;">
+        <div class="flex-column">
+          <h3>Features :</h3>
+          <ol>
+            <li><h5>Recipe Cards :</h5>
+              <p>You have access to hundreds of chef-inspired recipes sorted and alphabetized into categories. Each recipe card opens in its own popup window so you can keep your place in the menu.</p></li>
+
+            <li><h5>Favorite Recipes :</h5>
+              <p>Add recipes to your favorites list by pressing the star button.</p></li>
+
+            <li><h5>Meal Planner Access :</h5>
+              <p>Use recipes with the meal planner. Press the plan button within each recipe card.</p></li>
+
+            <li><h5>Recipe Creator :</h5>
+              <p>Recipe creator lets you create a recipe card with the same cookbook recipe layout. Accessible only in the cookbook.</p></li>
+
+            <li><h5>Recipe Finder :</h5>
+              <p>The smart search tool lets you search recipes by name or ingredients. Use the text box or the microphone to search the cookbook.</p></li>
+          </ol>
+        </div>
+      </div>
+      <hr>
+    </li>
+
+    <!-- RECIPE FINDER -->
+    <li>
+      <div class="block-flex-row-no-border">
+        <h3 style="cursor:pointer;" onclick="toggleFeatures('recipe-finder-features')">🔎 Recipe Finder :</h3>
+        <a href="recipe_finder.html" class="orange-btn">Open !</a>
+      </div>
+
+      <div class="card flex-row" id="recipe-finder-features" style="display:none;">
+        <div class="flex-column">
+          <h3>Features :</h3>
+          <ol>
+            <li><h5>Smart Search :</h5>
+              <p>Type into the text box or speak into the microphone(🎤) to search by recipe name or ingredient.</p></li>
+
+            <li><h5>Full Cookbook Scan :</h5>
+              <p>Every category in the cookbook is searched at once, so you never have to hunt through categories one by one.</p></li>
+
+            <li><h5>Highlighted Matches :</h5>
+              <p>Matching recipes are highlighted directly in the menu so you can jump straight to what you're looking for.</p></li>
+          </ol>
+        </div>
+      </div>
+      <hr>
+    </li>
+
+    <!-- FAVORITES -->
+    <li>
+      <div class="block-flex-row-no-border">
+        <h3 style="cursor:pointer;" onclick="toggleFeatures('favorites-features')">♡ Favorites List :</h3>
+        <a href="favorites_list.html" class="orange-btn">Open !</a>
+      </div>
+
+      <div class="card flex-row" id="favorites-features" style="display:none;">
+        <div class="flex-column">
+          <h3>Features :</h3>
+          <ol>
+            <li><h5>Save With One Tap :</h5>
+              <p>Press the star button on any recipe in the cookbook to add it straight to your favorites list.</p></li>
+
+            <li><h5>Quick Access :</h5>
+              <p>All of your saved recipes live together in one place, no digging through categories.</p></li>
+
+            <li><h5>Meal Planner Ready :</h5>
+              <p>Favorite recipes can be added directly to the meal planner calendar.</p></li>
+          </ol>
+        </div>
+      </div>
+      <hr>
+    </li>
+
+    <!-- MEAL PLANNER -->
+    <li>
+      <div class="block-flex-row-no-border">
+        <h3 style="cursor:pointer;" onclick="toggleFeatures('meal-planner-features')">📅 Meal Planner :</h3>
+        <a href="meal_planner.html" class="orange-btn">Open !</a>
+      </div>
+
+      <div class="card flex-row" id="meal-planner-features" style="display:none;">
+        <div class="flex-column">
+          <h3>Features :</h3>
+          <ol>
+            <li><h5>Monthly Calendar :</h5>
+              <p>Plan a different meal for every day of the month, laid out in a simple calendar view.</p></li>
+
+            <li><h5>Cookbook Integration :</h5>
+              <p>Choose recipes straight from the cookbook or your favorites list to fill in any day.</p></li>
+
+            <li><h5>Custom Recipes :</h5>
+              <p>Create your own recipe cards and use them in the plan right alongside cookbook recipes.</p></li>
+          </ol>
+        </div>
+      </div>
+      <hr>
+    </li>
+
+  </ol>
+
 </div>
 
 <!-- ── SHARE CARD ── -->
@@ -155,7 +185,14 @@
   <div class="page-ornament"></div>
 </div>
 
-<script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('service_worker.js'); }</script>
+<script>
+function toggleFeatures(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+}
+</script>
+<script>if('serviceWorker' in navigator){ navigator.serviceWorker.register('meal_planner_service_worker.js'); }</script>
 <script type="module" src="firebase_login_auth.js"></script>
 
 </body>
