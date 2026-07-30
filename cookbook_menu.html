@@ -24,7 +24,7 @@
 <div class="card flex-row">
   <a id="homepage-redirect-link" class="orange-btn" href="index.html">🏠 Back:</a>
   <div class="nav-divider"></div>
-  <a class="orange-btn" href="favorites_list.html">Fav's</a>
+  <a class="orange-btn" href="#" onclick="showCookbookPanel('favorites-panel'); return false;">Fav's</a>
 </div>
 <!-- ── END NAV BAR ── -->
 
@@ -38,13 +38,21 @@
 </div>
 <!-- END COOKBOOK INTRO -->
 
-<!-- SEARCH ROW -->
-<div class="card flex-row">
-  <div class="orange-btn" onclick="startVoice()">🎤</div>
-  <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
-  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
+<!-- COOKBOOK MENU LIST -->
+<div class="card">
+  <ol style="list-style-position:outside; padding-left:20px; margin:0;">
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('cookbook-toggle-menu')">📖 Recipes :</h3>
+    </li>
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('favorites-panel')">♡ Favorites Menu :</h3>
+    </li>
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('meal-planner-panel')">📅 Meal Planner :</h3>
+    </li>
+  </ol>
 </div>
-<!-- END SEARCH ROW -->
+<!-- END COOKBOOK MENU LIST -->
 
 <!-- Search results message -->
 <div id="search_results" class="search-error-message"></div>
@@ -52,13 +60,19 @@
 <!-- ══════════════════════════════════════
      COOKBOOK TOGGLE MENU
 ══════════════════════════════════════ -->
-<div class="card" id="cookbook-toggle-menu">
+<div class="card" id="cookbook-toggle-menu" style="display:none;">
 
-  <h3>📋 Recipes Menu :</h3>
+  <h3>📋 Menu Items :</h3>
   
   <hr>
   
-  
+  <!-- SEARCH ROW -->
+<div class="card flex-row">
+  <div class="orange-btn" onclick="startVoice()">🎤</div>
+  <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
+  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
+</div>
+<!-- END SEARCH ROW -->
 
   <!-- ── BEVERAGES ── -->
   <div class="toggle-row" id="Beverages" onclick="openToggle('beverages', this)">
@@ -198,6 +212,26 @@
      END COOKBOOK TOGGLE MENU
 ══════════════════════════════════════ -->
 
+<!-- ══════════════════════════════════════
+     FAVORITES PANEL — placeholder, not built yet
+══════════════════════════════════════ -->
+<div class="card" id="favorites-panel" style="display:none;">
+  <h3>♡ Favorites Menu :</h3>
+  <hr>
+  <p class="desc">Favorites isn't built yet — this panel is a placeholder until that page's content is ready.</p>
+</div>
+<!-- END FAVORITES PANEL -->
+
+<!-- ══════════════════════════════════════
+     MEAL PLANNER PANEL — placeholder, not built yet
+══════════════════════════════════════ -->
+<div class="card" id="meal-planner-panel" style="display:none;">
+  <h3>📅 Meal Planner :</h3>
+  <hr>
+  <p class="desc">Meal Planner isn't built yet — this panel is a placeholder until that page's content is ready.</p>
+</div>
+<!-- END MEAL PLANNER PANEL -->
+
 <div class="page-ornament">◆ ◆ ◆</div>
 
 </div>
@@ -212,6 +246,17 @@
   </div>
 </div>
 <!-- ── END RECIPE MODAL ── -->
+
+<script>
+function showCookbookPanel(id) {
+  var panels = ['cookbook-toggle-menu', 'favorites-panel', 'meal-planner-panel'];
+  var alreadyOpen = document.getElementById(id).style.display === 'block';
+  panels.forEach(function(pid) {
+    document.getElementById(pid).style.display = 'none';
+  });
+  if (!alreadyOpen) document.getElementById(id).style.display = 'block';
+}
+</script>
 
 <script src="beverages_data.js"></script>
 <script src="beans_and_legumes_data.js"></script>
