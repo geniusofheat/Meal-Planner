@@ -12,20 +12,30 @@
 <body>
 
 <div id="app">
-  <div class="card flex-row">
-<h2 style="text-align: center;">Cookbook :</h2>
-    <div class="orange-btn" style="flex-direction:column; height:auto; line-height:1.2; padding:5px 10px;" onclick="show_help_modal()">
+
+<!-- ── LOGIN NAV BAR ── -->
+<div id="auth-nav" class="card flex-row">
+  <div id="nav-user-email" class="nav-welcome-message">Welcome, Guest :</div>
+  <button id="sign-out-btn" class="orange-btn" style="margin-right: 20px;" >Sign Out :</button>
+</div>
+<!-- ── END LOGIN NAV BAR ── -->
+
+<!-- ── HEADER — Title + Date + Help, same row ── -->
+<div class="card flex-row" style="justify-content:space-between; align-items:center;">
+  <h3 style="margin:0;">📖&nbsp;&nbsp;Cookbook :</h3>
+  <div id="cookbookDateDisplay" style="font-size:11px; color:var(--gold, gold);"></div>
+  <div style="display:flex; flex-direction:column; align-items:center; cursor:pointer;" onclick="show_help_modal()">
     <span style="font-size:16px;">❓</span>
     <span style="font-size:10px;">Help</span>
-    </div>
   </div>
-<!-- ── NAV BAR ── -->
+</div>
+<!-- ── END HEADER ── -->
+
+<!-- ── TOOLBAR ROW ── -->
 <div class="card flex-row">
   <a id="homepage-redirect-link" class="orange-btn" href="index.html">🏠 Back:</a>
-  <div class="nav-divider"></div>
-
 </div>
-<!-- ── END NAV BAR ── -->
+<!-- ── END TOOLBAR ROW ── -->
 
 <!-- SHORT INTRO — always visible -->
 <div class="card">
@@ -39,9 +49,7 @@
 <!-- ══════════════════════════════════════
      COOKBOOK LIST CARD — everything lives in here
 ══════════════════════════════════════ -->
-<div class="card">
-  <h3 style="text-align: center;">Cookbook Tools :</h3>
-  <hr>
+<div class="card" id="cookbook-list-card">
   <ol style="list-style-position:outside; padding-left:20px; margin:0; width:100%; align-self:flex-start;">
 
     <!-- RECIPES -->
@@ -61,6 +69,7 @@
         <!-- ── BEVERAGES ── -->
         <div class="toggle-row" id="Beverages" onclick="openToggle('beverages', this)">
           <span class="toggle-label">🍷 Beverages</span>
+          <span class="add-recipe-btn" title="Add a recipe to Beverages" onclick="event.stopPropagation(); open_add_recipe_modal('beverages','Beverages')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="beverages_toggle_body">
@@ -72,6 +81,7 @@
         <!-- ── BEANS AND LEGUMES ── -->
         <div class="toggle-row" id="Beans_and_Legumes" onclick="openToggle('beans_and_legumes', this)">
           <span class="toggle-label">🫘 Beans & Legumes</span>
+          <span class="add-recipe-btn" title="Add a recipe to Beans & Legumes" onclick="event.stopPropagation(); open_add_recipe_modal('beans_and_legumes','Beans & Legumes')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="beans_and_legumes_toggle_body">
@@ -83,6 +93,7 @@
         <!-- ── BREADS AND GRAINS ── -->
         <div class="toggle-row" id="Breads_and_Grains" onclick="openToggle('breads_and_grains', this)">
           <span class="toggle-label">🍞 Breads & Grains</span>
+          <span class="add-recipe-btn" title="Add a recipe to Breads & Grains" onclick="event.stopPropagation(); open_add_recipe_modal('breads_and_grains','Breads & Grains')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="breads_and_grains_toggle_body">
@@ -94,6 +105,7 @@
         <!-- ── DESSERTS ── -->
         <div class="toggle-row" id="Desserts" onclick="openToggle('desserts', this)">
           <span class="toggle-label">🍰 Desserts</span>
+          <span class="add-recipe-btn" title="Add a recipe to Desserts" onclick="event.stopPropagation(); open_add_recipe_modal('desserts','Desserts')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="desserts_toggle_body">
@@ -105,6 +117,7 @@
         <!-- ── DIPS, SAUCES, AND GRAVIES ── -->
         <div class="toggle-row" id="dips_sauces_And_gravies" onclick="openToggle('dips_sauces_and_gravies', this)">
           <span class="toggle-label">🥣 Dips, Sauces, & Gravies</span>
+          <span class="add-recipe-btn" title="Add a recipe to Dips, Sauces, & Gravies" onclick="event.stopPropagation(); open_add_recipe_modal('dips_sauces_and_gravies','Dips, Sauces, & Gravies')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="dips_sauces_and_gravies_toggle_body">
@@ -116,6 +129,7 @@
         <!-- ── HARD AND SOFT CANDY ── -->
         <div class="toggle-row" id="Hard_And_Soft_Candy" onclick="openToggle('hard_and_soft_candy', this)">
           <span class="toggle-label">🍬 Hard & Soft Candy</span>
+          <span class="add-recipe-btn" title="Add a recipe to Hard & Soft Candy" onclick="event.stopPropagation(); open_add_recipe_modal('hard_and_soft_candy','Hard & Soft Candy')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="hard_and_soft_candy_toggle_body">
@@ -127,6 +141,7 @@
         <!-- ── MEATS ── -->
         <div class="toggle-row" id="Meats" onclick="openToggle('meats', this)">
           <span class="toggle-label">🥩 Meats</span>
+          <span class="add-recipe-btn" title="Add a recipe to Meats" onclick="event.stopPropagation(); open_add_recipe_modal('meats','Meats')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="meats_toggle_body">
@@ -138,6 +153,7 @@
         <!-- ── PASTAS AND RICE ── -->
         <div class="toggle-row" id="Pastas_And_Rice" onclick="openToggle('pastas', this)">
           <span class="toggle-label">🍝 Pastas & Rice</span>
+          <span class="add-recipe-btn" title="Add a recipe to Pastas & Rice" onclick="event.stopPropagation(); open_add_recipe_modal('pastas','Pastas & Rice')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="pastas_toggle_body">
@@ -149,6 +165,7 @@
         <!-- ── SALADS ── -->
         <div class="toggle-row" id="Salads" onclick="openToggle('salads', this)">
           <span class="toggle-label">🥗 Salads</span>
+          <span class="add-recipe-btn" title="Add a recipe to Salads" onclick="event.stopPropagation(); open_add_recipe_modal('salads','Salads')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="salads_toggle_body">
@@ -160,6 +177,7 @@
         <!-- ── SOUPS AND STEWS ── -->
         <div class="toggle-row" id="Soups_And_Stews" onclick="openToggle('soups_and_stews', this)">
           <span class="toggle-label">🍲 Soups & Stews</span>
+          <span class="add-recipe-btn" title="Add a recipe to Soups & Stews" onclick="event.stopPropagation(); open_add_recipe_modal('soups_and_stews','Soups & Stews')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="soups_and_stews_toggle_body">
@@ -171,6 +189,7 @@
         <!-- ── VEGETABLE DISHES ── -->
         <div class="toggle-row" id="Vegetable_Dishes" onclick="openToggle('vegetables', this)">
           <span class="toggle-label">🥦 Vegetable Dishes</span>
+          <span class="add-recipe-btn" title="Add a recipe to Vegetable Dishes" onclick="event.stopPropagation(); open_add_recipe_modal('vegetables','Vegetable Dishes')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="vegetables_toggle_body">
@@ -182,6 +201,7 @@
         <!-- ── SIDE DISHES ── -->
         <div class="toggle-row" id="Side_Dishes" onclick="openToggle('side_dishes', this)">
           <span class="toggle-label">🥔 Side Dishes</span>
+          <span class="add-recipe-btn" title="Add a recipe to Side Dishes" onclick="event.stopPropagation(); open_add_recipe_modal('side_dishes','Side Dishes')" style="margin-left:auto; margin-right:10px; cursor:pointer;">➕</span>
           <span class="toggle-arrow">▸</span>
         </div>
         <div class="toggle-body" id="side_dishes_toggle_body">
@@ -243,15 +263,15 @@
 </div>
 <!-- ── END APP WRAPPER ── -->
 
-<!-- ── RECIPE MODAL ── -->
-<div id="recipe_modal">
-  <div id="recipe_modal_content">
-    <button id="recipe_modal_close_btn" onclick="close_recipe_modal()">✕</button>
+<!-- ── RECIPE VIEW — same modal your JS already controls, now styled full-screen instead of a popup ── -->
+<div id="recipe_modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#0a0a1a; z-index:1000; overflow-y:auto;">
+  <div id="recipe_modal_content" style="padding:20px;">
+    <button id="recipe_modal_close_btn" class="orange-btn" onclick="close_recipe_modal()">← Back</button>
     <h3 id="recipe_modal_title"></h3>
     <div id="recipe_modal_body"></div>
   </div>
 </div>
-<!-- ── END RECIPE MODAL ── -->
+<!-- ── END RECIPE VIEW ── -->
 
 <!-- ── HELP MODAL ── -->
 <div id="help_modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999; overflow-y:auto;">
@@ -265,6 +285,31 @@
   </div>
 </div>
 <!-- ── END HELP MODAL ── -->
+
+<!-- ── ADD RECIPE MODAL (per-category) ── -->
+<div id="add_recipe_modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999; overflow-y:auto;">
+  <div class="card" style="max-width:500px; margin:40px auto; padding:20px; position:relative;">
+    <button class="orange-btn" onclick="close_add_recipe_modal()" style="position:absolute; top:10px; right:10px;">✕</button>
+    <h3 id="add_recipe_modal_title">Add Recipe :</h3>
+    <hr>
+
+    <input class="text-input" type="text" id="add_recipe_name" placeholder="Recipe name" style="margin-bottom:5px;">
+    <input class="text-input" type="text" id="add_recipe_servings" placeholder="Serving size (e.g. Serves 4)" style="margin-bottom:5px;">
+
+    <h4>Ingredients :</h4>
+    <div id="add_recipe_ingredients_list">
+      <input class="text-input add-recipe-ingredient-input" type="text" placeholder="Ingredient" style="margin-bottom:5px;">
+    </div>
+    <div class="orange-btn" onclick="add_recipe_ingredient_field()" style="margin-bottom:10px;">+ Add Ingredient</div>
+
+    <h4>Preparation :</h4>
+    <textarea class="text-input" id="add_recipe_prep" placeholder="Preparation steps" style="height:100px; margin-bottom:10px;"></textarea>
+
+    <button class="orange-btn" onclick="save_add_recipe_modal()">Save Recipe</button>
+    <p id="add_recipe_message" class="desc"></p>
+  </div>
+</div>
+<!-- ── END ADD RECIPE MODAL ── -->
 
 <script>
 function toggleListItem(id) {
@@ -283,6 +328,15 @@ function close_help_modal() {
   document.getElementById('help_modal').style.display = 'none';
 }
 
+// ── Date display, same idea as Notepad's dateDisplay ──
+(function () {
+  var el = document.getElementById('cookbookDateDisplay');
+  if (el) {
+    el.textContent = new Date().toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+  }
+})();
+
+// ── Recipe Creator (top-level list item) — saves to favorites, unchanged from before ──
 function add_ingredient_field() {
   var container = document.getElementById('creator_ingredients_list');
   var input = document.createElement('input');
@@ -342,6 +396,108 @@ function save_created_recipe() {
 <script src="vegetables_data.js"></script>
 <script src="side_dishes_data.js"></script>
 <script src="cookbook_menu_data.js"></script>
+
+<!-- ── Add-recipe-per-category logic — wraps openToggle without editing cookbook_menu_data.js ── -->
+<script>
+var _add_recipe_target_cat = null;
+
+function open_add_recipe_modal(cat_id, cat_label) {
+  _add_recipe_target_cat = cat_id;
+  document.getElementById('add_recipe_modal_title').textContent = 'Add Recipe : ' + cat_label;
+  document.getElementById('add_recipe_modal').style.display = 'block';
+}
+function close_add_recipe_modal() {
+  document.getElementById('add_recipe_modal').style.display = 'none';
+}
+
+function add_recipe_ingredient_field() {
+  var container = document.getElementById('add_recipe_ingredients_list');
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'text-input add-recipe-ingredient-input';
+  input.placeholder = 'Ingredient';
+  input.style.marginBottom = '5px';
+  container.appendChild(input);
+}
+
+function save_add_recipe_modal() {
+  var name     = document.getElementById('add_recipe_name').value.trim();
+  var servings = document.getElementById('add_recipe_servings').value.trim();
+  var prep     = document.getElementById('add_recipe_prep').value.trim();
+  var msgEl    = document.getElementById('add_recipe_message');
+  var ingredients = [];
+
+  document.querySelectorAll('.add-recipe-ingredient-input').forEach(function(inp) {
+    if (inp.value.trim()) ingredients.push(inp.value.trim());
+  });
+
+  if (!name || !servings || ingredients.length === 0 || !prep) {
+    if (msgEl) msgEl.textContent = 'Please fill out the name, servings, at least one ingredient, and the preparation steps.';
+    return;
+  }
+
+  var key = 'custom_recipes_' + _add_recipe_target_cat;
+  var stored = JSON.parse(localStorage.getItem(key) || '[]');
+  stored.push({ name: name, servings: servings, ingredients: ingredients, prep: prep });
+  localStorage.setItem(key, JSON.stringify(stored));
+
+  if (msgEl) msgEl.textContent = 'Recipe added!';
+
+  document.getElementById('add_recipe_name').value = '';
+  document.getElementById('add_recipe_servings').value = '';
+  document.getElementById('add_recipe_prep').value = '';
+  document.getElementById('add_recipe_ingredients_list').innerHTML =
+    '<input class="text-input add-recipe-ingredient-input" type="text" placeholder="Ingredient" style="margin-bottom:5px;">';
+
+  setTimeout(close_add_recipe_modal, 800);
+}
+
+// Wrap the existing openToggle so custom recipes appear under
+// "⭐ My Recipes" every time a category is opened — cookbook_menu_data.js
+// itself is never modified.
+var _original_openToggle = window.openToggle;
+window.openToggle = function(category, row) {
+  _original_openToggle(category, row);
+  var body = document.getElementById(category + '_toggle_body');
+  if (body && body.classList.contains('open')) {
+    render_custom_recipes(category);
+  }
+};
+
+function render_custom_recipes(cat_id) {
+  var list_el = document.getElementById(cat_id);
+  if (!list_el) return;
+  var stored = JSON.parse(localStorage.getItem('custom_recipes_' + cat_id) || '[]');
+  if (stored.length === 0) return;
+
+  var li = document.createElement('li');
+  li.className = 'nested-li';
+  li.innerHTML = '<span class="subcat-chevron">▶</span> ⭐ My Recipes';
+  li.style.cursor = 'pointer';
+  li.addEventListener('click', function () {
+    var existing = list_el.querySelector('.custom-recipe-sublist');
+    var chevron = li.querySelector('.subcat-chevron');
+    if (existing) {
+      existing.remove();
+      if (chevron) chevron.textContent = '▶';
+      return;
+    }
+    var ul = document.createElement('ul');
+    ul.className = 'recipe-sublist custom-recipe-sublist';
+    stored.forEach(function (r) {
+      var rli = document.createElement('li');
+      rli.className = 'menu-item';
+      rli.textContent = r.name;
+      rli.style.cursor = 'pointer';
+      rli.addEventListener('click', function () { open_recipe_modal(r, '⭐', 'My Recipes'); });
+      ul.appendChild(rli);
+    });
+    li.insertAdjacentElement('afterend', ul);
+    if (chevron) chevron.textContent = '▼';
+  });
+  list_el.appendChild(li);
+}
+</script>
 
 <script type="module" src="firebase_login_auth.js"></script>
 
