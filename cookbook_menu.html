@@ -50,6 +50,9 @@
     <li style="margin:0 0 20px 0;">
       <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('meal-planner-panel')">📅 Meal Planner :</h3>
     </li>
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('recipe-creator-panel')">✍️ Recipe Creator :</h3>
+    </li>
   </ol>
 </div>
 <!-- END COOKBOOK MENU LIST -->
@@ -232,6 +235,31 @@
 </div>
 <!-- END MEAL PLANNER PANEL -->
 
+<!-- ══════════════════════════════════════
+     RECIPE CREATOR PANEL
+══════════════════════════════════════ -->
+<div class="card" id="recipe-creator-panel" style="display:none;">
+  <h3>✍️ Recipe Creator :</h3>
+  <hr>
+  <p class="desc">Build your own recipe card and save it to your favorites.</p>
+
+  <input class="text-input" type="text" id="creator_name" placeholder="Recipe name" style="margin-bottom:5px;">
+  <input class="text-input" type="text" id="creator_servings" placeholder="Serving size (e.g. Serves 4)" style="margin-bottom:5px;">
+
+  <h4>Ingredients :</h4>
+  <div id="creator_ingredients_list">
+    <input class="text-input creator-ingredient-input" type="text" placeholder="Ingredient" style="margin-bottom:5px;">
+  </div>
+  <div class="orange-btn" onclick="add_ingredient_field()" style="margin-bottom:10px;">+ Add Ingredient</div>
+
+  <h4>Preparation :</h4>
+  <textarea class="text-input" id="creator_prep" placeholder="Preparation steps" style="height:100px; margin-bottom:10px;"></textarea>
+
+  <button class="orange-btn" onclick="save_created_recipe()">Save Recipe</button>
+  <p id="creator_message" class="desc"></p>
+</div>
+<!-- END RECIPE CREATOR PANEL -->
+
 <div class="page-ornament">◆ ◆ ◆</div>
 
 </div>
@@ -249,12 +277,57 @@
 
 <script>
 function showCookbookPanel(id) {
-  var panels = ['cookbook-toggle-menu', 'favorites-panel', 'meal-planner-panel'];
+  var panels = ['cookbook-toggle-menu', 'favorites-panel', 'meal-planner-panel', 'recipe-creator-panel'];
   var alreadyOpen = document.getElementById(id).style.display === 'block';
   panels.forEach(function(pid) {
     document.getElementById(pid).style.display = 'none';
   });
   if (!alreadyOpen) document.getElementById(id).style.display = 'block';
+}
+
+function add_ingredient_field() {
+  var container = document.getElementById('creator_ingredients_list');
+  var input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'text-input creator-ingredient-input';
+  input.placeholder = 'Ingredient';
+  input.style.marginBottom = '5px';
+  container.appendChild(input);
+}
+
+function save_created_recipe() {
+  var name      = document.getElementById('creator_name').value.trim();
+  var servings  = document.getElementById('creator_servings').value.trim();
+  var prep      = document.getElementById('creator_prep').value.trim();
+  var msgEl     = document.getElementById('creator_message');
+  var ingredients = [];
+
+  document.querySelectorAll('.creator-ingredient-input').forEach(function(inp) {
+    if (inp.value.trim()) ingredients.push(inp.value.trim());
+  });
+
+  if (!name || !servings || ingredients.length === 0 || !prep) {
+    if (msgEl) msgEl.textContent = 'Please fill out the name, servings, at least one ingredient, and the preparation steps.';
+    return;
+  }
+
+  var favs = JSON.parse(localStorage.getItem('mealplanner_favorites') || '[]');
+  favs.push({
+    name: name,
+    catName: 'My Recipes',
+    servings: servings,
+    ingredients: ingredients,
+    prep: prep
+  });
+  localStorage.setItem('mealplanner_favorites', JSON.stringify(favs));
+
+  if (msgEl) msgEl.textContent = 'Recipe saved to your favorites!';
+
+  document.getElementById('creator_name').value = '';
+  document.getElementById('creator_servings').value = '';
+  document.getElementById('creator_prep').value = '';
+  document.getElementById('creator_ingredients_list').innerHTML =
+    '<input class="text-input creator-ingredient-input" type="text" placeholder="Ingredient" style="margin-bottom:5px;">';
 }
 </script>
 
