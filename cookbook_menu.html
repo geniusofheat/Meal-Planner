@@ -24,241 +24,221 @@
 <div class="card flex-row">
   <a id="homepage-redirect-link" class="orange-btn" href="index.html">🏠 Back:</a>
   <div class="nav-divider"></div>
-  <a class="orange-btn" href="#" onclick="showCookbookPanel('favorites-panel'); return false;">Fav's</a>
+  <div class="orange-btn" style="flex-direction:column; height:auto; line-height:1.2; padding:5px 10px;" onclick="show_help_modal()">
+    <span style="font-size:16px;">❓</span>
+    <span style="font-size:10px;">Help</span>
+  </div>
 </div>
 <!-- ── END NAV BAR ── -->
 
-<!-- COOKBOOK INTRO -->
+<!-- SHORT INTRO — always visible -->
 <div class="card">
-  <h3>📖 Cookbook :</h3>
-  <hr>
-  <p>All the recipes we provide are researched and verified by proven chef inspired ingredients and preparation instructions.</p>
-  <p>The free version of cookbook allows you to view the items in the menu but only allows access to one recipe card until you subscribe to the full version.</p>
-  <p class="desc">Browse the menu sections below or use the search bar to search for specific recipes or ingredients.</p>
+  <p class="desc">Please choose an item in the list or click Help for more instructions.</p>
 </div>
-<!-- END COOKBOOK INTRO -->
-
-<!-- COOKBOOK MENU LIST -->
-<div class="card">
-  <ol style="list-style-position:outside; padding-left:20px; margin:0;">
-    <li style="margin:0 0 20px 0;">
-      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('cookbook-toggle-menu')">📖 Recipes :</h3>
-    </li>
-    <li style="margin:0 0 20px 0;">
-      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('favorites-panel')">♡ Favorites Menu :</h3>
-    </li>
-    <li style="margin:0 0 20px 0;">
-      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('meal-planner-panel')">📅 Meal Planner :</h3>
-    </li>
-    <li style="margin:0 0 20px 0;">
-      <h3 style="cursor:pointer; margin:0;" onclick="showCookbookPanel('recipe-creator-panel')">✍️ Recipe Creator :</h3>
-    </li>
-  </ol>
-</div>
-<!-- END COOKBOOK MENU LIST -->
+<!-- END SHORT INTRO -->
 
 <!-- Search results message -->
 <div id="search_results" class="search-error-message"></div>
 
 <!-- ══════════════════════════════════════
-     COOKBOOK TOGGLE MENU
+     COOKBOOK LIST CARD — everything lives in here
 ══════════════════════════════════════ -->
-<div class="card" id="cookbook-toggle-menu" style="display:none;">
+<div class="card">
+  <ol style="list-style-position:outside; padding-left:20px; margin:0; width:100%; align-self:flex-start;">
 
-  <h3>📋 Menu Items :</h3>
-  
-  <hr>
-  
-  <!-- SEARCH ROW -->
-<div class="card flex-row">
-  <div class="orange-btn" onclick="startVoice()">🎤</div>
-  <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
-  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
-</div>
-<!-- END SEARCH ROW -->
+    <!-- RECIPES -->
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="toggleListItem('cookbook-toggle-menu')">📖 Recipes :</h3>
 
-  <!-- ── BEVERAGES ── -->
-  <div class="toggle-row" id="Beverages" onclick="openToggle('beverages', this)">
-    <span class="toggle-label">🍷 Beverages</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="beverages_toggle_body">
-    <div id="beverages_header" class="menu-header"></div>
-    <ul id="beverages"></ul>
-  </div>
-  <!-- ── END BEVERAGES ── -->
+      <div id="cookbook-toggle-menu" style="display:none; margin-top:10px;">
 
-  <!-- ── BEANS AND LEGUMES ── -->
-  <div class="toggle-row" id="Beans_and_Legumes" onclick="openToggle('beans_and_legumes', this)">
-    <span class="toggle-label">🫘 Beans & Legumes</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="beans_and_legumes_toggle_body">
-    <div id="beans_and_legumes_header" class="menu-header"></div>
-    <ul id="beans_and_legumes"></ul>
-  </div>
-  <!-- ── END BEANS AND LEGUMES ── -->
+        <!-- SEARCH ROW -->
+        <div class="card flex-row">
+          <div class="orange-btn" onclick="startVoice()">🎤</div>
+          <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
+          <div class="orange-btn" onclick="search_cookbook()">🔍</div>
+        </div>
+        <!-- END SEARCH ROW -->
 
-  <!-- ── BREADS AND GRAINS ── -->
-  <div class="toggle-row" id="Breads_and_Grains" onclick="openToggle('breads_and_grains', this)">
-    <span class="toggle-label">🍞 Breads & Grains</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="breads_and_grains_toggle_body">
-    <div id="breads_and_grains_header" class="menu-header"></div>
-    <ul id="breads_and_grains"></ul>
-  </div>
-  <!-- ── END BREADS AND GRAINS ── -->
+        <!-- ── BEVERAGES ── -->
+        <div class="toggle-row" id="Beverages" onclick="openToggle('beverages', this)">
+          <span class="toggle-label">🍷 Beverages</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="beverages_toggle_body">
+          <div id="beverages_header" class="menu-header"></div>
+          <ul id="beverages"></ul>
+        </div>
+        <!-- ── END BEVERAGES ── -->
 
-  <!-- ── DESSERTS ── -->
-  <div class="toggle-row" id="Desserts" onclick="openToggle('desserts', this)">
-    <span class="toggle-label">🍰 Desserts</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="desserts_toggle_body">
-    <div id="desserts_header" class="menu-header"></div>
-    <ul id="desserts"></ul>
-  </div>
-  <!-- ── END DESSERTS ── -->
+        <!-- ── BEANS AND LEGUMES ── -->
+        <div class="toggle-row" id="Beans_and_Legumes" onclick="openToggle('beans_and_legumes', this)">
+          <span class="toggle-label">🫘 Beans & Legumes</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="beans_and_legumes_toggle_body">
+          <div id="beans_and_legumes_header" class="menu-header"></div>
+          <ul id="beans_and_legumes"></ul>
+        </div>
+        <!-- ── END BEANS AND LEGUMES ── -->
 
-  <!-- ── DIPS, SAUCES, AND GRAVIES ── -->
-  <div class="toggle-row" id="dips_sauces_And_gravies" onclick="openToggle('dips_sauces_and_gravies', this)">
-    <span class="toggle-label">🥣 Dips, Sauces, & Gravies</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="dips_sauces_and_gravies_toggle_body">
-    <div id="dips_sauces_and_gravies_header" class="menu-header"></div>
-    <ul id="dips_sauces_and_gravies"></ul>
-  </div>
-  <!-- ── END DIPS, SAUCES, AND GRAVIES ── -->
+        <!-- ── BREADS AND GRAINS ── -->
+        <div class="toggle-row" id="Breads_and_Grains" onclick="openToggle('breads_and_grains', this)">
+          <span class="toggle-label">🍞 Breads & Grains</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="breads_and_grains_toggle_body">
+          <div id="breads_and_grains_header" class="menu-header"></div>
+          <ul id="breads_and_grains"></ul>
+        </div>
+        <!-- ── END BREADS AND GRAINS ── -->
 
-  <!-- ── HARD AND SOFT CANDY ── -->
-  <div class="toggle-row" id="Hard_And_Soft_Candy" onclick="openToggle('hard_and_soft_candy', this)">
-    <span class="toggle-label">🍬 Hard & Soft Candy</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="hard_and_soft_candy_toggle_body">
-    <div id="hard_and_soft_candy_header" class="menu-header"></div>
-    <ul id="hard_and_soft_candy"></ul>
-  </div>
-  <!-- ── END HARD AND SOFT CANDY ── -->
+        <!-- ── DESSERTS ── -->
+        <div class="toggle-row" id="Desserts" onclick="openToggle('desserts', this)">
+          <span class="toggle-label">🍰 Desserts</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="desserts_toggle_body">
+          <div id="desserts_header" class="menu-header"></div>
+          <ul id="desserts"></ul>
+        </div>
+        <!-- ── END DESSERTS ── -->
 
+        <!-- ── DIPS, SAUCES, AND GRAVIES ── -->
+        <div class="toggle-row" id="dips_sauces_And_gravies" onclick="openToggle('dips_sauces_and_gravies', this)">
+          <span class="toggle-label">🥣 Dips, Sauces, & Gravies</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="dips_sauces_and_gravies_toggle_body">
+          <div id="dips_sauces_and_gravies_header" class="menu-header"></div>
+          <ul id="dips_sauces_and_gravies"></ul>
+        </div>
+        <!-- ── END DIPS, SAUCES, AND GRAVIES ── -->
 
-  <!-- ── MEATS ── -->
-  <div class="toggle-row" id="Meats" onclick="openToggle('meats', this)">
-    <span class="toggle-label">🥩 Meats</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="meats_toggle_body">
-    <div id="meats_header" class="menu-header"></div>
-    <ul id="meats"></ul>
-  </div>
-  <!-- ── END MEATS ── -->
+        <!-- ── HARD AND SOFT CANDY ── -->
+        <div class="toggle-row" id="Hard_And_Soft_Candy" onclick="openToggle('hard_and_soft_candy', this)">
+          <span class="toggle-label">🍬 Hard & Soft Candy</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="hard_and_soft_candy_toggle_body">
+          <div id="hard_and_soft_candy_header" class="menu-header"></div>
+          <ul id="hard_and_soft_candy"></ul>
+        </div>
+        <!-- ── END HARD AND SOFT CANDY ── -->
 
-  <!-- ── PASTAS AND RICE ── -->
-  <div class="toggle-row" id="Pastas_And_Rice" onclick="openToggle('pastas', this)">
-    <span class="toggle-label">🍝 Pastas & Rice</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="pastas_toggle_body">
-    <div id="pastas_header" class="menu-header"></div>
-    <ul id="pastas"></ul>
-  </div>
-  <!-- ── END PASTAS AND RICE ── -->
+        <!-- ── MEATS ── -->
+        <div class="toggle-row" id="Meats" onclick="openToggle('meats', this)">
+          <span class="toggle-label">🥩 Meats</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="meats_toggle_body">
+          <div id="meats_header" class="menu-header"></div>
+          <ul id="meats"></ul>
+        </div>
+        <!-- ── END MEATS ── -->
 
-  <!-- ── SALADS ── -->
-  <div class="toggle-row" id="Salads" onclick="openToggle('salads', this)">
-    <span class="toggle-label">🥗 Salads</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="salads_toggle_body">
-    <div id="salads_header" class="menu-header"></div>
-    <ul id="salads"></ul>
-  </div>
-  <!-- ── END SALADS ── -->
+        <!-- ── PASTAS AND RICE ── -->
+        <div class="toggle-row" id="Pastas_And_Rice" onclick="openToggle('pastas', this)">
+          <span class="toggle-label">🍝 Pastas & Rice</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="pastas_toggle_body">
+          <div id="pastas_header" class="menu-header"></div>
+          <ul id="pastas"></ul>
+        </div>
+        <!-- ── END PASTAS AND RICE ── -->
 
-  <!-- ── SOUPS AND STEWS ── -->
-  <div class="toggle-row" id="Soups_And_Stews" onclick="openToggle('soups_and_stews', this)">
-    <span class="toggle-label">🍲 Soups & Stews</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="soups_and_stews_toggle_body">
-    <div id="soups_and_stews_header" class="menu-header"></div>
-    <ul id="soups_and_stews"></ul>
-  </div>
-  <!-- ── END SOUPS AND STEWS ── -->
+        <!-- ── SALADS ── -->
+        <div class="toggle-row" id="Salads" onclick="openToggle('salads', this)">
+          <span class="toggle-label">🥗 Salads</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="salads_toggle_body">
+          <div id="salads_header" class="menu-header"></div>
+          <ul id="salads"></ul>
+        </div>
+        <!-- ── END SALADS ── -->
 
-  <!-- ── VEGETABLE DISHES ── -->
-  <div class="toggle-row" id="Vegetable_Dishes" onclick="openToggle('vegetables', this)">
-    <span class="toggle-label">🥦 Vegetable Dishes</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="vegetables_toggle_body">
-    <div id="vegetables_header" class="menu-header"></div>
-    <ul id="vegetables"></ul>
-  </div>
-  <!-- ── END VEGETABLE DISHES ── -->
+        <!-- ── SOUPS AND STEWS ── -->
+        <div class="toggle-row" id="Soups_And_Stews" onclick="openToggle('soups_and_stews', this)">
+          <span class="toggle-label">🍲 Soups & Stews</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="soups_and_stews_toggle_body">
+          <div id="soups_and_stews_header" class="menu-header"></div>
+          <ul id="soups_and_stews"></ul>
+        </div>
+        <!-- ── END SOUPS AND STEWS ── -->
 
-  <!-- ── SIDE DISHES ── -->
-  <div class="toggle-row" id="Side_Dishes" onclick="openToggle('side_dishes', this)">
-    <span class="toggle-label">🥔 Side Dishes</span>
-    <span class="toggle-arrow">▸</span>
-  </div>
-  <div class="toggle-body" id="side_dishes_toggle_body">
-    <div id="side_dishes_header" class="menu-header"></div>
-    <ul id="side_dishes"></ul>
-  </div>
-  <!-- ── END SIDE DISHES ── -->
+        <!-- ── VEGETABLE DISHES ── -->
+        <div class="toggle-row" id="Vegetable_Dishes" onclick="openToggle('vegetables', this)">
+          <span class="toggle-label">🥦 Vegetable Dishes</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="vegetables_toggle_body">
+          <div id="vegetables_header" class="menu-header"></div>
+          <ul id="vegetables"></ul>
+        </div>
+        <!-- ── END VEGETABLE DISHES ── -->
 
+        <!-- ── SIDE DISHES ── -->
+        <div class="toggle-row" id="Side_Dishes" onclick="openToggle('side_dishes', this)">
+          <span class="toggle-label">🥔 Side Dishes</span>
+          <span class="toggle-arrow">▸</span>
+        </div>
+        <div class="toggle-body" id="side_dishes_toggle_body">
+          <div id="side_dishes_header" class="menu-header"></div>
+          <ul id="side_dishes"></ul>
+        </div>
+        <!-- ── END SIDE DISHES ── -->
+
+      </div>
+    </li>
+
+    <!-- FAVORITES MENU -->
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="toggleListItem('favorites-panel')">♡ Favorites Menu :</h3>
+      <div id="favorites-panel" style="display:none; margin-top:10px;">
+        <p class="desc">Favorites isn't built yet — this is a placeholder until that page's content is ready.</p>
+      </div>
+    </li>
+
+    <!-- MEAL PLANNER -->
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="toggleListItem('meal-planner-panel')">📅 Meal Planner :</h3>
+      <div id="meal-planner-panel" style="display:none; margin-top:10px;">
+        <p class="desc">Meal Planner isn't built yet — this is a placeholder until that page's content is ready.</p>
+      </div>
+    </li>
+
+    <!-- RECIPE CREATOR -->
+    <li style="margin:0 0 20px 0;">
+      <h3 style="cursor:pointer; margin:0;" onclick="toggleListItem('recipe-creator-panel')">✍️ Recipe Creator :</h3>
+      <div id="recipe-creator-panel" style="display:none; margin-top:10px;">
+        <p class="desc">Build your own recipe card and save it to your favorites.</p>
+
+        <input class="text-input" type="text" id="creator_name" placeholder="Recipe name" style="margin-bottom:5px;">
+        <input class="text-input" type="text" id="creator_servings" placeholder="Serving size (e.g. Serves 4)" style="margin-bottom:5px;">
+
+        <h4>Ingredients :</h4>
+        <div id="creator_ingredients_list">
+          <input class="text-input creator-ingredient-input" type="text" placeholder="Ingredient" style="margin-bottom:5px;">
+        </div>
+        <div class="orange-btn" onclick="add_ingredient_field()" style="margin-bottom:10px;">+ Add Ingredient</div>
+
+        <h4>Preparation :</h4>
+        <textarea class="text-input" id="creator_prep" placeholder="Preparation steps" style="height:100px; margin-bottom:10px;"></textarea>
+
+        <button class="orange-btn" onclick="save_created_recipe()">Save Recipe</button>
+        <p id="creator_message" class="desc"></p>
+      </div>
+    </li>
+
+  </ol>
 </div>
 <!-- ══════════════════════════════════════
-     END COOKBOOK TOGGLE MENU
+     END COOKBOOK LIST CARD
 ══════════════════════════════════════ -->
-
-<!-- ══════════════════════════════════════
-     FAVORITES PANEL — placeholder, not built yet
-══════════════════════════════════════ -->
-<div class="card" id="favorites-panel" style="display:none;">
-  <h3>♡ Favorites Menu :</h3>
-  <hr>
-  <p class="desc">Favorites isn't built yet — this panel is a placeholder until that page's content is ready.</p>
-</div>
-<!-- END FAVORITES PANEL -->
-
-<!-- ══════════════════════════════════════
-     MEAL PLANNER PANEL — placeholder, not built yet
-══════════════════════════════════════ -->
-<div class="card" id="meal-planner-panel" style="display:none;">
-  <h3>📅 Meal Planner :</h3>
-  <hr>
-  <p class="desc">Meal Planner isn't built yet — this panel is a placeholder until that page's content is ready.</p>
-</div>
-<!-- END MEAL PLANNER PANEL -->
-
-<!-- ══════════════════════════════════════
-     RECIPE CREATOR PANEL
-══════════════════════════════════════ -->
-<div class="card" id="recipe-creator-panel" style="display:none;">
-  <h3>✍️ Recipe Creator :</h3>
-  <hr>
-  <p class="desc">Build your own recipe card and save it to your favorites.</p>
-
-  <input class="text-input" type="text" id="creator_name" placeholder="Recipe name" style="margin-bottom:5px;">
-  <input class="text-input" type="text" id="creator_servings" placeholder="Serving size (e.g. Serves 4)" style="margin-bottom:5px;">
-
-  <h4>Ingredients :</h4>
-  <div id="creator_ingredients_list">
-    <input class="text-input creator-ingredient-input" type="text" placeholder="Ingredient" style="margin-bottom:5px;">
-  </div>
-  <div class="orange-btn" onclick="add_ingredient_field()" style="margin-bottom:10px;">+ Add Ingredient</div>
-
-  <h4>Preparation :</h4>
-  <textarea class="text-input" id="creator_prep" placeholder="Preparation steps" style="height:100px; margin-bottom:10px;"></textarea>
-
-  <button class="orange-btn" onclick="save_created_recipe()">Save Recipe</button>
-  <p id="creator_message" class="desc"></p>
-</div>
-<!-- END RECIPE CREATOR PANEL -->
 
 <div class="page-ornament">◆ ◆ ◆</div>
 
@@ -275,14 +255,34 @@
 </div>
 <!-- ── END RECIPE MODAL ── -->
 
+<!-- ── HELP MODAL ── -->
+<div id="help_modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:999; overflow-y:auto;">
+  <div class="card" style="max-width:500px; margin:60px auto; padding:20px; position:relative;">
+    <button class="orange-btn" onclick="close_help_modal()" style="position:absolute; top:10px; right:10px;">✕</button>
+    <h3>📖 Cookbook Help :</h3>
+    <hr>
+    <p>All the recipes we provide are researched and verified by proven chef inspired ingredients and preparation instructions.</p>
+    <p>The free version of cookbook allows you to view the items in the menu but only allows access to one recipe card until you subscribe to the full version.</p>
+    <p class="desc">Browse the menu sections below or use the search bar to search for specific recipes or ingredients.</p>
+  </div>
+</div>
+<!-- ── END HELP MODAL ── -->
+
 <script>
-function showCookbookPanel(id) {
+function toggleListItem(id) {
   var panels = ['cookbook-toggle-menu', 'favorites-panel', 'meal-planner-panel', 'recipe-creator-panel'];
   var alreadyOpen = document.getElementById(id).style.display === 'block';
   panels.forEach(function(pid) {
     document.getElementById(pid).style.display = 'none';
   });
   if (!alreadyOpen) document.getElementById(id).style.display = 'block';
+}
+
+function show_help_modal() {
+  document.getElementById('help_modal').style.display = 'block';
+}
+function close_help_modal() {
+  document.getElementById('help_modal').style.display = 'none';
 }
 
 function add_ingredient_field() {
