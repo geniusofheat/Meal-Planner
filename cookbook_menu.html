@@ -38,7 +38,13 @@
 </div>
 <!-- END COOKBOOK INTRO -->
 
-
+<!-- SEARCH ROW -->
+<div class="card flex-row">
+  <div class="orange-btn" onclick="startVoice()">🎤</div>
+  <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
+  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
+</div>
+<!-- END SEARCH ROW -->
 
 <!-- Search results message -->
 <div id="search_results" class="search-error-message"></div>
@@ -52,13 +58,7 @@
   
   <hr>
   
-  <!-- SEARCH ROW -->
-<div class="card flex-row">
-  <div class="orange-btn" onclick="startVoice()">🎤</div>
-  <input class="text-input" type="text" id="search_input" placeholder="Search the menu here..." onkeydown="search_on_enter(event)" autocomplete="off">
-  <div class="orange-btn" onclick="search_cookbook()">🔍</div>
-</div>
-<!-- END SEARCH ROW -->
+  
 
   <!-- ── BEVERAGES ── -->
   <div class="toggle-row" id="Beverages" onclick="openToggle('beverages', this)">
