@@ -180,8 +180,7 @@ function render_subcats(cat_id) {
     html += '<li class="notepad-placeholder">Coming soon.</li>';
   } else {
     subcats.forEach((sub, idx) => {
-      const arrow = (open_key === idx) ? '▼' : '▶';
-      html += `<li style="cursor:pointer;" onclick="toggle_subcat('${cat_id}', ${idx})">${arrow} ${sub.name}</li>`;
+      html += `<li style="cursor:pointer;" onclick="toggle_subcat('${cat_id}', ${idx})">${sub.name}</li>`;
       if (open_key === idx) {
         html += `<li>${render_recipe_titles(cat_id, idx, sub.recipes || [])}</li>`;
       }
@@ -191,8 +190,7 @@ function render_subcats(cat_id) {
   const custom = JSON.parse(localStorage.getItem('custom_recipes_' + cat_id) || '[]');
   if (custom.length > 0) {
     const custom_open = open_key === 'custom';
-    const arrow2 = custom_open ? '▼' : '▶';
-    html += `<li style="cursor:pointer;" onclick="toggle_subcat('${cat_id}', 'custom')">${arrow2} ⭐ My Recipes</li>`;
+    html += `<li style="cursor:pointer;" onclick="toggle_subcat('${cat_id}', 'custom')">⭐ My Recipes</li>`;
     if (custom_open) {
       html += `<li>${render_custom_recipe_titles(cat_id, custom)}</li>`;
     }
@@ -513,3 +511,5 @@ function hide_help_modal() {
   if (overlay) overlay.style.display = 'none';
 }
 window.hide_help_modal = hide_help_modal;
+
+

@@ -329,7 +329,7 @@ p {
 }
 
 .sub-list.level-3 {
-  list-style: none;
+  list-style: circle;
   padding-left: 20px;
 }
 
