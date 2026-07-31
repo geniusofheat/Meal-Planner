@@ -24,13 +24,13 @@
 
 // ── SECTION 1: STATE ────────────────────────────────────────────
 
-const TOOL_IDS = ['recipes', 'favorites', 'meal-planner', 'recipe-creator'];
-const TOOL_LABELS = {
-  'recipes':        '📖 Recipes',
-  'favorites':       '♡ Favorites Menu',
-  'meal-planner':    '📅 Meal Planner',
-  'recipe-creator':  '✍️ Recipe Creator'
-};
+const TOOLS = [
+  { id: 'recipes',        label: '📖 Recipes',        sortKey: 'Recipes' },
+  { id: 'favorites',      label: '♡ Favorites Menu',   sortKey: 'Favorites Menu' },
+  { id: 'meal-planner',   label: '📅 Meal Planner',    sortKey: 'Meal Planner' },
+  { id: 'recipe-creator', label: '✍️ Recipe Creator',  sortKey: 'Recipe Creator' },
+  { id: 'my-recipes',     label: '⭐ My Recipes',      sortKey: 'My Recipes' }
+];
 
 const CATEGORIES = [
   { id: 'beverages',                icon: '🍷', label: 'Beverages' },
@@ -82,18 +82,24 @@ function redraw_list() {
   const list = document.getElementById('notes-list');
   if (!list) return;
 
+  const sorted_tools = [...TOOLS].sort((a, b) => a.sortKey.localeCompare(b.sortKey));
+
   let html = '<ol class="notes-ol">';
-  TOOL_IDS.forEach((id) => {
-    const is_open = expanded_tools.has(id);
+  sorted_tools.forEach((tool) => {
+    const is_open = expanded_tools.has(tool.id);
+    const add_btn = (tool.id === 'recipes')
+      ? '<span class="bracket-action" onclick="event.stopPropagation(); open_add_recipe_modal()">[ + ]</span>'
+      : '';
     html += `
       <li class="note-list-item">
         <div class="row-content">
-          <span class="note-list-title" onclick="toggle_tool('${id}')">${TOOL_LABELS[id]}</span>
+          <span class="note-list-title" onclick="toggle_tool('${tool.id}')">${tool.label}</span>
+          ${add_btn}
         </div>
       </li>
     `;
     if (is_open) {
-      html += `<li class="sub-content-row">${render_tool_content(id)}</li>`;
+      html += `<li class="sub-content-row">${render_tool_content(tool.id)}</li>`;
     }
   });
   html += '</ol>';
@@ -117,6 +123,7 @@ function render_tool_content(id) {
     return '<div class="notepad-placeholder">Meal Planner isn\'t built yet — this is a placeholder until that page\'s content is ready.</div>';
   }
   if (id === 'recipe-creator') return render_recipe_creator_form();
+  if (id === 'my-recipes') return render_my_recipes_tool();
   return '';
 }
 
@@ -135,14 +142,14 @@ function render_recipes_tool() {
 }
 
 function render_categories_list() {
+  const sorted_categories = [...CATEGORIES].sort((a, b) => a.label.localeCompare(b.label));
   let html = '<ul class="note-items-list">';
-  CATEGORIES.forEach((cat) => {
+  sorted_categories.forEach((cat) => {
     const is_open = expanded_categories.has(cat.id);
     html += `
       <li class="note-item-row">
         <div class="row-content">
           <span class="note-list-title" onclick="toggle_category_cb('${cat.id}')">${cat.icon} ${cat.label}</span>
-          <span class="bracket-action" onclick="open_add_recipe_modal('${cat.id}','${cat.label.replace(/'/g, "")}')">[ add recipe + ]</span>
         </div>
       </li>
     `;
@@ -172,28 +179,28 @@ function toggle_subcat(cat_id, key) {
 window.toggle_subcat = toggle_subcat;
 
 function render_subcats(cat_id) {
-  const subcats = (typeof cookbook_data !== 'undefined' && cookbook_data[cat_id]) ? cookbook_data[cat_id] : [];
+  const subcats_raw = (typeof cookbook_data !== 'undefined' && cookbook_data[cat_id]) ? cookbook_data[cat_id] : [];
+  const subcats = subcats_raw
+    .map((sub, original_idx) => ({ sub, original_idx }))
+    .sort((a, b) => a.sub.name.localeCompare(b.sub.name));
   const open_key = open_subcat[cat_id];
   let html = '<ul class="sub-list level-2">';
 
   if (subcats.length === 0) {
     html += '<li class="notepad-placeholder">Coming soon.</li>';
   } else {
-    subcats.forEach((sub, idx) => {
-      html += `<li style="cursor:pointer;" onclick="toggle_subcat('${cat_id}', ${idx})">${sub.name}</li>`;
-      if (open_key === idx) {
-        html += `<li>${render_recipe_titles(cat_id, idx, sub.recipes || [])}</li>`;
+    subcats.forEach(({ sub, original_idx }) => {
+      html += `
+        <li class="note-item-row">
+          <div class="row-content">
+            <span class="note-list-title" onclick="toggle_subcat('${cat_id}', ${original_idx})">${sub.name}</span>
+          </div>
+        </li>
+      `;
+      if (open_key === original_idx) {
+        html += `<li>${render_recipe_titles(cat_id, original_idx, sub.recipes || [])}</li>`;
       }
     });
-  }
-
-  const custom = JSON.parse(localStorage.getItem('custom_recipes_' + cat_id) || '[]');
-  if (custom.length > 0) {
-    const custom_open = open_key === 'custom';
-    html += `<li style="cursor:pointer;" onclick="toggle_subcat('${cat_id}', 'custom')">⭐ My Recipes</li>`;
-    if (custom_open) {
-      html += `<li>${render_custom_recipe_titles(cat_id, custom)}</li>`;
-    }
   }
 
   html += '</ul>';
@@ -204,23 +211,22 @@ function render_subcats(cat_id) {
 // ── SECTION 6: LEVEL 4 — RECIPE TITLES (leaf — opens full view) ─
 
 function render_recipe_titles(cat_id, sub_idx, recipes) {
+  const sorted = recipes
+    .map((r, original_ri) => ({ r, original_ri }))
+    .sort((a, b) => a.r.name.localeCompare(b.r.name));
   let html = '<ul class="sub-list level-3">';
-  recipes.forEach((r, ri) => {
-    html += `<li style="cursor:pointer;" onclick="open_recipe_view_by_lookup('${cat_id}', ${sub_idx}, ${ri})">${r.name}</li>`;
+  sorted.forEach(({ r, original_ri }) => {
+    html += `
+      <li class="note-item-row">
+        <div class="row-content">
+          <span class="note-list-title" onclick="open_recipe_view_by_lookup('${cat_id}', ${sub_idx}, ${original_ri})">${r.name}</span>
+        </div>
+      </li>
+    `;
   });
   html += '</ul>';
   return html;
 }
-
-function render_custom_recipe_titles(cat_id, custom) {
-  let html = '<ul class="sub-list level-3">';
-  custom.forEach((r, ci) => {
-    html += `<li style="cursor:pointer;" onclick="open_recipe_view_by_custom('${cat_id}', ${ci})">${r.name}</li>`;
-  });
-  html += '</ul>';
-  return html;
-}
-
 
 // ── SECTION 7: RECIPE FULL VIEW (replaces the list, like Notepad's note editor) ──
 
@@ -230,13 +236,6 @@ function open_recipe_view_by_lookup(cat_id, sub_idx, recipe_idx) {
   open_recipe_view(recipe, subcat.icon || '', subcat.name);
 }
 window.open_recipe_view_by_lookup = open_recipe_view_by_lookup;
-
-function open_recipe_view_by_custom(cat_id, idx) {
-  const custom = JSON.parse(localStorage.getItem('custom_recipes_' + cat_id) || '[]');
-  const recipe = custom[idx];
-  open_recipe_view(recipe, '⭐', 'My Recipes');
-}
-window.open_recipe_view_by_custom = open_recipe_view_by_custom;
 
 function open_recipe_view(recipe, icon, cat_name) {
   engine_current_recipe = recipe;
@@ -423,13 +422,12 @@ function save_created_recipe() {
 window.save_created_recipe = save_created_recipe;
 
 
-// ── SECTION 10: ADD RECIPE MODAL (per-category — reuses the help-modal classes) ──
+// ── SECTION 10: ADD RECIPE MODAL (feeds the flat My Recipes list — reuses the help-modal classes) ──
 
-let _add_recipe_target_cat = null;
+const MY_RECIPES_KEY = 'cookbook_my_recipes';
 
-function open_add_recipe_modal(cat_id, cat_label) {
-  _add_recipe_target_cat = cat_id;
-  document.getElementById('add_recipe_modal_title').textContent = 'Add Recipe : ' + cat_label;
+function open_add_recipe_modal() {
+  document.getElementById('add_recipe_modal_title').textContent = 'Add Recipe :';
   document.getElementById('addRecipeModalOverlay').style.display = 'flex';
 }
 window.open_add_recipe_modal = open_add_recipe_modal;
@@ -465,10 +463,9 @@ function save_add_recipe_modal() {
     return;
   }
 
-  const key = 'custom_recipes_' + _add_recipe_target_cat;
-  const stored = JSON.parse(localStorage.getItem(key) || '[]');
+  const stored = JSON.parse(localStorage.getItem(MY_RECIPES_KEY) || '[]');
   stored.push({ name, servings, ingredients, prep });
-  localStorage.setItem(key, JSON.stringify(stored));
+  localStorage.setItem(MY_RECIPES_KEY, JSON.stringify(stored));
 
   if (msgEl) msgEl.textContent = 'Recipe added!';
 
@@ -483,6 +480,40 @@ function save_add_recipe_modal() {
 }
 window.save_add_recipe_modal = save_add_recipe_modal;
 
+// ── My Recipes tool panel (flat, alphabetized list of everything added via [ + ]) ──
+
+function render_my_recipes_tool() {
+  const stored = JSON.parse(localStorage.getItem(MY_RECIPES_KEY) || '[]');
+  if (stored.length === 0) {
+    return '<div class="notepad-placeholder">Tap [ + ] beside Recipes to add your first custom recipe.</div>';
+  }
+  const sorted = stored
+    .map((r, original_idx) => ({ r, original_idx }))
+    .sort((a, b) => a.r.name.localeCompare(b.r.name));
+
+  let html = '<ul class="note-items-list">';
+  sorted.forEach(({ r, original_idx }) => {
+    html += `
+      <li class="note-item-row">
+        <div class="row-content">
+          <span class="note-list-title" onclick="open_my_recipe_view(${original_idx})">${r.name}</span>
+        </div>
+      </li>
+    `;
+  });
+  html += '</ul>';
+  return html;
+}
+
+function open_my_recipe_view(idx) {
+  const stored = JSON.parse(localStorage.getItem(MY_RECIPES_KEY) || '[]');
+  const recipe = stored[idx];
+  if (!recipe) return;
+  open_recipe_view(recipe, '⭐', 'My Recipes');
+}
+window.open_my_recipe_view = open_my_recipe_view;
+
+
 
 // ── SECTION 11: HELP MODAL ──────────────────────────────────────
 
@@ -492,7 +523,7 @@ const HELP_CONTENT_MAIN = `
   <p>Browse the menu sections below or use the search bar to search for specific recipes or ingredients.</p>
   <ul class="help-list">
     <li>Tap a title to open or close it — titles are tappable throughout the list.</li>
-    <li>The [ add recipe + ] label beside a category lets you add your own recipe to that category.</li>
+    <li>The [ + ] beside Recipes lets you add your own recipe — it's saved to My Recipes.</li>
     <li>Recipe Creator saves a recipe straight to your favorites instead of a specific category.</li>
   </ul>
 `;
@@ -511,5 +542,3 @@ function hide_help_modal() {
   if (overlay) overlay.style.display = 'none';
 }
 window.hide_help_modal = hide_help_modal;
-
-
